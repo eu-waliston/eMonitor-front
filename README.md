@@ -3,7 +3,7 @@
 
 Projeto e-monitor desenvolvido na disciplina de Projeto de Software II
 
-## Tecnologias utilizasdas: 
+## Tecnologias utilizadas: 
 ### Frontend
     - ReactJS
     - React Router Dom
