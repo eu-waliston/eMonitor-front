@@ -1,8 +1,10 @@
 .btn--icon {
     position: absolute;
     z-index: 4;
-    left: 40px;
+    left: 50px;
     top: 40px;
+    color: #007BFF;
+    font-size: 1.5rem;
 }
 
 .itens--menu {
@@ -13,6 +15,7 @@
     z-index: 3;
     box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.126);
     top: 0;
+    color: #007BFF;
 }
 
 .itens--menu-toggled {
@@ -29,7 +32,7 @@
 }
 
 .menu-icons {
-    color: #000;
+    color: #007BFF;
     top: 130px;
     position: relative;
 }

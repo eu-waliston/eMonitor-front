@@ -20,7 +20,7 @@ const Nav = () => {
     return (
         <div className={nav ? "header" : "header--toggled"}>
             <button className="menu-button" onClick={handleClick}>
-                {nav ? <FaBars className="btn--icon" /> : <GrClose className="btn--icon" />}
+                {nav ? <FaBars className="btn--icon" /> : <GrClose className="btn--icon" id="rr" />}
             </button>
             <div className={nav ? "itens--menu-toggled" : "itens--menu"}>
                 <div className="menu--icon">
