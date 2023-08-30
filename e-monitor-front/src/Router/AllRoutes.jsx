@@ -1,9 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
-import Lobby from "../Components/Lobby/Lobby";
-
-
-
+import Lobby from "../Components/Lobby-User/Lobby-User";
 
 const AllRoutes = () => {
     return (

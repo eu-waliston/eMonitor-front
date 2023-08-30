@@ -1,25 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Login.css"
 import { Link } from "react-router-dom"
 
 const Login = () => {
-    const [currentPage, setCurrentPage] = useState('login');
-
-    // const navigateTo = (page) => {
-    //      setCurrentPage(page);
-    // };
-
-    // const handleLogin = () => {
-    // Simulação de autenticação bem-sucedida (substitua por sua lógica real)
-    //     const isAuthenticated = true;
-    //
-    //     if (isAuthenticated) {
-    //         navigateTo('lobby');
-    //      }
-    //  };
-
-
-
     return (
         <div className="login-container">
 
@@ -35,7 +18,6 @@ const Login = () => {
                         <input type="checkbox" name="" id="" />
                         Lembre minha senha
                     </h6>
-                    {/* <button onClick={handleLogin}>ENTRAR</button> */}
                     <Link to={"/lobby"} className="btn">
                         ENTRAR
                     </Link>

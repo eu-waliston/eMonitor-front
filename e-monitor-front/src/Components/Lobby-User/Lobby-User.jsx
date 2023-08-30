@@ -1,11 +1,9 @@
 import React from 'react';
-import './Lobby.css';
-//import history from './history';
-import { FiCheck, FiMail } from 'react-icons/fi';
+import './Lobby-User.css';
+
 import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
-
 
 function Lobby({ navigateTo }) {
 
