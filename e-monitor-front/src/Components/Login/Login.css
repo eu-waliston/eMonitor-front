@@ -5,7 +5,7 @@
     justify-content: center;
     text-align: center;
     position: relative;
-    top: 10%;
+    top: 5%;
 }
 
 .logo-container h2 {
@@ -13,12 +13,8 @@
     color: #fff;
 }
 
-
-
 .img_logo {
-    width: 200px;
-    border-radius: 100%;
-    box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.095);
+    width: 280px;
 }
 
 .title--logo {
