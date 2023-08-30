@@ -5,7 +5,7 @@ import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 
-function Lobby({ navigateTo }) {
+function Lobby() {
 
     return (
         <>
@@ -28,12 +28,14 @@ function Lobby({ navigateTo }) {
                                     </div>
                                 </div>
                                 <div className="ticket-read-icon">
-                                    {ticket.read ? <BsExclamationCircleFill /> : ""}
+                                    {ticket.read ? <BsExclamationCircleFill className='exclamation-icons'/> : ""}
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <button className="fab-button">+</button>
+                    <Link to={"question"}>
+                        <button className="fab-button">+</button>
+                    </Link>
                 </div>
             </div>
         </>
