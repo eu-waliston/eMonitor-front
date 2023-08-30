@@ -25,8 +25,8 @@ const Login = () => {
 
             <div className="login-container">
                 <div className="logo-container">
-                    <img src='./Images/icone.png' alt="App Logo" className="img_logo" />
-                    <h2><span>e</span>Monitor</h2>
+                    <img src='./Images/logo.png' alt="App Logo" className="img_logo" />
+                    <h2><span className="title--logo">E</span>Monitor</h2>
                 </div>
                 <div className="login-fields">
                     <input className="input" type="text" placeholder="CPF/Matrícula" />

@@ -13,10 +13,17 @@
     color: #fff;
 }
 
+
+
 .img_logo {
-    width: 150px;
+    width: 200px;
     border-radius: 100%;
     box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.095);
+}
+
+.title--logo {
+    margin-right: 5px;
+    font-size: 3rem;
 }
 
 .input {
@@ -30,6 +37,8 @@
 
 .remember {
     color: #fff;
+    position: relative;
+    top: 23px;
 }
 
 .remember input {
