@@ -2,7 +2,7 @@ import React from 'react';
 import './Lobby.css';
 //import history from './history';
 import { FiCheck, FiMail } from 'react-icons/fi';
-import {BsExclamationCircleFill} from "react-icons/bs"
+import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 
@@ -13,11 +13,11 @@ function Lobby({ navigateTo }) {
         <div className="Lobby">
 
             <div className="Lobby">
-               < Nav />
+                < Nav />
                 <div className="ticket-list">
                     {dummyTickets.map((ticket, index) => (
                         <div className="ticket" key={index}>
-                            <img src={ticket.userImage} alt="User"  id='user-img'/>
+                            <img src={ticket.userImage} alt="User" id='user-img' />
                             <div className="ticket-info">
                                 <h3 className="ticket-title">{ticket.title}</h3>
                                 <div className="ticket-date">
@@ -52,6 +52,36 @@ const dummyTickets = [
         date: '2023-08-27',
         read: false,
     },
+
+    {
+        userImage: './Images/user-01.png',
+        title: 'Ticket 3',
+        date: '2023-08-28',
+        read: true,
+    },
+
+    {
+        userImage: './Images/icon-02.png',
+        title: 'Ticket 4',
+        date: '2023-08-27',
+        read: false,
+    },
+
+    {
+        userImage: './Images/icon-02.png',
+        title: 'Ticket 5',
+        date: '2023-08-27',
+        read: false,
+    },
+
+
+    {
+        userImage: './Images/icon-02.png',
+        title: 'Ticket 6',
+        date: '2023-08-27',
+        read: false,
+    },
+
     // ... Add more dummy tickets
 ];
 
