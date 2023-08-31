@@ -9,6 +9,7 @@ Projeto e-monitor desenvolvido na disciplina de Projeto de Software II
     - React Router Dom
     - React Icons 
     - Css
-    - Font Aweasome
+    - Google Fonts
 ### Hospedagem 
     - Vercel
+    - AWS

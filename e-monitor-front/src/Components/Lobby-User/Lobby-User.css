@@ -1,5 +1,6 @@
 .Lobby {
   padding: 20px;
+  margin-top: 25px;
 }
 
 
@@ -72,4 +73,9 @@
 
 #user-img {
   width: 80px;
+}
+
+.exclamation-icons {
+  font-size: 1.3rem;
+  color: red;
 }
