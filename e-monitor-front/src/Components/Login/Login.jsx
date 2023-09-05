@@ -19,7 +19,7 @@ const Login = () => {
                         Lembre minha senha
                     </h6>
                     <Link to={"/lobby_user"} className="btn">
-                        ENTRAR
+                        ENTRAR1
                     </Link>
                     <Link to={"/lobby_monitor"} className="btn">
                         ENTRAR2
