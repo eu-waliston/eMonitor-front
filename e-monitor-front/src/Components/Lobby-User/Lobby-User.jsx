@@ -46,13 +46,13 @@ function Lobby() {
 const dummyTickets = [
     {
         userImage: './Images/historia.jpg',
-        title: 'Ticket 1',
+        title: 'HISTÓRIA',
         date: '2023-08-28',
         read: true,
     },
     {
         userImage: './Images/portugues.png',
-        title: 'Ticket 2',
+        title: 'PORTUGUÊS',
         date: '2023-08-27',
         read: false,
     },
