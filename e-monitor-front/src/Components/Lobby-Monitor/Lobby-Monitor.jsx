@@ -10,7 +10,11 @@ function Lobby() {
     return (
 
 
+
         <div className="Lobby-m">
+
+        <div className="page">
+
             < Nav />
             <div className="Lobby">
                 <div className="ticket-list">
@@ -34,7 +38,6 @@ function Lobby() {
                 </div>
             </div>
         </div>
-
 
     );
 }
