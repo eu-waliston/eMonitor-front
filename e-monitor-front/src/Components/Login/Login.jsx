@@ -21,7 +21,7 @@ const Login = () => {
                     <Link to={"/lobby_user"} className="btn">
                         ENTRAR1
                     </Link>
-                    <Link to={"/lobby_monitor"} className="btn">
+                    <Link to={"/Lobby_monitor"} className="btn">
                         ENTRAR2
                     </Link>
                     <Link>esqueci minha senha</Link>

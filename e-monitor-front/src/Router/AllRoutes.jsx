@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
 import Lobby_user from "../Components/Lobby-User/Lobby-User";
-import lobby_monitor from "../Components/Lobby-Monitor/Lobby-Monitor";
+import Lobby_monitor from "../Components/Lobby-Monitor/Lobby-Monitor";
 
 const AllRoutes = () => {
     return (
