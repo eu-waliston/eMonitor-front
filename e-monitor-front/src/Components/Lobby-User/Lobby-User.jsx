@@ -45,7 +45,7 @@ function Lobby() {
 
 const dummyTickets = [
     {
-        userImage: './Images/fisica.jpg',
+        userImage: './Images/historia.jpg',
         title: 'Ticket 1',
         date: '2023-08-28',
         read: true,
