@@ -8,6 +8,7 @@ import { GrClose } from "react-icons/gr"
 import { AiOutlineUser } from "react-icons/ai"
 import { BsFillGearFill, BsInfoSquareFill } from "react-icons/bs"
 import { BiLogOutCircle } from "react-icons/bi"
+import {MdClose} from "react-icons/md"
 
 
 const Nav = () => {
@@ -20,7 +21,7 @@ const Nav = () => {
     return (
         <div className={nav ? "header" : "header--toggled"}>
             <button className="menu-button" onClick={handleClick}>
-                {nav ? <FaBars className="btn--icon" /> : <GrClose className="btn--icon" id="rr" />}
+                {nav ? <FaBars className="btn--icon" id="rr"/> : <MdClose className="btn--icon"  id="rr"/>}
             </button>
             <div className={nav ? "itens--menu-toggled" : "itens--menu"}>
                 <div className="menu--icon">

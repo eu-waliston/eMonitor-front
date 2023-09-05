@@ -3,15 +3,20 @@
     z-index: 4;
     left: 50px;
     top: 40px;
-    color: #007BFF;
-    font-size: 1.5rem;
+    color: #ffffff;
+    font-size: 1.5rem; 
+}
+
+#rr {
+    color: #fff !important;
 }
 
 .itens--menu {
+    left: 0;
     position: absolute;
     width: 50%;
     height: 100vh;
-    background-color: #fff;
+    background-color:  #258A9C;
     z-index: 3;
     box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.126);
     top: 0;
@@ -29,10 +34,11 @@
     align-items: center;
     align-content: center;
     gap: 30px;
+
 }
 
 .menu-icons {
-    color: #007BFF;
+    color: #ffffff;
     top: 130px;
     position: relative;
 }
