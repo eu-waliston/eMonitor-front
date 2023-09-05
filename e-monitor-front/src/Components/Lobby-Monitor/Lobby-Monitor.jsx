@@ -13,28 +13,29 @@ function Lobby() {
 
         <div className="Lobby-m">
 
-        <div className="page">
+            <div className="page">
 
-            < Nav />
-            <div className="Lobby">
-                <div className="ticket-list">
-                    {dummyTickets.map((ticket, index) => (
-                        <div className="ticket" key={index}>
-                            <img src={ticket.userImage} alt="User" id='user-img' />
-                            <div className="ticket-info">
-                                <h3 className="ticket-title">{ticket.title}</h3>
-                                <div className="ticket-date">
-                                    {new Date(ticket.date).toLocaleDateString('pt-BR', {
-                                        day: '2-digit',
-                                        month: '2-digit'
-                                    })}
+                < Nav />
+                <div className="Lobby">
+                    <div className="ticket-list">
+                        {dummyTickets.map((ticket, index) => (
+                            <div className="ticket" key={index}>
+                                <img src={ticket.userImage} alt="User" id='user-img' />
+                                <div className="ticket-info">
+                                    <h3 className="ticket-title">{ticket.title}</h3>
+                                    <div className="ticket-date">
+                                        {new Date(ticket.date).toLocaleDateString('pt-BR', {
+                                            day: '2-digit',
+                                            month: '2-digit'
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="ticket-read-icon">
+                                    {ticket.read ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
                                 </div>
                             </div>
-                            <div className="ticket-read-icon">
-                                {ticket.read ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
