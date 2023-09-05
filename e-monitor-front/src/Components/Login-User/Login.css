@@ -14,7 +14,7 @@
 }
 
 .img_logo {
-    width: 280px;
+    width: 250px;
 }
 
 .title--logo {
@@ -68,4 +68,15 @@ a {
     margin-top: 10px;
     color: #ffffff;
     text-decoration: none;
+}
+
+.monit {
+    text-transform: uppercase;
+    position: relative;
+    top: 20px;
+}
+
+.recover {
+    font-weight: 200;
+    margin-top: 50px;
 }

@@ -19,12 +19,12 @@ const Login = () => {
                         Lembre minha senha
                     </h6>
                     <Link to={"/lobby_user"} className="btn">
-                        ENTRAR1
+                        ENTRAR
                     </Link>
-                    <Link to={"/Lobby_monitor"} className="btn">
-                        ENTRAR2
-                    </Link>
-                    <Link>esqueci minha senha</Link>
+
+                    <Link className="monit" to={"/login-monitor"}>monitor</Link>
+   
+                    <Link className="recover">esqueci minha senha</Link>
                 </div>
             </div>
 
