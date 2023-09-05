@@ -1,8 +1,15 @@
-.Lobby {
+.Lobby-m {
   padding: 20px;
-  margin-top: 25px;
-}
+  height: 100vh;
 
+  background-image: url("../../../public/Images/background.jpg");
+  background-size: cover;
+
+
+}
+.Lobby {
+  margin-top: 50px;
+}
 
 .back-button {
   background: none;
@@ -60,8 +67,8 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #49928F;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   width: 50px;
