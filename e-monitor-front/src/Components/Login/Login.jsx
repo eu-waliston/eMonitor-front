@@ -18,8 +18,11 @@ const Login = () => {
                         <input type="checkbox" name="" id="" />
                         Lembre minha senha
                     </h6>
-                    <Link to={"/lobby"} className="btn">
-                        ENTRAR
+                    <Link to={"/lobby_user"} className="btn">
+                        ENTRAR1
+                    </Link>
+                    <Link to={"/Lobby_monitor"} className="btn">
+                        ENTRAR2
                     </Link>
                     <Link>esqueci minha senha</Link>
                 </div>
