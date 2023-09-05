@@ -8,7 +8,10 @@ const LoginMonitor = () => {
 
             <div className="login-container">
                 <div className="logo-container">
+                    <Link to={"/"}>
                     <img src='./Images/logo.png' alt="App Logo" className="img_logo" />
+                    </Link>
+                    
                     <h2><span className="title--logo">E</span>-Monitor</h2>
                 </div>
                 <div className="login-fields">
