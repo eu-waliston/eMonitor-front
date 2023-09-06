@@ -7,17 +7,25 @@ import LobbyUser from "../Components/Lobby-User/Lobby-User";
 import LobbyMonitor from "../Components/Lobby-Monitor/Lobby-Monitor";
 import Chat from "../Components/Chat/Chat";
 import NewTicket from "../Components/New-Ticket/New-Ticket";
+import Ticket from "../Components/Ticket/Ticket";
+
 
 const AllRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={ < Home />} />
+            
+            <Route path="/" element={ < Home />} /> {/* Login*/} 
             <Route path="/login-monitor" element={ < LoginMonitor />} />
             <Route path="/lobby" element={ < Lobby />} />
+
             <Route path="/lobby-user" element={ < LobbyUser />} />
             <Route path="/lobby-monitor" element={ < LobbyMonitor />} />
-            <Route path="/chat" element={ < Chat />} />
+
+   
             <Route path="/new-ticket" element={ < NewTicket />} />
+            <Route path="/ticket" element={ < Ticket />} />
+            <Route path="/chat" element={ < Chat />} />
+
         </Routes>
     )
 }

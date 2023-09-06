@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./Pages/Home";
 import AllRoutes from "./Router/AllRoutes";
 
 

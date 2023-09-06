@@ -21,7 +21,7 @@ const LoginMonitor = () => {
                         <input type="checkbox" name="" id="" />
                         Lembre minha senha
                     </h6>
-                    <Link to={"/lobby_monitor"} className="btn">
+                    <Link to={"/lobby-monitor"} className="btn">
                         ENTRAR
                     </Link>
 
