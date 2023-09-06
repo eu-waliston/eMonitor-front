@@ -4,19 +4,16 @@ import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 
 const Ticket = () => {
-    //TODO --- função para pegar as infromações do FORM e passar como uma PROP para o component de chat
-    const [content, setContent] = useState([])
-    
-    function setTicketInfo(num, name) {
 
-    }
+
     return (
         <div className="ticket--component">
             <Nav />
 
             <div className="ticket--section">
                 <div className="ticket--info">
-                        
+                    <img src="./Images/item-1.png" alt="imagem rerefente ao icone da disciplina " />
+                    <p className="ticekt-p">Biologia</p>   
                 </div>
                 <div >
                     <form  className="ticekt--form">
