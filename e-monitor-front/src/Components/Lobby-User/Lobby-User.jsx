@@ -33,7 +33,7 @@ function Lobby() {
                         </div>
                     ))}
                 </div>
-                <Link to={"/new_ticket"}>
+                <Link to={"/new-ticket"}>
                     <button className="fab-button">+</button>
                 </Link>
             </div>
