@@ -1,20 +1,31 @@
 import React from 'react';
 import './Lobby-Monitor.css';
+import axios from "axios";
 
 import { BsExclamationCircleFill } from "react-icons/bs"
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
+
+const URL = "https://emonitor-tsa0.onrender.com/get-users"
+
+
+function getUser(){
+    axios.get(URL).then(
+        function(data) {
+            return console.log(data);
+        }
+    )
+}
+
+getUser()
+
 
 function Lobby() {
 
     return (
 
-
-
         <div className="Lobby-m">
-
             <div className="page">
-
                 < Nav />
                 <div className="Lobby">
                     <div className="ticket-list">
@@ -39,9 +50,10 @@ function Lobby() {
                 </div>
             </div>
         </div>
-
     );
 }
+
+
 
 const dummyTickets = [
     {
