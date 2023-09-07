@@ -28,9 +28,6 @@ const Ticket = () => {
                             <Link to={"/new-ticket"} className="back--icon return">Cancelar</Link>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
