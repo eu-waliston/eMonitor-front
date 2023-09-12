@@ -4,16 +4,23 @@ import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 
 const Ticket = () => {
+    const [ optionName, setOptionName] = React.useState("");
 
+    React.useEffect(() => {
+        if(localStorage.getItem("TAG")) {
+            setOptionName(localStorage.getItem("TAG"))
+        }
+    }, [])
 
     return (
         <div className="ticket--component">
             <Nav />
 
             <div className="ticket--section">
+                
                 <div className="ticket--info">
-                    <img src="./Images/item-1.png" alt="imagem rerefente ao icone da disciplina " />
-                    <p className="ticekt-p">Biologia</p>   
+                    <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
+                    <p className="ticekt-p">{optionName}</p>   
                 </div>
                 <div >
                     <form  className="ticekt--form">
