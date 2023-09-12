@@ -45,8 +45,19 @@
     border: none;
     background-color: transparent;
     border-bottom: 1px solid #fff;
+    outline: none;
 }
 
+#ds:focus {
+    outline: none;
+    color: #fff;  
+    text-indent: 3px;
+}
+
+
+#fs:focus {
+    outline: none;
+}
 
 .ticekt--form textarea {
     background-color: #ffffffe0;
@@ -94,13 +105,12 @@
 }
 .ticket--info img {
     position: relative;
-    left: 15px;
-    top: 20px;
+    top: 50px;
 }
 
 .ticket--info p {
     position: relative;
-    top: 40px;
+    top: 70px;
     text-transform: uppercase;
     color: #fff;
     font-weight: bolder;
