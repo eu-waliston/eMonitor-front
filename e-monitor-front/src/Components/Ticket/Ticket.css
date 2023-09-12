@@ -105,13 +105,12 @@
 }
 .ticket--info img {
     position: relative;
-    left: 15px;
-    top: 20px;
+    top: 50px;
 }
 
 .ticket--info p {
     position: relative;
-    top: 40px;
+    top: 70px;
     text-transform: uppercase;
     color: #fff;
     font-weight: bolder;

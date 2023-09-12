@@ -12,6 +12,12 @@ const Ticket = () => {
         }
     }, [])
 
+    let URL = "https://emonitor-tsa0.onrender.com/insert-ticket"
+
+    const handleSubmit = (title, content) => {
+
+    }
+
     return (
         <div className="ticket--component">
             <Nav />
@@ -23,7 +29,7 @@ const Ticket = () => {
                     <p className="ticekt-p">{optionName}</p>   
                 </div>
                 <div >
-                    <form  className="ticekt--form">
+                    <form  className="ticekt--form" onChange={handleSubmit}>
                         <label>Titulo</label>
                         <input type="text" id="ds"/>
 
