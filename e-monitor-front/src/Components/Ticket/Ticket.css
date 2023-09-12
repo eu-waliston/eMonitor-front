@@ -45,8 +45,19 @@
     border: none;
     background-color: transparent;
     border-bottom: 1px solid #fff;
+    outline: none;
 }
 
+#ds:focus {
+    outline: none;
+    color: #fff;  
+    text-indent: 3px;
+}
+
+
+#fs:focus {
+    outline: none;
+}
 
 .ticekt--form textarea {
     background-color: #ffffffe0;
