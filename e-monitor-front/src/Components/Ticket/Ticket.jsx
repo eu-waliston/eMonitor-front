@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./Ticket.css";
 import Nav from "../Nav/Nav"
+
+import { Link, useNavigate } from "react-router-dom";
+
+const Ticket = () => {
+
+    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG8xX3V6dWNyYWNraUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MTU1OTYsImV4cCI6MTY5NDc1ODc5Nn0.vuw7sDFyPrmCnhXYl5gDeTDGdFzoh-rM6PbkoNdSzJQ"
+
 import { Link, useNavigate    } from "react-router-dom";
 
 const Ticket = () => {
@@ -33,6 +40,11 @@ const Ticket = () => {
         }, 2000);
     };
     
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1bf5596fd7dd8d4008a92584b5b07b0aa114356e
     function handleSendTicket() {
         fetch('https://emonitor-tsa0.onrender.com/insert-ticket', {
             method: 'POST',
@@ -54,7 +66,6 @@ const Ticket = () => {
     return (
         <div className="ticket--component">
             <Nav />
-
             <div className="ticket--section">
 
                 <div className="ticket--info">
@@ -74,8 +85,9 @@ const Ticket = () => {
 
                         <div className="controls">
                             <button type="submit" className="back--icon send" onClick={() => handleSendTicket()}>
-                            Enviar
+                                Enviar
                             </button>
+                            {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
                             <Link to={"/new-ticket"} className="back--icon return">Cancelar</Link>
                         </div>
                     </form>

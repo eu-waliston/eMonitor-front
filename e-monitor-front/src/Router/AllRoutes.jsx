@@ -8,6 +8,7 @@ import LobbyMonitor from "../Components/Lobby-Monitor/Lobby-Monitor";
 import Chat from "../Components/Chat/Chat";
 import NewTicket from "../Components/New-Ticket/New-Ticket";
 import Ticket from "../Components/Ticket/Ticket";
+import Spinner from "../Components/Spinner/Spinner"
 
 
 const AllRoutes = () => {
@@ -25,6 +26,8 @@ const AllRoutes = () => {
             <Route path="/new-ticket" element={ < NewTicket />} />
             <Route path="/ticket" element={ < Ticket />} />
             <Route path="/chat" element={ < Chat />} />
+
+            <Route path="/spinner" element={ <Spinner />} />
 
         </Routes>
     )

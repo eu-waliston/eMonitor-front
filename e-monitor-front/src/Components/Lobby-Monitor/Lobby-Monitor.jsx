@@ -30,6 +30,7 @@ const Lobby = () => {
                                         })}
                                     </div>
                                 </div>
+                                {/*TODO: trocar por um número */}
                                 <div className="ticket-read-icon">
                                     {ticket.read ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
                                 </div>

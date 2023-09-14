@@ -15,7 +15,7 @@ const LoginMonitor = () => {
                     <h2><span className="title--logo">E</span>-Monitor</h2>
                 </div>
                 <div className="login-fields">
-                    <input className="input" type="text" placeholder="CPF/Matrícula" />
+                    <input className="input" type="text" placeholder="Email" />
                     <input className="input" type="password" placeholder="Senha" />
                     <h6 className="remember" >
                         <input type="checkbox" name="" id="" />
