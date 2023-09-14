@@ -31,7 +31,7 @@ function Lobby() {
             < Nav />
             <div className="Lobby">
                 <div className="ticket-list">
-                    {ticketInfo.map((ticket, index) => (
+                    {dummyTickets.map((ticket, index) => (
                         <div className="ticket" key={index}>
                             {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
                             <div className="ticket-info">
