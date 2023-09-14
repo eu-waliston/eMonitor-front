@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 
 const Ticket = () => {
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY0MjAxOSwiZXhwIjoxNjk0Njg1MjE5fQ.lJ1uWM5zbu-NoHJXTRamlvL1tNEF5ibD9pVoxvuNnBM"
+    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY1MTIzMCwiZXhwIjoxNjk0Njk0NDMwfQ.BxejuMzizxrqo_BRs6hmjg4J7_GdXQJ5BCQ9gGt0NsM"
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState(""); // Estado para o título
     const [description, setDescription] = useState(""); // Estado para a descrição
@@ -40,7 +40,7 @@ const Ticket = () => {
             }),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY0NTExMiwiZXhwIjoxNjk0Njg4MzEyfQ.0nBkSVm6ZZ89yBwPTr84QItYO2R-pPYeRtam30JMmO0'
+                'Authorization': TOKEN
             }
         })
             .then(response => response.json())
