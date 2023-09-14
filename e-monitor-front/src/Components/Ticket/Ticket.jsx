@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Ticket.css";
 import Nav from "../Nav/Nav"
-import { Link } from "react-router-dom";
+import { Link, useNavigate    } from "react-router-dom";
 
 const Ticket = () => {
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY0MjAxOSwiZXhwIjoxNjk0Njg1MjE5fQ.lJ1uWM5zbu-NoHJXTRamlvL1tNEF5ibD9pVoxvuNnBM"
+    //const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY0MjAxOSwiZXhwIjoxNjk0Njg1MjE5fQ.lJ1uWM5zbu-NoHJXTRamlvL1tNEF5ibD9pVoxvuNnBM"
+
+
+    const navigate = useNavigate();
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState(""); // Estado para o título
     const [description, setDescription] = useState(""); // Estado para a descrição
@@ -19,17 +22,17 @@ const Ticket = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Aqui você pode fazer a solicitação POST para o servidor com os dados do formulário (title e description)
         const data = {
             title,
             description,
         };
 
-        // Substitua esta parte com a lógica real de envio para o servidor
         console.log("Dados a serem enviados:", data);
-
-        // Redirecione ou faça qualquer outra ação necessária após o envio
+        setTimeout(() => {
+            navigate('/chat', { replace: true });
+        }, 2000);
     };
+    
 
     function handleSendTicket() {
         fetch('https://emonitor-tsa0.onrender.com/insert-ticket', {
