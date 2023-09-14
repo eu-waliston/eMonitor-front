@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import "./Ticket.css";
 import Nav from "../Nav/Nav"
+
 import { Link, useNavigate } from "react-router-dom";
 
 const Ticket = () => {
 
     const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG8xX3V6dWNyYWNraUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MTU1OTYsImV4cCI6MTY5NDc1ODc5Nn0.vuw7sDFyPrmCnhXYl5gDeTDGdFzoh-rM6PbkoNdSzJQ"
+
+import { Link, useNavigate    } from "react-router-dom";
+
+const Ticket = () => {
+    //const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY0MjAxOSwiZXhwIjoxNjk0Njg1MjE5fQ.lJ1uWM5zbu-NoHJXTRamlvL1tNEF5ibD9pVoxvuNnBM"
+
 
     const navigate = useNavigate();
     const [optionName, setOptionName] = useState("");
@@ -32,6 +39,7 @@ const Ticket = () => {
             navigate('/chat', { replace: true });
         }, 2000);
     };
+    
 
 
     function handleSendTicket() {
