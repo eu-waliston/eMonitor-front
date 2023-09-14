@@ -8,9 +8,9 @@ import { BsExclamationCircleFill } from "react-icons/bs"
 import Nav from '../Nav/Nav';
 
 const URL = "https://emonitor-tsa0.onrender.com/get-users"
+const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYWtpYXZlbGlrb0BnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MzMyMzEsImV4cCI6MTY5NDc3NjQzMX0.3ZoANSTe3eiFpVeMU5BgopHNOAGYX-X27tP0CIsEBxk";
 
-function Lobby() {
-
+const Lobby = () => {
     return (
 
         <div className="Lobby-m">
@@ -41,8 +41,6 @@ function Lobby() {
         </div>
     );
 }
-
-
 
 const dummyTickets = [
     {
