@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Ticket.css";
 import Nav from "../Nav/Nav"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Ticket = () => {
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG9fdXp1Y3JhY2tpQGdtYWlsLmNvbSIsImlhdCI6MTY5NDY1MTIzMCwiZXhwIjoxNjk0Njk0NDMwfQ.BxejuMzizxrqo_BRs6hmjg4J7_GdXQJ5BCQ9gGt0NsM"
+
+    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG8xX3V6dWNyYWNraUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MTU1OTYsImV4cCI6MTY5NDc1ODc5Nn0.vuw7sDFyPrmCnhXYl5gDeTDGdFzoh-rM6PbkoNdSzJQ"
+
+    const navigate = useNavigate();
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState(""); // Estado para o título
     const [description, setDescription] = useState(""); // Estado para a descrição
@@ -19,17 +22,17 @@ const Ticket = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Aqui você pode fazer a solicitação POST para o servidor com os dados do formulário (title e description)
         const data = {
             title,
             description,
         };
 
-        // Substitua esta parte com a lógica real de envio para o servidor
         console.log("Dados a serem enviados:", data);
-
-        // Redirecione ou faça qualquer outra ação necessária após o envio
+        setTimeout(() => {
+            navigate('/chat', { replace: true });
+        }, 2000);
     };
+
 
     function handleSendTicket() {
         fetch('https://emonitor-tsa0.onrender.com/insert-ticket', {
@@ -52,7 +55,6 @@ const Ticket = () => {
     return (
         <div className="ticket--component">
             <Nav />
-
             <div className="ticket--section">
 
                 <div className="ticket--info">
@@ -72,8 +74,9 @@ const Ticket = () => {
 
                         <div className="controls">
                             <button type="submit" className="back--icon send" onClick={() => handleSendTicket()}>
-                            Enviar
+                                Enviar
                             </button>
+                            {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
                             <Link to={"/new-ticket"} className="back--icon return">Cancelar</Link>
                         </div>
                     </form>
