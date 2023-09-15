@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Lobby-Monitor.css';
 
 import { BsExclamationCircleFill } from "react-icons/bs"
-
-//import { Link } from 'react-router-dom';
-
 import Nav from '../Nav/Nav';
+import axios from 'axios';
 
-const URL = "https://emonitor-tsa0.onrender.com/get-users"
+const URL = "https://emonitor-tsa0.onrender.com/get-tickets"
 const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYWtpYXZlbGlrb0BnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MzMyMzEsImV4cCI6MTY5NDc3NjQzMX0.3ZoANSTe3eiFpVeMU5BgopHNOAGYX-X27tP0CIsEBxk";
 
+
+
+
 const Lobby = () => {
+
+    axios({
+        method: 'get',
+        url: URL,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TOKEN
+        }
+    }).then(function (response) {
+        let data = response.data
+        data.forEach(element => {
+            console.log(element)
+        });
+    });
+
+
+    
     return (
 
         <div className="Lobby-m">
             <div className="page">
                 < Nav />
                 <div className="Lobby">
+    
                     <div className="ticket-list">
                         {dummyTickets.map((ticket, index) => (
                             <div className="ticket" key={index}>
