@@ -13,3 +13,4 @@ Projeto e-monitor desenvolvido na disciplina de Projeto de Software II
 ### Hospedagem 
     - Vercel
     - AWS
+    - ASW S3
