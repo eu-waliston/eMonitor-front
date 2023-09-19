@@ -25,7 +25,7 @@ const LoginMonitor = () => {
                         ENTRAR
                     </Link>
 
-                    <Link className="cad">criar conta</Link>
+                    <Link className="cad" to={"/monitor-register"}>criar conta</Link>
                     <Link className="recover">esqueci minha senha</Link>
                 </div>
             </div>

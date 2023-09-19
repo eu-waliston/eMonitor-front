@@ -10,6 +10,9 @@ import NewTicket from "../Components/New-Ticket/New-Ticket";
 import Ticket from "../Components/Ticket/Ticket";
 import Spinner from "../Components/Spinner/Spinner"
 
+import CadUSer from "../Components/Register/UserRegister"
+import CadMonitor from "../Components/Register/MonitorRegister"
+
 
 const AllRoutes = () => {
     return (
@@ -28,6 +31,11 @@ const AllRoutes = () => {
             <Route path="/chat" element={ < Chat />} />
 
             <Route path="/spinner" element={ <Spinner />} />
+
+
+            {/*Register Section*/}
+            <Route path="/user-register" element={ <CadUSer />} />
+            <Route path="/monitor-register" element={ <CadMonitor />} />
 
         </Routes>
     )
