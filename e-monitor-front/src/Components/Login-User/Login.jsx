@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css"
 import { Link, useNavigate } from "react-router-dom";
-//import { Alert } from '@mui/material';
 
 const Login = () => {
 
@@ -42,11 +41,12 @@ const Login = () => {
                 const token = data.token;
 
                 localStorage.setItem('token', token);
-                console.error('Login ok: ' + token);
+                //console.error('Login ok: ' + token);
+                //console.error('role: ' + role);
 
-                /*TODO: Diferenciar monitor e user*/
+                //*TODO: Diferenciar monitor e user*/
                 setTimeout(() => {
-                    navigate('/lobby-user', { replace: true });
+                    data.role === "STUDENT" ? navigate('/lobby-user', { replace: true }) : navigate('/lobby-monitor', { replace: true })
                 }, 2000);
 
             } else {
