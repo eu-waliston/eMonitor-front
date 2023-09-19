@@ -24,6 +24,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
+            console.error('Tentativa de login1');
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -34,18 +35,20 @@ const Login = () => {
                     password: password
                 }),
             });
+            console.error('Tentativa de login2');
 
             if (response.ok) {
                 const data = await response.json();
-                const token = data;
+                const token = data.token;
 
                 localStorage.setItem('token', token);
+                console.error('Login ok: ' + token);
 
-                /*TODO: Diferenciar monitor e user */
+                /*TODO: Diferenciar monitor e user*/
                 setTimeout(() => {
                     navigate('/lobby-user', { replace: true });
                 }, 2000);
-                
+
             } else {
                 console.error('Erro ao fazer login');
             }

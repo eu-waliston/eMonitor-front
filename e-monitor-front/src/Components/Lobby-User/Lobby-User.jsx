@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 
 function Lobby() {
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG8xX3V6dWNyYWNraUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MTU1OTYsImV4cCI6MTY5NDc1ODc5Nn0.vuw7sDFyPrmCnhXYl5gDeTDGdFzoh-rM6PbkoNdSzJQ"
+    //const TOKEN = localStorage.getItem('token');
+    const TOKEN2 = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNjk1MDg5NzQ3LCJleHAiOjE2OTUxMzI5NDd9.x-oDeSaBqSfawSFnWyAutgdI6ErEzlL4VBb_vdCP5OY"
     const URL = 'https://emonitor-tsa0.onrender.com/get-tickets'
     const [ticketInfo, setTicketInfo] = useState({})
 
@@ -15,7 +16,7 @@ function Lobby() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': TOKEN
+                'Authorization': TOKEN2
             }
         })
             .then(response => response.json())

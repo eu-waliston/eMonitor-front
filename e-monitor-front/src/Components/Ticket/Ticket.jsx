@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Ticket = () => {
     
     const TOKEN = "Bearer" + localStorage.getItem('token');
+    const URL = 'https://emonitor-tsa0.onrender.com/insert-ticket';
+
     const navigate = useNavigate();
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState(""); // Estado para o título
@@ -33,7 +35,7 @@ const Ticket = () => {
     };
 
     function handleSendTicket() {
-        fetch('https://emonitor-tsa0.onrender.com/insert-ticket', {
+        fetch(URL, {
             method: 'POST',
             body: JSON.stringify({
                 subject: title,
