@@ -7,6 +7,7 @@ const Login = () => {
         <div className="login-container">
 
             <div className="login-container">
+                <Link className="monit tor" to={"/login-monitor"}>monitor</Link>
                 <div className="logo-container">
                     <img src='./Images/logo.png' alt="App Logo" className="img_logo" />
                     <h2><span className="title--logo">E</span>-Monitor</h2>
@@ -22,7 +23,7 @@ const Login = () => {
                         ENTRAR
                     </Link>
 
-                    <Link className="monit" to={"/login-monitor"}>monitor</Link>
+                    <Link className="cad" to={"/login-monitor"}>criar conta</Link>
    
                     <Link className="recover">esqueci minha senha</Link>
                 </div>

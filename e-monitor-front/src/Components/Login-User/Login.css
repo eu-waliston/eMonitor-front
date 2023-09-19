@@ -72,8 +72,15 @@ a {
 
 .monit {
     text-transform: uppercase;
+    position: absolute;
+    top: -50px;
+    left: 90%;
+    width: 20%;
+}
+
+.cad {
     position: relative;
-    top: 20px;
+    top: 25px;
 }
 
 .recover {

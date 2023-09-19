@@ -8,9 +8,6 @@ import axios from 'axios';
 const URL = "https://emonitor-tsa0.onrender.com/get-tickets"
 const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYWtpYXZlbGlrb0BnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MzMyMzEsImV4cCI6MTY5NDc3NjQzMX0.3ZoANSTe3eiFpVeMU5BgopHNOAGYX-X27tP0CIsEBxk";
 
-
-
-
 const Lobby = () => {
 
     axios({
