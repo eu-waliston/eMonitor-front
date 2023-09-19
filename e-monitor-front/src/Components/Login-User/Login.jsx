@@ -33,7 +33,10 @@ const Login = () => {
                     email: email,
                     password: password
                 }),
-            });
+            })
+                /*.then(response => response.json())*/
+                .catch(error => console.error(error))
+
             console.error('Tentativa de login2');
 
             if (response.ok) {
@@ -41,13 +44,13 @@ const Login = () => {
                 const token = data.token;
 
                 localStorage.setItem('token', token);
-                //console.error('Login ok: ' + token);
-                //console.error('role: ' + role);
 
-                //*TODO: Diferenciar monitor e user*/
-                setTimeout(() => {
-                    data.role === "STUDENT" ? navigate('/lobby-user', { replace: true }) : navigate('/lobby-monitor', { replace: true })
-                }, 2000);
+                if (data.role === "STUDENT") {
+                    navigate('/lobby-user', { replace: true });
+                } else if (data.role === "MONITOR") {
+                    console.log("monitor logado")
+                    navigate('/lobby-monitor', { replace: true });
+                }
 
             } else {
                 console.error('Erro ao fazer login');
