@@ -97,6 +97,7 @@ const Login = () => {
                         Lembre minha senha
                     </h6>
 
+
                     <div>
                         <button
                             type="submit"
@@ -107,6 +108,9 @@ const Login = () => {
                     </div>
 
                     <Link className="monit" to={"/login-monitor"}>monitor</Link>
+
+                    <Link className="cad" to={"/user-register"}>criar conta</Link>
+   
 
                     <Link className="recover">esqueci minha senha</Link>
                 </div>

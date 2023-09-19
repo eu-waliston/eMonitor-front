@@ -11,9 +11,13 @@ const Ticket = () => {
 
     const navigate = useNavigate();
 
+
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
+
+    //função para pegar as tags
 
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
