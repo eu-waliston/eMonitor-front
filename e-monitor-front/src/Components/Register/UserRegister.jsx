@@ -15,11 +15,6 @@ const CadMonitor = () => {
                     <input className="input" type="text" placeholder="Nome" />
                     <input className="input" type="text" placeholder="Email" />
                     <input className="input" type="password" placeholder="Senha" />
-                    <h6 className="remember" >
-                        <input type="checkbox" name="" id="" />
-                        Lembre minha senha
-                    </h6>
-
                     <Link to={"/lobby-user"} className="btn">
                         Cadastrar
                     </Link>
