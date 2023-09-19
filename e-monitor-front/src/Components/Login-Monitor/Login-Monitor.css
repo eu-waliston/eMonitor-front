@@ -9,6 +9,13 @@
 } 
 
 .btn {
-    position: relative;
     margin-left: 25%;
+    width: 50%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: none;
+    color: #007bff;
+    border-radius: 5px;
+    top: 30px;
+    position: relative;
 }
