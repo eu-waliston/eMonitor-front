@@ -69,11 +69,11 @@ a {
     text-decoration: none;
 }
 
-.monit {
+.monitoir {
     text-transform: uppercase;
     position: absolute;
-    top: -50px;
-    left: 90%;
+    top: -15px;
+    left: 75%;
     width: 20%;
 }
 

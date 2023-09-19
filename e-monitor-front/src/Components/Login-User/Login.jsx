@@ -107,7 +107,7 @@ const Login = () => {
                         </button>
                     </div>
 
-                    <Link className="monit" to={"/login-monitor"}>monitor</Link>
+                    <Link className="monitoir" to={"/login-monitor"}>monitor</Link>
 
                     <Link className="cad" to={"/user-register"}>criar conta</Link>
    
