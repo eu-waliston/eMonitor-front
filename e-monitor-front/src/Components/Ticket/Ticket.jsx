@@ -6,14 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Ticket = () => {
     
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXJ1dG8xX3V6dWNyYWNraUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ3MTU1OTYsImV4cCI6MTY5NDc1ODc5Nn0.vuw7sDFyPrmCnhXYl5gDeTDGdFzoh-rM6PbkoNdSzJQ"
-
-
+    const TOKEN = "Bearer" + localStorage.getItem('token');
     const navigate = useNavigate();
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState(""); // Estado para o título
     const [description, setDescription] = useState(""); // Estado para a descrição
-
 
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
@@ -34,8 +31,6 @@ const Ticket = () => {
             navigate('/chat', { replace: true });
         }, 2000);
     };
-    
-
 
     function handleSendTicket() {
         fetch('https://emonitor-tsa0.onrender.com/insert-ticket', {
@@ -54,7 +49,6 @@ const Ticket = () => {
             .catch(error => console.error(error))
     }
 
-
     return (
         <div className="ticket--component">
             <Nav />
@@ -65,7 +59,7 @@ const Ticket = () => {
                     <p className="ticekt-p">{optionName}</p>
                 </div>
                 <div >
-                    <form className="ticekt--form" onSubmit={handleSubmit}>
+                    <form className="ticekt--form" onSubmit={title !== "" ? handleSubmit : null}>
 
                         <label>Titulo</label>
                         <input type={"text"} id="ds" value={title}
@@ -76,7 +70,7 @@ const Ticket = () => {
                             onChange={(e) => setDescription(e.target.value)}></textarea>
 
                         <div className="controls">
-                            <button type="submit" className="back--icon send" onClick={() => handleSendTicket()}>
+                            <button type="submit" className="back--icon send" onClick={() => title !== "" ? handleSendTicket() : null}>
                                 Enviar
                             </button>
                             {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
