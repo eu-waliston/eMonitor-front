@@ -23,7 +23,7 @@ const Login = () => {
                         ENTRAR
                     </Link>
 
-                    <Link className="cad" to={"/login-monitor"}>criar conta</Link>
+                    <Link className="cad" to={"/user-register"}>criar conta</Link>
    
                     <Link className="recover">esqueci minha senha</Link>
                 </div>
