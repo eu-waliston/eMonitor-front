@@ -14,7 +14,7 @@ const Ticket = () => {
     const [title, setTitle] = useState(""); // Estado para o título
     const [description, setDescription] = useState(""); // Estado para a descrição
 
-
+    //função para pegar as tags
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
             setOptionName(localStorage.getItem("TAG"))
