@@ -101,7 +101,7 @@ const Login = () => {
                     <div>
                         <button
                             type="submit"
-                            className="btn"
+                            className="btnr"
                         >
                             ENTRAR
                         </button>
