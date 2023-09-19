@@ -7,3 +7,8 @@
     background-repeat: no-repeat;
     background-position: center;
 } 
+
+.btn {
+    position: relative;
+    margin-left: 25%;
+}
