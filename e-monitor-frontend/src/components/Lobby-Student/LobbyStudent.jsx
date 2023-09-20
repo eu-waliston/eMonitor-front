@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Lobby-User.css';
 
 import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 
-function Lobby() {
+const LobbyStudent = () => {
+
     const TOKEN = localStorage.getItem('token');
     const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
 
@@ -67,4 +68,5 @@ function Lobby() {
     );
 }
 
-export default Lobby;
+
+export default LobbyStudent;

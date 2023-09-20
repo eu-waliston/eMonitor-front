@@ -11,6 +11,8 @@ import EstudanteRegister from "../components/Register/StudentRegister";
 //Rota de Login geral da aplicação
 import Login from "../components/Login/Login";
 
+//2 Rotas referntes ao Lobby do estudante e do monitor
+
 
 const AllRoutes = () => {
     return (
