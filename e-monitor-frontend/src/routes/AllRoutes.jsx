@@ -21,6 +21,9 @@ import NewTicket from "../components/New-Ticket/NewTicket";
 //Rota referente a pagina de criação do ticket
 import Ticket from "../components/Ticket/Ticket";
 
+//Rota referente ao chat da aplicação
+import Chat from "../components/Chat/Chat";
+
 const AllRoutes = () => {
     return (
         <Routes>
@@ -39,6 +42,8 @@ const AllRoutes = () => {
             <Route path={"/ticket-subject-choice"} element={< NewTicket />}/>
 
             <Route path={"/new-ticket"} element={< Ticket />}/>
+
+            <Route path={"/chat"} element={< Chat />}/>
             
         </Routes>
     )

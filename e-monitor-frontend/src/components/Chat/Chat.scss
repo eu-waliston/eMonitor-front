@@ -1,0 +1,68 @@
+@import "../../utilities/Variables.scss";
+
+.chat-component {
+  width: 100%;
+  height: 100vh;
+  background: $default--background;
+
+  .chat--window {
+    background-color: #fff;
+    width: 90%;
+    height: 83vh;
+    margin: 0 auto;
+    position: relative;
+    top: 60px;
+    border-radius: 20px;
+
+    .chat {
+      width: 90%;
+      height: 75vh;
+      margin: 0 auto;
+      border-radius: 20px;
+    }
+
+    .chat--option {
+      display: flex;
+      justify-content: space-evenly;
+
+      .input-text {
+        width: 70%;
+        height: 40px;
+        border: none;
+        background-color: rgb(237, 234, 234);
+        border-radius: 5px;
+      }
+
+      .icon-clip {
+        font-size: 1.5rem;
+        position: relative;
+        top: 7px;
+        color: #195f89;
+      }
+
+      .send-button {
+        position: relative;
+        background-color: #195f89;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 100%;
+        top: -5px;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+
+      }
+
+      .icon-send {
+        font-size: 1.5rem;
+        position: relative;
+        left: 3px;
+        top: 3px;
+      }
+    }
+  }
+}
