@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Lobby-User.css';
+import './LobbyStudent.scss';
 
 import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
@@ -29,7 +29,7 @@ const LobbyStudent = () => {
 
     return (
 
-        <div className="Lobby-m">
+        <div className="Lobby-student">
 
             < Nav />
 

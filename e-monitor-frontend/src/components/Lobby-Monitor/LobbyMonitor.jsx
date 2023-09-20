@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Lobby-Monitor.css';
+import './LobbyMonitor.scss';
 
 import { BsExclamationCircleFill } from "react-icons/bs"
 import Nav from '../Nav/Nav';
@@ -24,12 +24,10 @@ const LobbyMonitor = () => {
         });
     });
 
-
-    
     return (
 
-        <div className="Lobby-m">
-            <div className="page">
+        <div className="lobby-monitor">
+            <div className="container">
                 < Nav />
                 <div className="Lobby">
     
