@@ -1,0 +1,118 @@
+@import "../../utilities/Variables.scss";
+
+.ticket--component {
+  width: 100%;
+  height: 100vh;
+  background: $default--background;
+
+  :focus {
+    outline: none;
+    text-indent: 3px;
+  }
+
+  .ticket--section {
+    .ticket--info {
+      display: grid;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      align-content: center;
+
+      img {
+        position: relative;
+        top: 50px;
+      }
+
+      p {
+        position: relative;
+        top: 70px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bolder;
+        font-size: 1.5rem;
+      }
+    }
+
+    .ticket--form {
+      margin: 0 auto;
+      display: grid;
+      width: 70%;
+      gap: 10px;
+      position: relative;
+      top: 80px;
+
+      label {
+        font-weight: 400;
+        color: #fff;
+        text-transform: uppercase;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid #ffffffbf;
+        color: #fff;
+      }
+
+      textarea {
+        background-color: #ffffffe0;
+        border: 1px solid #ffffff00;
+        border-radius: 10px;
+        text-indent: 10px;
+        color: #201f1f;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: space-evenly;
+
+        .send {
+          background-color: #fff;
+          color: #000;
+          padding: 10px;
+          height: 42px;
+          position: relative;
+          top: 10px;
+          width: 120px;
+          border-radius: 50px;
+          border: none;
+          text-transform: uppercase;
+
+          &:hover {
+            transition: 0.5s;
+            background-color: #639b8e;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+          }
+        }
+
+        .return {
+          background-color: #d5d4d4;
+          color: #000;
+          padding: 10px;
+          width: 120px;
+          display: flex;
+          height: 42px;
+          justify-content: space-evenly;
+          margin-left: 38px;
+          border-radius: 50px;
+          text-transform: uppercase;
+          position: relative;
+          font-size: 0.8rem;
+          top: 10px;
+          border: none;
+
+          &:hover {
+            transition: 0.5s;
+            background-color: #e1293bcd;
+            color: #fff;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

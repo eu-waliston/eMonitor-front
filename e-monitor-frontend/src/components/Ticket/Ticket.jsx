@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Ticket.css";
+import "./Ticket.scss";
 import Nav from "../Nav/Nav"
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Ticket = () => {
 
@@ -15,9 +15,6 @@ const Ticket = () => {
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-
-
-    //função para pegar as tags
 
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
@@ -71,7 +68,7 @@ const Ticket = () => {
                     <p className="ticekt-p">{optionName}</p>
                 </div>
                 <div >
-                    <form className="ticekt--form" onSubmit={handleSubmit}>
+                    <form className="ticket--form" onSubmit={handleSubmit}>
 
                         <label>Titulo</label>
                         <input
@@ -98,7 +95,7 @@ const Ticket = () => {
                                 Enviar
                             </button>
                             {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
-                            <Link to={"/new-ticket"} className="back--icon return">Cancelar</Link>
+                            <button to={"/new-ticket"} className="back--icon return">Cancelar</button>
                         </div>
                     </form>
                 </div>
