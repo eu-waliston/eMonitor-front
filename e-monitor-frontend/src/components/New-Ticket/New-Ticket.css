@@ -1,0 +1,23 @@
+.newticket_page {
+  width: 100%;
+  height: 120vh;
+
+  background-image: url("../../../public/Images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ticket__box {
+  width: 80%;
+  height: 85vh;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.text__h2 {
+  text-align: center;
+  font-weight: 200;
+  color: #fff;
+}
+

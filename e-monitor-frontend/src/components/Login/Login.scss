@@ -1,0 +1,80 @@
+@import "../../utilities/Variables.scss";
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  background: $default--background;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 30px;
+    position: relative;
+    top: 80px;
+
+    .logo-container {
+      .img_logo {
+        width: 200px;
+      }
+    }
+
+    form {
+      .input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      button {
+        background-color: $btn--default-color;
+        width: 110px;
+        padding: 12px;
+        border-radius: 5px;
+        text-align: center;
+        color: $text-default-color;
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 0;
+        position: relative;
+        left: 33%;
+        margin-top: 60px;
+        margin-bottom: 30px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $text-default-color;
+          color: $btn--default-color;
+          transition: 0.5s;
+        }
+      }
+
+      .remember {
+        color: #fff;
+        position: relative;
+        top: 10px;
+      }
+
+      .remember input {
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+      }
+
+      .recover {
+        font-weight: 200;
+        margin-top: 50px;
+        color: $text-default-color;
+        text-decoration: none;
+        position: relative;
+        left: 25%;
+        top: 50px;
+      }
+    }
+  }
+}

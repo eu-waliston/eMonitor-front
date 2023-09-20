@@ -1,0 +1,73 @@
+@import "../../utilities/Variables.scss";
+
+.welcome-page {
+  width: 100%;
+  height: 100vh;
+  background: $default--background;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    gap: 20px;
+
+    position: relative;
+    top: 100px;
+
+    .logo-principal {
+      width: 200px;
+    }
+
+    .semititle,
+    .title,
+    .subtitle--principal {
+      color: $text-default-color;
+    }
+
+    .btn--entrar {
+      background-color: $btn--default-color;
+      width: 130px;
+      padding: 12px;
+      border-radius: 5px;
+      text-align: center;
+      color: $text-default-color;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $text-default-color;
+        color: $btn--default-color;
+        transition: 0.5s;
+      }
+    }
+
+    .subtitle--principal {
+      font-size: .9rem;
+      margin-top: 100px;
+      .link--cadastro {
+        text-transform: uppercase;
+        font-weight: bolder;
+        color: $text-default-color;
+        text-align: center;
+        background-color: $btn--default-color;
+        width: 30%;
+        padding: 8px;
+        position: relative;
+        left: 3%;
+        text-decoration: none;
+        border-radius: 10px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $text-default-color;
+          color: $btn--default-color;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}
