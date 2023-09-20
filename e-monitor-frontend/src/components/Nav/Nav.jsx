@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import "./Nav.css";
+import "./Nav.scss";
 
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa"
-
 import { AiOutlineUser } from "react-icons/ai"
 import { BsFillGearFill, BsInfoSquareFill } from "react-icons/bs"
 import { BiLogOutCircle } from "react-icons/bi"
 import { MdClose } from "react-icons/md"
+import {VscThreeBars} from "react-icons/vsc"
 
 
 const Nav = () => {
@@ -18,11 +17,11 @@ const Nav = () => {
     }
 
     return (
-        <div className={nav ? "header" : "header--toggled"}>
+        <div>
 
-            <button className="menu-button" onClick={handleClick}>
-                {nav ? <FaBars className="btn--icon" id="rr" /> : <MdClose className="btn--icon" id="rr" />}
-            </button>
+            <div className="menu-button" onClick={handleClick}>
+                {nav ? <VscThreeBars className="btn--icon" /> : <MdClose className="btn--icon"/>}
+            </div>
 
             <div className={nav ? "itens--menu-toggled" : "itens--menu"}>
                 <div className="menu--icon">

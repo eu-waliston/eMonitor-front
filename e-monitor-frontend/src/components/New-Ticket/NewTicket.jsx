@@ -1,5 +1,5 @@
 import React from 'react';
-import './New-Ticket.css';
+import './NewTicket.scss';
 
 import Nav from "../Nav/Nav"
 import Option from '../Option/Option';
@@ -7,7 +7,7 @@ import Option from '../Option/Option';
 function NewTicket() {
 
     return (
-        <div className="newticket_page">
+        <div className="newticket-component">
             <Nav />
             <div className="ticket__box">
                 <h2 className='text__h2'>Escolha a qual área pertence a sua dúvida:</h2>

@@ -15,6 +15,8 @@ import Login from "../components/Login/Login";
 import LobbyMonitor from "../components/Lobby-Monitor/LobbyMonitor";
 import LobbyStudent from "../components/Lobby-Student/LobbyStudent";
 
+//Rota resposável pela criação do ticket
+import NewTicket from "../components/New-Ticket/NewTicket";
 
 
 const AllRoutes = () => {
@@ -31,6 +33,9 @@ const AllRoutes = () => {
 
             <Route path={"/lobby-monitor"} element={< LobbyMonitor />}/>
             <Route path={"/lobby-student"} element={< LobbyStudent />}/>
+
+            <Route path={"/new-ticket"} element={< NewTicket />}/>
+            
         </Routes>
     )
 }   

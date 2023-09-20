@@ -13,7 +13,7 @@ const Choice = () => {
                 <img
                     src="./Images/logo.png"
                     alt="logo do website"
-                    className="logo-choice"
+                    className="logo-choice animate__animated animate__pulse animate__slow	3s animate__infinite	infinite"
                 />
 
                 <p>Você irá se registrar como: </p>

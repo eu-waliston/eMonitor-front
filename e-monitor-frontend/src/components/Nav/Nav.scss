@@ -1,0 +1,50 @@
+@import "../../utilities/Variables.scss";
+
+.itens--menu {
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 100vh;
+  background-color: #258a9c;
+  z-index: 3;
+  box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.126);
+  top: 0;
+  color: #007bff;
+
+  .menu--icon {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 30px;
+    .menu-icons {
+      color: #ffffff;
+      top: 130px;
+      position: relative;
+      text-decoration: none;
+
+      .icons {
+        margin-right: 8px;
+        font-size: 1.3rem;
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+}
+
+.menu-button {
+    .btn--icon {
+        position: relative;
+        z-index: 4;
+        left: 50px;
+        top: 40px;
+        color: #ffffff;
+        font-size: 1.5rem;
+    }
+}
+
+.itens--menu-toggled {
+  display: none;
+}

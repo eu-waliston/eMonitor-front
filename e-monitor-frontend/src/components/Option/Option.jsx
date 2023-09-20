@@ -1,5 +1,5 @@
 import React from "react";
-import "./Option.css";
+import "./Option.scss";
 import { Link } from "react-router-dom";
 
 const Option = () => {

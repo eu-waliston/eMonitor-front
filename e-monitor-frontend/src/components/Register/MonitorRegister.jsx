@@ -50,7 +50,7 @@ const CadUser = () => {
 
             <div className="login-container">
                 <div className="logo-container">
-                    <img src='./Images/logo.png' alt="App Logo" className="img_logo" />
+                    <img src='./Images/logo.png' alt="App Logo" className="img_logo animate__animated animate__pulse animate__slow	3s animate__infinite	infinite" />
                 </div>
 
                 <form className="login-fields" action="POST" onSubmit={handleSubmit}>
