@@ -41,7 +41,8 @@ const LobbyStudent = () => {
     return (
 
         <div className="Lobby-student">
-
+            
+            <div className="container">
             < Nav />
 
             <div className="Lobby">
@@ -72,11 +73,12 @@ const LobbyStudent = () => {
                 {/* Caso esse componente venha a ser usado para monitor e student no futuro
                     basta descomentar e então o FAB só aparecerá para o student
                 {ROLE === "STUDENT" && (*/}
-                    <Link to={"/new-ticket"}>
-                        <button className="fab-button">+</button>
-                    </Link>
+                <Link to={"/new-ticket"}>
+                    <button className="fab-button">+</button>
+                </Link>
                 {/*)}*/}
 
+            </div>
             </div>
 
         </div>
