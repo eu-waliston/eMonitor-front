@@ -1,6 +1,7 @@
 import React from "react";
 import "./Chat.scss";
 import Nav from "../Nav/Nav"
+import Message from "../Message/Message";
 
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
@@ -11,7 +12,9 @@ const Chat = () => {
         <div className="chat-component">
             <Nav />
             <div className="chat--window">
-                <div className="chat"></div>
+                <div className="chat">
+                    
+                </div>
                 <div className="chat--option">
                     <BsFiles className="icon-clip"/>
                     <input type="search" className="input-text"/>

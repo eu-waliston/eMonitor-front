@@ -11,7 +11,6 @@ const Ticket = () => {
 
     const navigate = useNavigate();
 
-
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
