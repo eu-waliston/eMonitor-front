@@ -23,7 +23,6 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            console.error('Tentativa de login1');
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -34,24 +33,9 @@ const Login = () => {
                     password: password
                 }),
             })
-                /*.then(response => response.json())*/
-                .catch(error => console.error(error))
-
-            console.error('Tentativa de login2');
 
             if (response.ok) {
-                const data = await response.json();
-                const token = data.token;
-
-                localStorage.setItem('token', token);
-
-                if (data.role === "STUDENT") {
-                    navigate('/lobby-user', { replace: true });
-                } else if (data.role === "MONITOR") {
-                    console.log("monitor logado")
-                    navigate('/lobby-monitor', { replace: true });
-                }
-
+                processResponse(response)
             } else {
                 console.error('Erro ao fazer login');
             }
@@ -59,6 +43,27 @@ const Login = () => {
             console.error('Erro ao fazer login:', error);
         }
     };
+
+    const processResponse = async (response) => {
+        try {
+            const data = await response.json();
+            const token = data.token;
+            const role = data.role;
+    
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
+    
+            if (role === "STUDENT") {
+                navigate('/lobby-student', { replace: true });
+            } else if (role === "MONITOR") {
+                navigate('/lobby-monitor', { replace: true });
+            } else {
+                console.log("Role Error");
+            }
+        } catch (error) {
+            console.error('Erro ao processar resposta:', error);
+        }
+    }
 
     return (
         <div className="login-container">

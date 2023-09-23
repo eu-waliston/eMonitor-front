@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LobbyStudent.scss';
 
 import { BsExclamationCircleFill } from "react-icons/bs"
@@ -6,26 +6,37 @@ import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 
 const LobbyStudent = () => {
-
     const TOKEN = localStorage.getItem('token');
+    const ROLE = localStorage.getItem('role');
     const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
 
     const [ticketInfo, setTicketInfo] = useState([])
 
-    function handleSendTicket() {
-        fetch(URL, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + TOKEN
-            }
-        })
-            .then(response => response.json())
-            .then(data => setTicketInfo(data))
-            .catch(error => console.error(error))
-    }
+    useEffect(() => {
+        handleGetTicket();
+    }, []);
 
-    handleSendTicket()
+    const handleGetTicket = async () => {
+        console.log("handleGetTicket");
+        try {
+            const response = await fetch(URL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + TOKEN
+                }
+            })
+
+            if (response.ok) {
+                const data = await response.json();
+                setTicketInfo(data)
+            } else {
+                console.error('Erro na solicitação:', response.status);
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
 
@@ -58,9 +69,13 @@ const LobbyStudent = () => {
                     ))}
                 </div>
 
-                <Link to={"/new-ticket"}>
-                    <button className="fab-button">+</button>
-                </Link>
+                {/* Caso esse componente venha a ser usado para monitor e student no futuro
+                    basta descomentar e então o FAB só aparecerá para o student
+                {ROLE === "STUDENT" && (*/}
+                    <Link to={"/new-ticket"}>
+                        <button className="fab-button">+</button>
+                    </Link>
+                {/*)}*/}
 
             </div>
 
