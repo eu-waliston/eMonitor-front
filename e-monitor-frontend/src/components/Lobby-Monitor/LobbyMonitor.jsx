@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LobbyMonitor.scss';
 
+import { AiOutlineSend } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
@@ -9,7 +10,9 @@ import Nav from '../Nav/Nav';
 const LobbyMonitor = () => {
     const navigate = useNavigate();
     const TOKEN = localStorage.getItem('token');
-    const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
+    const URL_Get = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
+    const URL_Claim = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/claim-ticket';
+    const TICKETID = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
 
@@ -19,7 +22,7 @@ const LobbyMonitor = () => {
 
     const handleGetTicket = async () => {
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_Get, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,6 +36,23 @@ const LobbyMonitor = () => {
             } else {
                 console.error('Erro na solicitação:', response.status);
             }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const claimTicket = async (ticketId) => {
+        try {
+            fetch(URL_Claim, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + TOKEN
+                },
+                body: JSON.stringify({
+                    ticketId: TICKETID
+                }),
+        })
         } catch (error) {
             console.error(error)
         }
@@ -70,6 +90,16 @@ const LobbyMonitor = () => {
                                     </div>
                                 </div>
 
+                                <div className='actionButtons'>
+                                    <button
+                                        className='claim-ticket'
+                                        onClick={
+                                            () => {claimTicket(ticket.id)}
+                                        }
+                                    >
+                                        <AiOutlineSend className="icon-send" />
+                                    </button>
+                                </div>
                                 {/*TODO: trocar por um número */}
                                 <div className="ticket-read-icon">
                                     {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
