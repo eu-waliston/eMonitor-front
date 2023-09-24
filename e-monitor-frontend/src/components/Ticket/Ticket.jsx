@@ -43,7 +43,7 @@ const Ticket = () => {
                     subject: title,
                     content: description
                 }),
-            });
+            })
 
             if (response.ok) {
                 setTimeout(() => {

@@ -18,7 +18,6 @@ const LobbyMonitor = () => {
     }, []);
 
     const handleGetTicket = async () => {
-        console.log("handleGetTicket");
         try {
             const response = await fetch(URL, {
                 method: 'GET',
@@ -86,6 +85,5 @@ const LobbyMonitor = () => {
         </div>
     );
 }
-
 
 export default LobbyMonitor;

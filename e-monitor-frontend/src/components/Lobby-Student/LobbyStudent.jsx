@@ -18,7 +18,6 @@ const LobbyStudent = () => {
     }, []);
 
     const handleGetTicket = async () => {
-        console.log("handleGetTicket");
         try {
             const response = await fetch(URL, {
                 method: 'GET',
@@ -94,6 +93,5 @@ const LobbyStudent = () => {
         </div>
     );
 }
-
 
 export default LobbyStudent;
