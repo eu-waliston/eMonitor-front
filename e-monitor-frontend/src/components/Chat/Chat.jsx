@@ -11,7 +11,7 @@ const Chat = () => {
 
     const URL_Insert = "https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-message"
     const URL_Get = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
-    const TicketID = localStorage.getItem("ticketId");
+    const TICKETID = parseInt(localStorage.getItem("ticketId"), 10);
     const TOKEN = localStorage.getItem('token');
 
     const [message, setMessage] = useState("");
@@ -36,7 +36,7 @@ const Chat = () => {
                 },
                 body: JSON.stringify({
                     content: message,
-                    ticketId: parseInt(TicketID, 10)
+                    ticketId: TICKETID
                 }),
             })
 
@@ -46,9 +46,13 @@ const Chat = () => {
         }
     }
 
+    {/*
+        GET https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages?ticketId=21 403
+        response !=== ok 403
+    */}
     const handleGetMessages = async () => {
         try {
-            const response = await fetch(`${URL_Get}?TicketID=${parseInt(TicketID, 10)}`, {
+            const response = await fetch(`${URL_Get}?ticketId=${TICKETID}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +64,7 @@ const Chat = () => {
                 const data = await response.json();
                 console.log(data)
             } else {
-                console.error('Erro ao receber mensagem:', response.status);
+                console.error('response !=== ok', response.status);
             }
         } catch (error) {
             console.error('Erro ao receber mensagem:', error);
