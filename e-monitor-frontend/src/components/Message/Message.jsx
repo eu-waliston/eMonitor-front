@@ -6,7 +6,7 @@ const Message = () => {
         <div className="message-component">
             <div className="message--box">
                 <div className="message--content">
-                    <p className="message--text">Olá, eu sou o bot da E-Monitor, como posso te ajudar?</p>
+                    <p className="message--text">mensagem teste</p>
                 </div>
             </div>
         </div>
