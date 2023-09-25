@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "./Chat.scss";
 import Nav from "../Nav/Nav"
-import Message from "../Message-Student/Message-Student";
+import MessageStudent from "../Message-Student/Message-Student";
+import MessageMonitor from "../Message-Monitor/Message-Monitor";
 
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
@@ -16,7 +17,7 @@ const Chat = () => {
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [senderId, setSenderId] = useState("");
+    const [messageSenderId, setSenderId] = useState("");
 
     useEffect(() => {
         handleGetMessages();
@@ -78,38 +79,42 @@ const Chat = () => {
             <Nav />
             <div className="chat--window">
                 <div className="chat">
+                    {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */}
                     {setSenderId(messages[1].senderId)}
 
                     {messages.map((message, index) => (
-                        if(message.senderId === senderId) {
-                            
-                        }
-                        message.content))}
-                    {/*messages.map((message, index) => (
-                        <Message
-                            //key={index}
-                            content={message.content}
-                        />
-                    ))*/}
+                        /*if(message.senderId === messageSenderId) {
+                            <MessageStudent
+                                key={index}
+                                content={message.content}
+                            />
+                        } else if (message.senderId !== messageSenderId) {
+                            <MessageMonitor
+                                key={index}
+                                content={message.content}
+                            />
+                        }*/
+                        message.content
+                    ))}
                 </div>
 
                 <form className="chat--form" onSubmit={handleSendMessage}>
-                <div className="chat--option">
-                    <BsFiles className="icon-clip" />
-                    <input
-                        type="search"
-                        className="input-text"
-                        value={message}
-                        onChange={handleMessageChange}
-                        required
-                    />
-                    <button
-                        className="send-button"
-                        type="submit"
-                    >
-                        <AiOutlineSend className="icon-send" />
-                    </button>
-                </div>
+                    <div className="chat--option">
+                        <BsFiles className="icon-clip" />
+                        <input
+                            type="search"
+                            className="input-text"
+                            value={message}
+                            onChange={handleMessageChange}
+                            required
+                        />
+                        <button
+                            className="send-button"
+                            type="submit"
+                        >
+                            <AiOutlineSend className="icon-send" />
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
