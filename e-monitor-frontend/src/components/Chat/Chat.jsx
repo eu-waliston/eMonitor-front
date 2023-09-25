@@ -17,7 +17,7 @@ const Chat = () => {
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [messageSenderId, setSenderId] = useState("");
+    const [messageSenderId, setSenderId] = useState(0);
 
     useEffect(() => {
         handleGetMessages();
@@ -31,7 +31,7 @@ const Chat = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(URL_Insert, {
+            await fetch(URL_Insert, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,10 +49,6 @@ const Chat = () => {
         }
     }
 
-    {/*
-        GET https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages?ticketId=21 403
-        response !=== ok 403
-    */}
     const handleGetMessages = async () => {
         try {
             const response = await fetch(`${URL_Get}?ticketId=${TICKETID}`, {
@@ -66,6 +62,11 @@ const Chat = () => {
             if (response.ok) {
                 const data = await response.json();
                 setMessages(data);
+
+                {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */}
+                if (data.length > 0) {
+                    setSenderId(data[1].senderId);
+                }
             } else {
                 console.error('response !=== ok', response.status);
             }
@@ -79,22 +80,19 @@ const Chat = () => {
             <Nav />
             <div className="chat--window">
                 <div className="chat">
-                    {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */}
-                    {setSenderId(messages[1].senderId)}
 
                     {messages.map((message, index) => (
-                        /*if(message.senderId === messageSenderId) {
+                        message.senderId === messageSenderId ? (
                             <MessageStudent
                                 key={index}
                                 content={message.content}
                             />
-                        } else if (message.senderId !== messageSenderId) {
+                        ) : (
                             <MessageMonitor
                                 key={index}
                                 content={message.content}
                             />
-                        }*/
-                        message.content
+                        )
                     ))}
                 </div>
 
