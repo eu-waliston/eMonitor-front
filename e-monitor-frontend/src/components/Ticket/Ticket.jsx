@@ -11,7 +11,6 @@ const Ticket = () => {
 
     const navigate = useNavigate();
 
-
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -44,9 +43,12 @@ const Ticket = () => {
                     subject: title,
                     content: description
                 }),
-            });
+            })
 
             if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("ticketId", data);
+
                 setTimeout(() => {
                     navigate('/chat', { replace: true });
                 }, 2000);
@@ -57,7 +59,7 @@ const Ticket = () => {
             console.error('Erro ao fazer login:', error);
         }
     };
-    
+
     return (
         <div className="ticket--component">
             <Nav />
@@ -91,11 +93,21 @@ const Ticket = () => {
                         </textarea>
 
                         <div className="controls">
-                            <button type="submit" className="back--icon send">
+                            <button
+                                type="submit"
+                                className="back--icon send"
+                            >
                                 Enviar
                             </button>
+
                             {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
-                            <button to={"/new-ticket"} className="back--icon return">Cancelar</button>
+                            <button
+                                className="back--icon return"
+                                type="button"
+                                onClick={() => navigate('/ticket-subject-choice', { replace: true })}
+                            >
+                                Cancelar
+                            </button>
                         </div>
                     </form>
                 </div>

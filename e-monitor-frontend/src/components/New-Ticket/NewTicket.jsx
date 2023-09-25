@@ -10,13 +10,11 @@ function NewTicket() {
         <div className="newticket-component">
             <Nav />
             <div className="ticket__box">
-                <h2 className='text__h2'>Escolha a qual área pertence a sua dúvida:</h2>
+                <h2 className='text__h2'> Escolha a qual área pertence a sua dúvida: </h2>
                 <div className="ticket__list">
                     <Option />
                 </div>
-
             </div>
-
         </div>
     )
 }
