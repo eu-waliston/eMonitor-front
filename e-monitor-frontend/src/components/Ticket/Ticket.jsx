@@ -46,6 +46,9 @@ const Ticket = () => {
             })
 
             if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("ticketId", data);
+
                 setTimeout(() => {
                     navigate('/chat', { replace: true });
                 }, 2000);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./Chat.scss";
 import Nav from "../Nav/Nav"
-import Message from "../Message/Message";
+import Message from "../Message-Student/Message-Student";
 
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
@@ -15,6 +15,8 @@ const Chat = () => {
     const TOKEN = localStorage.getItem('token');
 
     const [message, setMessage] = useState("");
+    const [messages, setMessages] = useState([]);
+    const [senderId, setSenderId] = useState("");
 
     useEffect(() => {
         handleGetMessages();
@@ -62,7 +64,7 @@ const Chat = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data)
+                setMessages(data);
             } else {
                 console.error('response !=== ok', response.status);
             }
@@ -76,7 +78,19 @@ const Chat = () => {
             <Nav />
             <div className="chat--window">
                 <div className="chat">
+                    {setSenderId(messages[1].senderId)}
 
+                    {messages.map((message, index) => (
+                        if(message.senderId === senderId) {
+                            
+                        }
+                        message.content))}
+                    {/*messages.map((message, index) => (
+                        <Message
+                            //key={index}
+                            content={message.content}
+                        />
+                    ))*/}
                 </div>
 
                 <form className="chat--form" onSubmit={handleSendMessage}>
