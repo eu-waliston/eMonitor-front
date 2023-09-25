@@ -6,6 +6,10 @@
   background: $default--background;
 
   .container {
+    .header {
+      
+      float: right;
+    }
     .Lobby {
       padding: 20px;
       margin-top: 25px;

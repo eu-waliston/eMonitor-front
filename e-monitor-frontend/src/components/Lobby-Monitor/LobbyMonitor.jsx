@@ -12,6 +12,7 @@ const LobbyMonitor = () => {
     const TOKEN = localStorage.getItem('token');
     const URL_Get = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
     const URL_Claim = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/claim-ticket';
+    const URL_Close = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/close-ticket';
     const TICKETID = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
@@ -41,18 +42,35 @@ const LobbyMonitor = () => {
         }
     }
 
-    const claimTicket = async (ticketId) => {
+    {/* EStá dando 403 
+        ToDo: mudar a url para ficar igual a do get-messages, tirar o body*/}
+    const claimTicket = async () => {
         try {
-            fetch(URL_Claim, {
+            fetch(`${URL_Claim}?ticketId=${TICKETID}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + TOKEN
                 },
-                body: JSON.stringify({
-                    ticketId: TICKETID
-                }),
-        })
+            })
+            
+            handleGetTicket();
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const closeTicket = async () => {
+        try {
+            fetch(`${URL_Close}?ticketId=${TICKETID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + TOKEN
+                },
+            })
+
+            handleGetTicket();
         } catch (error) {
             console.error(error)
         }
@@ -63,7 +81,15 @@ const LobbyMonitor = () => {
         <div className="lobby-monitor">
             <div className="container">
                 < Nav />
-
+                {/* ToDo: Mudar o ícone e colocar no lugar certinho */}
+                <div className="header">
+                    <button
+                        className='btn-reload'
+                        onClick={handleGetTicket}
+                    >
+                        <AiOutlineSend className="icon-send" />
+                    </button>
+                </div>
                 <div className="Lobby">
 
                     <div className="ticket-list">
@@ -74,11 +100,11 @@ const LobbyMonitor = () => {
                                 onClick={
                                     () => {
                                         localStorage.setItem("ticketId", ticket.id);
-                                        navigate('/chat', { replace: true })
+                                        navigate('/chat', { replace: false })
                                     }
                                 }
                             >
-                                
+
                                 {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
                                 <div className="ticket-info">
                                     <h3 className="ticket-title">{ticket.subject}</h3>
@@ -91,16 +117,33 @@ const LobbyMonitor = () => {
                                 </div>
 
                                 <div className='actionButtons'>
+                                    {/* ToDo: Trocar o ícone e pensar sobre onde os 2 botões vão ficar */}
                                     <button
                                         className='claim-ticket'
                                         onClick={
-                                            () => {claimTicket(ticket.id)}
+                                            (e) => {
+                                                e.stopPropagation();
+                                                localStorage.setItem("ticketId", ticket.id);
+                                                claimTicket()
+                                            }
+                                        }
+                                    >
+                                        <AiOutlineSend className="icon-send" />
+                                    </button>
+                                    <button
+                                        className='close-ticket'
+                                        onClick={
+                                            (e) => {
+                                                e.stopPropagation();
+                                                localStorage.setItem("ticketId", ticket.id);
+                                                closeTicket()
+                                            }
                                         }
                                     >
                                         <AiOutlineSend className="icon-send" />
                                     </button>
                                 </div>
-                                {/*TODO: trocar por um número */}
+                                {/*ToDo: trocar por um número */}
                                 <div className="ticket-read-icon">
                                     {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
                                 </div>
@@ -115,5 +158,4 @@ const LobbyMonitor = () => {
         </div>
     );
 }
-
 export default LobbyMonitor;
