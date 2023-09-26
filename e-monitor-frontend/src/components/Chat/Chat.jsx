@@ -7,7 +7,7 @@ import MessageMonitor from "../Message-Monitor/Message-Monitor";
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
 import { BsFiles } from "react-icons/bs";
-import { FaHome } from "react-icons/fa"
+import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
@@ -103,20 +103,24 @@ const Chat = () => {
                             ROLE === "STUDENT" ? (
                                 message.senderId === messageSenderId ? (
                                     <MessageMonitor
+                                        key={message.id}
                                         content={message.content}
                                     />
                                 ) : (
                                     <MessageStudent
+                                        key={message.id}
                                         content={message.content}
                                     />
                                 )
                             ) : (
                                 message.senderId === messageSenderId ? (
                                     <MessageStudent
+                                        key={message.id}
                                         content={message.content}
                                     />
                                 ) : (
                                     <MessageMonitor
+                                        key={message.id}
                                         content={message.content}
                                     />
                                 )

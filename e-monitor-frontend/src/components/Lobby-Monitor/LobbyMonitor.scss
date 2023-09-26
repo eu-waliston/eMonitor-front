@@ -5,11 +5,36 @@
 
   background: $default--background;
 
-  .container {
-    .header {
-      
-      float: right;
+  .reload--btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    left: 80%;
+    top: 7%;
+    cursor: pointer;
+
+    .reload-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
     }
+  }
+
+  .action-btn {
+    background-color: transparent;
+    border: none;
+    //left: 80%;
+    //top: 7%;
+    cursor: pointer;
+
+    .action-icon {
+      font-size: 1.5rem;
+      color: #195f89;
+      cursor: pointer;
+    }
+  }
+
+  .container {
     .Lobby {
       padding: 20px;
       margin-top: 25px;
@@ -25,7 +50,7 @@
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
           margin-bottom: 15px;
           display: flex;
-          align-items: center;
+          //align-items: center;
 
           img {
             width: 30%;
@@ -50,11 +75,15 @@
             #user-img {
               width: 80px;
             }
-
-            .exclamation-icons {
-              font-size: 1.3rem;
-              color: red;
-            }
+          }
+          .exclamation-icons {
+            position: relative;
+            font-size: 1.3rem;
+            top: -70%;
+            left: 101%;
+            color: #195f89;
+            background-color: white;
+            border-radius: 360px;
           }
         }
       }
