@@ -7,7 +7,7 @@ import MessageMonitor from "../Message-Monitor/Message-Monitor";
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
 import { BsFiles } from "react-icons/bs";
-import {FaHome} from "react-icons/fa"
+import { FaHome } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
@@ -16,6 +16,7 @@ const Chat = () => {
     const URL_Get = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
     const TICKETID = parseInt(localStorage.getItem("ticketId"), 10);
     const TOKEN = localStorage.getItem('token');
+    const ROLE = localStorage.getItem('role');
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -48,6 +49,7 @@ const Chat = () => {
             })
 
             setMessage("");
+            handleGetMessages();
         } catch (error) {
             console.error('Erro ao enviar mensagem:', error);
         }
@@ -67,8 +69,8 @@ const Chat = () => {
                 const data = await response.json();
                 setMessages(data);
 
-                {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */}
-                
+                {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */ }
+
                 if (data.length > 0) {
                     setSenderId(data[1].senderId);
                 }
@@ -81,9 +83,9 @@ const Chat = () => {
     }
 
     const handleClick = () => {
-        if(messageSenderId) {
+        if (ROLE === "STUDENT") {
             navigation("/lobby-student")
-        } else  {
+        } else {
             navigation("/lobby-monitor")
         }
     }
@@ -92,24 +94,35 @@ const Chat = () => {
         <div className="chat-component">
             <Nav />
             <button className='back--btn'>
-                < FaHome className='back-icon' onClick={() => handleClick()}/>
+                < FaHome className='back-icon' onClick={() => handleClick()} />
             </button>
             <div className="chat--window">
                 <div className="chat">
-
-                    {messages.map((message, index) => (
-                        message.senderId === messageSenderId ? (
-                            <MessageStudent
-                                key={index}
-                                content={message.content}
-                            />
-                        ) : (
-                            <MessageMonitor
-                                key={index}
-                                content={message.content}
-                            />
-                        )
-                    ))}
+                    {
+                        messages.map((message) => (
+                            ROLE === "STUDENT" ? (
+                                message.senderId === messageSenderId ? (
+                                    <MessageMonitor
+                                        content={message.content}
+                                    />
+                                ) : (
+                                    <MessageStudent
+                                        content={message.content}
+                                    />
+                                )
+                            ) : (
+                                message.senderId === messageSenderId ? (
+                                    <MessageStudent
+                                        content={message.content}
+                                    />
+                                ) : (
+                                    <MessageMonitor
+                                        content={message.content}
+                                    />
+                                )
+                            )
+                        ))
+                    }
                 </div>
 
                 <form className="chat--form" onSubmit={handleSendMessage}>
