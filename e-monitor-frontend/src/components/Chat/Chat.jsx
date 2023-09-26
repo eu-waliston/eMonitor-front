@@ -16,6 +16,7 @@ const Chat = () => {
     const URL_Get = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
     const TICKETID = parseInt(localStorage.getItem("ticketId"), 10);
     const TOKEN = localStorage.getItem('token');
+    const ROLE = localStorage.getItem('role');
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -81,10 +82,11 @@ const Chat = () => {
     }
 
     const handleClick = () => {
-        if(messageSenderId[0]) {
-            navigation("/lobby-student")
-        } else  {
+        console.log(ROLE);
+        if(ROLE === "MONITOR") {
             navigation("/lobby-monitor")
+        } else if(ROLE === "STUDENT") {
+            navigation("/lobby-student")
         }
     }
 
