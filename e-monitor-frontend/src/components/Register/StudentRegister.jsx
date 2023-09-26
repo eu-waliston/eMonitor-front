@@ -22,7 +22,7 @@ const StudentRegister = () => {
 
         console.log("Dados a serem enviados:", userData);
         setTimeout(() => {
-            navigate('/lobby-user', { replace: true });
+            navigate('/lobby-student', { replace: true });
         }, 2000);
     }
 

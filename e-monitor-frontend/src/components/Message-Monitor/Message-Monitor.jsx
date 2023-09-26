@@ -3,9 +3,9 @@ import "./Message-Monitor.scss";
 
 const MessageMonitor = (props) => {
     return (
-        <div className="message-component">
-            <div className="message--box">
-                    <p className="message--text">{props.content}</p>
+        <div className="message-monitor-container">
+            <div className="message-monitor-box">
+                    <p className="message-monitor-text">{props.content}</p>
             </div>
         </div>
     )
