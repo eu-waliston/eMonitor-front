@@ -48,40 +48,44 @@ const LobbyStudent = () => {
                 <div className="Lobby">
 
                     <div className="ticket-list">
-                        {ticketInfo.map((ticket, index) => (
-                            <div
-                                className="ticket"
-                                key={index}
-                                onClick={
-                                    () => {
-                                        localStorage.setItem("ticketId", ticket.id);
-                                        navigate('/chat', { replace: true })
-                                    }
-                                }
-                            >
-                                
-                                {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
-                                <div className="ticket-info">
-                                    <h3 className="ticket-title">{ticket.subject}</h3>
-                                    <div className="ticket-date">
-                                        {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
+                        {
+                            ticketInfo.length === 0 ? (
+                                <div className="no-tickets">
+                                    <h1>Ainda não há tickets!</h1>
+                                </div>
+                            ) : (
+                                ticketInfo.map((ticket, index) => (
+                                    <div
+                                        className="ticket"
+                                        key={index}
+                                        onClick={
+                                            () => {
+                                                localStorage.setItem("ticketId", ticket.id);
+                                                navigate('/chat', { replace: true })
+                                            }
+                                        }
+                                    >
+
+                                        {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
+                                        <div className="ticket-info">
+                                            <h3 className="ticket-title">{ticket.subject}</h3>
+                                            <div className="ticket-date">
+                                                {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
                                         day: '2-digit',
                                         month: '2-digit'
                                     })*/}
+                                            </div>
+                                        </div>
+
+                                        <div className="ticket-read-icon">
+                                            {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
+                                        </div>
+
                                     </div>
-                                </div>
-
-                                <div className="ticket-read-icon">
-                                    {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
-                                </div>
-
-                            </div>
-                        ))}
+                                ))
+                            )}
                     </div>
 
-                    {/* Caso esse componente venha a ser usado para monitor e student no futuro
-                    basta descomentar e então o FAB só aparecerá para o student
-                {ROLE === "STUDENT" && (*/}
                     <Link to={"/ticket-subject-choice"}>
                         <button className="fab-button">+</button>
                     </Link>

@@ -53,7 +53,7 @@ const LobbyMonitor = () => {
                     'Authorization': "Bearer " + TOKEN
                 },
             })
-            
+
             handleGetTicket();
         } catch (error) {
             console.error(error)
@@ -77,7 +77,6 @@ const LobbyMonitor = () => {
     }
 
     return (
-
         <div className="lobby-monitor">
             <div className="container">
                 < Nav />
@@ -93,69 +92,76 @@ const LobbyMonitor = () => {
                 <div className="Lobby">
 
                     <div className="ticket-list">
-                        {ticketInfo.map((ticket, index) => (
-                            <div
-                                className="ticket"
-                                key={index}
-                                onClick={
-                                    () => {
-                                        localStorage.setItem("ticketId", ticket.id);
-                                        navigate('/chat', { replace: false })
+                    {
+                        ticketInfo.length === 0 ? (
+                        <div className="no-tickets">
+                            <h1>Ainda não há tickets!</h1>
+                        </div>
+                        ) : (
+                            ticketInfo.map((ticket, index) => (
+                                <div
+                                    className="ticket"
+                                    key={index}
+                                    onClick={
+                                        () => {
+                                            localStorage.setItem("ticketId", ticket.id);
+                                            navigate('/chat', { replace: false })
+                                        }
                                     }
-                                }
-                            >
+                                >
 
-                                {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
-                                <div className="ticket-info">
-                                    <h3 className="ticket-title">{ticket.subject}</h3>
-                                    <div className="ticket-date">
-                                        {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
+                                    {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
+                                    <div className="ticket-info">
+                                        <h3 className="ticket-title">{ticket.subject}</h3>
+                                        <div className="ticket-date">
+                                            {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
                                         day: '2-digit',
                                         month: '2-digit'
                                     })*/}
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='actionButtons'>
-                                    {/* ToDo: Trocar o ícone e pensar sobre onde os 2 botões vão ficar */}
-                                    <button
-                                        className='claim-ticket'
-                                        onClick={
-                                            (e) => {
-                                                e.stopPropagation();
-                                                localStorage.setItem("ticketId", ticket.id);
-                                                claimTicket()
+                                    <div className='actionButtons'>
+                                        {/* ToDo: Trocar o ícone e pensar sobre onde os 2 botões vão ficar */}
+                                        <button
+                                            className='claim-ticket'
+                                            onClick={
+                                                (e) => {
+                                                    e.stopPropagation();
+                                                    localStorage.setItem("ticketId", ticket.id);
+                                                    claimTicket()
+                                                }
                                             }
-                                        }
-                                    >
-                                        <AiOutlineSend className="icon-send" />
-                                    </button>
-                                    <button
-                                        className='close-ticket'
-                                        onClick={
-                                            (e) => {
-                                                e.stopPropagation();
-                                                localStorage.setItem("ticketId", ticket.id);
-                                                closeTicket()
+                                        >
+                                            <AiOutlineSend className="icon-send" />
+                                        </button>
+                                        <button
+                                            className='close-ticket'
+                                            onClick={
+                                                (e) => {
+                                                    e.stopPropagation();
+                                                    localStorage.setItem("ticketId", ticket.id);
+                                                    closeTicket()
+                                                }
                                             }
-                                        }
-                                    >
-                                        <AiOutlineSend className="icon-send" />
-                                    </button>
-                                </div>
-                                {/*ToDo: trocar por um número */}
-                                <div className="ticket-read-icon">
-                                    {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
-                                </div>
+                                        >
+                                            <AiOutlineSend className="icon-send" />
+                                        </button>
+                                    </div>
+                                    {/*ToDo: trocar por um número */}
+                                    <div className="ticket-read-icon">
+                                        {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
+                                    </div>
 
-                            </div>
-                        ))}
+                                </div>
+                            ))
+                        )}
                     </div>
 
                 </div>
             </div>
 
         </div>
-    );
+    )
 }
 export default LobbyMonitor;
