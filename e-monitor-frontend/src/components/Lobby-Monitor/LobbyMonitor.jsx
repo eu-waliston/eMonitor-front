@@ -59,7 +59,7 @@ const LobbyMonitor = () => {
                 },
             })
 
-            handleGetTicket();
+            handleGetTicket();                                                                                                                                                                                     
         } catch (error) {
             console.error(error)
         }
