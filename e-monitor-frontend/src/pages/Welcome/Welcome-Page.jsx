@@ -9,7 +9,7 @@ const WelcomePage = () => {
                 <img 
                     src="./Images/logo.png" 
                     alt="logo do website" 
-                    className="logo-principal animate__animated animate__bounce animate__slow	3s animate__infinite	infinite"
+                    className="logo-principal animate__animated animate__bounce animate__slow 3s animate__infinite infinite"
                 />
                 
                 <p className="semititle">Olá seja bem-vindo(a) ao: </p>

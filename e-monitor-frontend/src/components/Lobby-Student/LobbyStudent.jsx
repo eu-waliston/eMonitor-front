@@ -51,7 +51,7 @@ const LobbyStudent = () => {
                         {
                             ticketInfo.length === 0 ? (
                                 <div className="no-tickets">
-                                    <h1>Ainda não há tickets!</h1>
+                                    <h1 >Ainda não há tickets!</h1>
                                 </div>
                             ) : (
                                 ticketInfo.map((ticket, index) => (

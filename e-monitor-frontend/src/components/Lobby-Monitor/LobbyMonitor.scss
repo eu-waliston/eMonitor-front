@@ -88,6 +88,15 @@
             border-radius: 360px;
           }
         }
+
+        .no-tickets {
+          h1 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-align: center;
+            color: $text-default-color;
+          }
+        }
       }
     }
   }
