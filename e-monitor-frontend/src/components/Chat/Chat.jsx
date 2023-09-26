@@ -7,6 +7,8 @@ import MessageMonitor from "../Message-Monitor/Message-Monitor";
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
 import { BsFiles } from "react-icons/bs";
+import {FaHome} from "react-icons/fa"
+import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
 
@@ -18,6 +20,8 @@ const Chat = () => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [messageSenderId, setSenderId] = useState(0);
+
+    const navigation = useNavigate();
 
     useEffect(() => {
         handleGetMessages();
@@ -76,9 +80,20 @@ const Chat = () => {
         }
     }
 
+    const handleClick = () => {
+        if(messageSenderId) {
+            navigation("/lobby-student")
+        } else  {
+            navigation("/lobby-monitor")
+        }
+    }
+
     return (
         <div className="chat-component">
             <Nav />
+            <button className='back--btn'>
+                < FaHome className='back-icon' onClick={() => handleClick()}/>
+            </button>
             <div className="chat--window">
                 <div className="chat">
 

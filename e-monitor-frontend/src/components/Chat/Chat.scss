@@ -5,6 +5,21 @@
   height: 100vh;
   background: $default--background;
 
+  .back--btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    left: 87%;
+    top: 6%;
+    cursor: pointer;
+
+    .back-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .chat--window {
     background-color: #fff;
     width: 90%;
