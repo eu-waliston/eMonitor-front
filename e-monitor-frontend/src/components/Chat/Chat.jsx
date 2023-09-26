@@ -81,7 +81,7 @@ const Chat = () => {
     }
 
     const handleClick = () => {
-        if(messageSenderId) {
+        if(messageSenderId[0]) {
             navigation("/lobby-student")
         } else  {
             navigation("/lobby-monitor")
