@@ -83,10 +83,10 @@ const Chat = () => {
     }
 
     const handleClick = () => {
-        if (ROLE === "STUDENT") {
-            navigation("/lobby-student")
-        } else {
+        if(ROLE === "MONITOR") {
             navigation("/lobby-monitor")
+        } else if(ROLE === "STUDENT") {
+            navigation("/lobby-student")
         }
     }
 
