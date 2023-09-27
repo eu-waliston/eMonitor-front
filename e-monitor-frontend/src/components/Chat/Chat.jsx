@@ -71,7 +71,8 @@ const Chat = () => {
 
                 {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */ }
 
-                if (data.length > 0) {
+                if (data.length > 0 && ) {
+                    console.log(data[1].senderId)
                     setSenderId(data[1].senderId);
                 }
             } else {
