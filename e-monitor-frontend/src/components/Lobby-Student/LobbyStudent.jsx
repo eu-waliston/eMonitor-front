@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LobbyStudent.scss';
 
+import { AiOutlineReload } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { BsExclamationCircleFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';
@@ -44,7 +45,9 @@ const LobbyStudent = () => {
 
             <div className="container">
                 < Nav />
-
+                <button className='reload--btn'>
+                    < AiOutlineReload className='reload-icon' onClick={() => handleGetTicket()} />
+                </button>
                 <div className="Lobby">
 
                     <div className="ticket-list">
