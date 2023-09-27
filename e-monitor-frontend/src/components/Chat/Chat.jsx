@@ -20,7 +20,6 @@ const Chat = () => {
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [messageSenderId, setSenderId] = useState(0);
 
     const navigation = useNavigate();
 
@@ -68,13 +67,6 @@ const Chat = () => {
             if (response.ok) {
                 const data = await response.json();
                 setMessages(data);
-
-                {/* A primeira mensagem é sempre do aluno, então o senderId da primeira mensagem representa o aluno. */ }
-
-                if (data.length > 0) {
-                    console.log(data[1].senderId)
-                    setSenderId(data[1].senderId);
-                }
             } else {
                 console.error('response !=== ok', response.status);
             }
@@ -84,9 +76,9 @@ const Chat = () => {
     }
 
     const handleClick = () => {
-        if(ROLE === "MONITOR") {
+        if (ROLE === "MONITOR") {
             navigation("/lobby-monitor")
-        } else if(ROLE === "STUDENT") {
+        } else if (ROLE === "STUDENT") {
             navigation("/lobby-student")
         }
     }
@@ -102,29 +94,15 @@ const Chat = () => {
                     {
                         messages.map((message) => (
                             ROLE === "STUDENT" ? (
-                                message.senderId === messageSenderId ? (
-                                    <MessageMonitor
-                                        key={message.id}
-                                        content={message.content}
-                                    />
-                                ) : (
-                                    <MessageStudent
-                                        key={message.id}
-                                        content={message.content}
-                                    />
-                                )
+                                <MessageStudent
+                                    key={message.id}
+                                    content={message.content}
+                                />
                             ) : (
-                                message.senderId === messageSenderId ? (
-                                    <MessageStudent
-                                        key={message.id}
-                                        content={message.content}
-                                    />
-                                ) : (
-                                    <MessageMonitor
-                                        key={message.id}
-                                        content={message.content}
-                                    />
-                                )
+                                <MessageMonitor
+                                    key={message.id}
+                                    content={message.content}
+                                />
                             )
                         ))
                     }
