@@ -67,57 +67,62 @@ const Ticket = () => {
     return (
         <div className="ticket--component">
 
+            {isLoading ?
+                (
+                    <Spinner />
+                ) : (
+                    //<Nav />
+                    <div className="ticket--section">
 
-            <Nav />
-            <div className="ticket--section">
-
-                <div className="ticket--info">
-                    <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
-                    <p className="ticekt-p">{optionName}</p>
-                </div>
-                <div >
-                    <form className="ticket--form" onSubmit={handleSubmit}>
-
-                        <label>Titulo</label>
-                        <input
-                            type={"text"}
-                            id="ds"
-                            value={title}
-                            onChange={handleTitleChange}
-                            required
-                        />
-
-                        <label>Descrição:</label>
-                        <textarea
-                            cols="30"
-                            rows="10"
-                            id="fs"
-                            value={description}
-                            onChange={handleDescriptionChange}
-                            required
-                        >
-                        </textarea>
-
-                        <div className="controls">
-                            <button
-                                type="submit"
-                                className="back--icon send"
-                            >
-                                Enviar
-                            </button>
-
-                            {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
-                            <button
-                                className="back--icon return"
-                                type="button"
-                                onClick={() => navigate('/ticket-subject-choice', { replace: true })}
-                            >
-                                Cancelar
-                            </button>
+                        <div className="ticket--info">
+                            <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
+                            <p className="ticekt-p">{optionName}</p>
                         </div>
-                    </form>
-                </div>
-            </div>
+                        <div >
+                            <form className="ticket--form" onSubmit={handleSubmit}>
+
+                                <label>Titulo</label>
+                                <input
+                                    type={"text"}
+                                    id="ds"
+                                    value={title}
+                                    onChange={handleTitleChange}
+                                    required
+                                />
+
+                                <label>Descrição:</label>
+                                <textarea
+                                    cols="30"
+                                    rows="10"
+                                    id="fs"
+                                    value={description}
+                                    onChange={handleDescriptionChange}
+                                    required
+                                >
+                                </textarea>
+
+                                <div className="controls">
+                                    <button
+                                        type="submit"
+                                        className="back--icon send"
+                                    >
+                                        Enviar
+                                    </button>
+
+                                    {/* TODO: "Certeza que quer cancelar?" - (Pop-Up)*/}
+                                    <button
+                                        className="back--icon return"
+                                        type="button"
+                                        onClick={() => navigate('/ticket-subject-choice', { replace: true })}
+                                    >
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 }
