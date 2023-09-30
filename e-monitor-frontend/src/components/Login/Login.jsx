@@ -109,7 +109,7 @@ const Login = () => {
                                         name=""
                                         id=""
                                     />
-                                    Lembre minha senhaa
+                                    Lembre minha senha
                                 </h6>
                                 <div>
                                     <button
