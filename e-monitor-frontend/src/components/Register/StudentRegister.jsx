@@ -1,83 +1,121 @@
 import React, { useState } from "react";
 import "./Register.scss"
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner"
 
 const StudentRegister = () => {
     const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/register-student";
 
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
 
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
-        const userData = {
-            name,
-            email,
-            password
-        };
+        try {
+            const response = await fetch(URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                }),
+            })
 
-        console.log("Dados a serem enviados:", userData);
-        setTimeout(() => {
-            navigate('/lobby-student', { replace: true });
-        }, 2000);
+            setIsLoading(false);
+
+            if (response.ok) {
+                processResponse(response)
+            } else {
+                console.error('Erro ao registrar');
+            }
+        } catch (error) {
+            setIsLoading(false);
+            console.error('Erro ao registrar: ', error);
+        }
     }
 
-    function handleSendTicket() {
-        fetch(URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            }),
+    const processResponse = async (response) => {
+        try {
+            const data = await response.json();
+            const token = data.token;
+            const role = data.role;
 
-            headers: {
-                'Content-Type': 'application/json',
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
+
+            if (role === "STUDENT") {
+                navigate('/lobby-student', { replace: true });
+            } else {
+                console.log("Role Error");
             }
-        })
-            .then(response => response.json())
-            .catch(error => console.error(error))
+        } catch (error) {
+            console.error('Erro ao processar resposta:', error);
+        }
     }
 
     return (
         <div className="register-container">
 
-            <div className="login-container">
-                <div className="logo-container">
-                    <img src='./Images/logo.png' alt="App Logo" className="img_logo animate__animated animate__pulse animate__slow	3s animate__infinite	infinite" />
-                </div>
+            {isLoading ?
+                (
+                    <Spinner />
+                ) : (
+                    <div className="login-container">
+                        <div className="logo-container">
+                            <img src='./Images/logo.png' alt="App Logo" className="img_logo animate__animated animate__pulse animate__slow	3s animate__infinite	infinite" />
+                        </div>
 
-                <form className="login-fields" action="POST" onSubmit={handleSubmit}>
+                        <form className="login-fields" action="POST" onSubmit={handleSubmit}>
 
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Nome"
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        className="input"
-                        type="password"
-                        placeholder="Senha"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Nome"
+                                onChange={handleNameChange}
+                            />
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Email"
+                                onChange={handleEmailChange}
+                            />
+                            <input
+                                className="input"
+                                type="password"
+                                placeholder="Senha"
+                                onChange={handlePasswordChange}
+                            />
 
-                    <button className="btn--register" onClick={() => handleSendTicket()}>
-                        Cadastrar
-                    </button>
+                            <button className="btn--register" type="submit">
+                                Cadastrar
+                            </button>
 
-                </form>
-            </div>
+                        </form>
+                    </div>
+                )
+            }
 
         </div>
     )

@@ -6,7 +6,6 @@ import { TfiWrite } from "react-icons/tfi";
 import { useNavigate } from "react-router-dom";
 import { BsExclamationCircleFill } from "react-icons/bs"
 import Nav from '../Nav/Nav';
-import { BiRefresh } from 'react-icons/bi';
 
 const LobbyMonitor = () => {
     const navigate = useNavigate();
@@ -48,8 +47,6 @@ const LobbyMonitor = () => {
         }
     }
 
-    {/* EStá dando 403 
-        ToDo: mudar a url para ficar igual a do get-messages, tirar o body*/}
     const claimTicket = async () => {
         try {
             fetch(`${URL_Claim}?ticketId=${TICKETID}`, {
@@ -60,7 +57,10 @@ const LobbyMonitor = () => {
                 },
             })
 
-            handleGetTicket();                                                                                                                                                                                     
+            setTimeout(() => {
+                handleGetTicket();
+            }, 1500)
+                                                                                                                                                                                                 
         } catch (error) {
             console.error(error)
         }
@@ -76,7 +76,9 @@ const LobbyMonitor = () => {
                 },
             })
 
-            handleGetTicket();
+            setTimeout(() => {
+                handleGetTicket();
+            }, 1500)
         } catch (error) {
             console.error(error)
         }
