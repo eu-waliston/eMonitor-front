@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Ticket.scss";
 import Nav from "../Nav/Nav"
 
+import Spinner from "../Spinner/Spinner"
 import { useNavigate } from "react-router-dom";
 
 const Ticket = () => {
@@ -10,6 +11,7 @@ const Ticket = () => {
     const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-ticket';
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const [optionName, setOptionName] = useState("");
     const [title, setTitle] = useState("");
@@ -31,6 +33,7 @@ const Ticket = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         try {
             const response = await fetch(URL, {
@@ -45,23 +48,26 @@ const Ticket = () => {
                 }),
             })
 
+            setIsLoading(false);
+
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem("ticketId", data);
 
-                setTimeout(() => {
-                    navigate('/chat', { replace: true });
-                }, 2000);
+                navigate('/chat', { replace: true });
             } else {
                 console.error('Erro ao enviar o ticket');
             }
         } catch (error) {
+            setIsLoading(false);
             console.error('Erro ao fazer login:', error);
         }
     };
 
     return (
         <div className="ticket--component">
+
+
             <Nav />
             <div className="ticket--section">
 

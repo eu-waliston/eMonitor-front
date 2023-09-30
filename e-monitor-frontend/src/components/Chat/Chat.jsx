@@ -20,6 +20,7 @@ const Chat = () => {
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
+    const [messageSenderId, setSenderId] = useState(0);
 
     const navigation = useNavigate();
 
@@ -67,6 +68,7 @@ const Chat = () => {
             if (response.ok) {
                 const data = await response.json();
                 setMessages(data);
+                setSenderId(data[0].senderId)
             } else {
                 console.error('response !=== ok', response.status);
             }
@@ -93,16 +95,30 @@ const Chat = () => {
                 <div className="chat">
                     {
                         messages.map((message) => (
-                            ROLE === "STUDENT" ? (
-                                <MessageStudent
-                                    key={message.id}
-                                    content={message.content}
-                                />
+                            ROLE === "MONITOR" ? (
+                                message.senderId === messageSenderId ? (
+                                    <MessageMonitor
+                                        key={message.id}
+                                        content={message.content}
+                                    />
+                                ) : (
+                                    <MessageStudent
+                                        key={message.id}
+                                        content={message.content}
+                                    />
+                                )
                             ) : (
-                                <MessageMonitor
-                                    key={message.id}
-                                    content={message.content}
-                                />
+                                message.senderId === messageSenderId ? (
+                                    <MessageStudent
+                                        key={message.id}
+                                        content={message.content}
+                                    />
+                                ) : (
+                                    <MessageMonitor
+                                        key={message.id}
+                                        content={message.content}
+                                    />
+                                )
                             )
                         ))
                     }
