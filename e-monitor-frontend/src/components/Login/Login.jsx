@@ -88,7 +88,7 @@ const Login = () => {
                                     className="input"
                                     name="email"
                                     /* TODO: mudar para type="email" */
-                                    type="text"
+                                    type="email"
                                     placeholder="Email"
                                     value={email}
                                     onChange={handleEmailChange}

@@ -94,18 +94,21 @@ const StudentRegister = () => {
                                 type="text"
                                 placeholder="Nome"
                                 onChange={handleNameChange}
+                                required
                             />
                             <input
                                 className="input"
-                                type="text"
+                                type="email"
                                 placeholder="Email"
                                 onChange={handleEmailChange}
+                                required
                             />
                             <input
                                 className="input"
                                 type="password"
                                 placeholder="Senha"
                                 onChange={handlePasswordChange}
+                                required
                             />
 
                             <button className="btn--register" type="submit">
