@@ -6,6 +6,20 @@
   height: 200vh;
   background: $default--background;
 
+  .action-btn {
+    background-color: transparent;
+    border: none;
+    //left: 80%;
+    //top: 7%;
+    cursor: pointer;
+
+    .action-icon {
+      font-size: 1.5rem;
+      color: #195f89;
+      cursor: pointer;
+    }
+  }
+
   .reload--btn {
     position: absolute;
     background-color: transparent;
@@ -51,6 +65,14 @@
             margin-bottom: 5px;
           }
 
+          .input-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            border: none;
+            border-color: white;
+          }
+
+          
           .ticket-date {
             font-size: 12px;
           }
