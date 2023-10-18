@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 import "./Login.scss"
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
@@ -9,9 +11,13 @@ const Login = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [popupText, setPopupText] = useState("");
+    const [popColor, setPopupColor] = useState("");
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -19,6 +25,10 @@ const Login = () => {
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+    };
+
+    const handlePopupClose = () => {
+        setShowPopup(false);
     };
 
     const handleSubmit = async (e) => {
@@ -40,9 +50,17 @@ const Login = () => {
             setIsLoading(false);
 
             if (response.ok) {
-                processResponse(response)
+                setPopupColor("#90EE90");
+                setPopupText("Login realizado com sucesso!");
+                setShowPopup(true);
+                setTimeout(() => {
+                    setIsLoading(true);
+                    processResponse(response);
+                }, 1000)
             } else {
-                console.error('Erro ao fazer login');
+                setPopupColor("#FA8072");
+                setPopupText("Problema no login!Tente novamente!");
+                setShowPopup(true);
             }
         } catch (error) {
             setIsLoading(false);
@@ -122,6 +140,24 @@ const Login = () => {
                                 <Link className="recover">esqueci minha senha</Link>
                             </div>
                         </form>
+
+                        <Popup
+                            open={showPopup}
+                            closeOnDocumentClick={true}
+                            onClose={handlePopupClose}
+                            modal={true}
+                            contentStyle={{ 
+                                borderRadius: "10px", 
+                                padding: "20px", 
+                                backgroundColor: popColor,
+                                border: "none", 
+                                fontWeight: "bold",
+                                width: "30%"
+                            }}
+                            trigger={<button style={{ display: "none" }}></button>}
+                        >
+                            <div>{popupText}</div>
+                        </Popup>
                     </div>
                 )
             }
