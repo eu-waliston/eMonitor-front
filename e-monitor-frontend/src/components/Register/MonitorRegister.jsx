@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Register.scss"
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
@@ -9,10 +11,14 @@ const CadUser = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const [popupText, setPopupText] = useState("");
+    const [popColor, setPopupColor] = useState("");
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -26,10 +32,34 @@ const CadUser = () => {
         setPassword(e.target.value);
     };
 
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    };
+
+    const processResponse = async (response) => {
+        try {
+            const data = await response.json();
+            const token = data.token;
+            const role = data.role;
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
+
+            if (role === "MONITOR") {
+                navigate('/lobby-monitor', { replace: true });
+                setIsLoading(false);
+            } else {
+                console.log("Role Error");
+            }
+        } catch (error) {
+            console.error('Erro ao processar resposta:', error);
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
+        
         try {
             const response = await fetch(URL, {
                 method: 'POST',
@@ -46,35 +76,23 @@ const CadUser = () => {
             setIsLoading(false);
 
             if (response.ok) {
-                processResponse(response)
+                setPopupColor("#90EE90");
+                setPopupText("Cadastro realizado com sucesso!");
+                setShowPopup(true);
+                setTimeout(() => {
+                    setIsLoading(true);
+                    processResponse(response);
+                }, 3000)
             } else {
-                console.error('Erro ao registrar');
+                setPopupColor("#FA8072");
+                setPopupText("Problema ao cadastrar monitor!\nTente novamente!");
+                setShowPopup(true);
             }
         } catch (error) {
             setIsLoading(false);
             console.error('Erro ao registrar: ', error);
         }
     }
-
-    const processResponse = async (response) => {
-        try {
-            const data = await response.json();
-            const token = data.token;
-            const role = data.role;
-
-            localStorage.setItem('token', token);
-            localStorage.setItem('role', role);
-
-            if (role === "MONITOR") {
-                navigate('/lobby-monitor', { replace: true });
-            } else {
-                console.log("Role Error");
-            }
-        } catch (error) {
-            console.error('Erro ao processar resposta:', error);
-        }
-    }
-
 
     return (
         <div className="register-container">
@@ -117,6 +135,24 @@ const CadUser = () => {
                             </button>
 
                         </form>
+
+                        <Popup
+                            open={showPopup}
+                            closeOnDocumentClick={true}
+                            onClose={handlePopupClose}
+                            modal={true}
+                            contentStyle={{ 
+                                borderRadius: "10px", 
+                                padding: "20px", 
+                                backgroundColor: popColor,
+                                border: "none", 
+                                fontWeight: "bold",
+                                width: "30%"
+                            }}
+                            trigger={<button style={{ display: "none" }}></button>}
+                        >
+                            <div>{popupText}</div>
+                        </Popup>
                     </div>
                 )
             }
