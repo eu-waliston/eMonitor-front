@@ -4,6 +4,7 @@ import "reactjs-popup/dist/index.css";
 import "./Login.scss"
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
+import { MdOutlineArrowBack } from "react-icons/md";
 
 const Login = () => {
 
@@ -92,6 +93,20 @@ const Login = () => {
     return (
         <div className="login-container">
 
+            <button
+                className='action-btn'
+                onClick={
+                    (e) => {
+                        e.preventDefault();
+                        navigate('/', { replace: true })
+                    }
+                }
+
+                aria-describedby='claim'
+            >
+                <MdOutlineArrowBack className="action-icon" />
+            </button>
+
             {isLoading ?
                 (
                     <Spinner />
@@ -146,11 +161,11 @@ const Login = () => {
                             closeOnDocumentClick={true}
                             onClose={handlePopupClose}
                             modal={true}
-                            contentStyle={{ 
-                                borderRadius: "10px", 
-                                padding: "20px", 
+                            contentStyle={{
+                                borderRadius: "10px",
+                                padding: "20px",
                                 backgroundColor: popColor,
-                                border: "none", 
+                                border: "none",
                                 fontWeight: "bold",
                                 width: "30%"
                             }}

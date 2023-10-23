@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.scss"
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
+import { MdOutlineArrowBack } from "react-icons/md";
 
 const StudentRegister = () => {
     const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/register-student";
@@ -77,6 +78,20 @@ const StudentRegister = () => {
 
     return (
         <div className="register-container">
+
+            <button
+                className='action-btn'
+                onClick={
+                    (e) => {
+                        e.preventDefault();
+                        navigate('/', { replace: true })
+                    }
+                }
+
+                aria-describedby='claim'
+            >
+                <MdOutlineArrowBack className="action-icon" />
+            </button>
 
             {isLoading ?
                 (

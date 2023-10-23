@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.scss"
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { MdOutlineArrowBack } from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
@@ -59,7 +60,7 @@ const CadUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        
+
         try {
             const response = await fetch(URL, {
                 method: 'POST',
@@ -96,6 +97,20 @@ const CadUser = () => {
 
     return (
         <div className="register-container">
+
+            <button
+                className='action-btn'
+                onClick={
+                    (e) => {
+                        e.preventDefault();
+                        navigate('/', { replace: true })
+                    }
+                }
+
+                aria-describedby='claim'
+            >
+                <MdOutlineArrowBack className="action-icon" />
+            </button>
 
             {isLoading ?
                 (
@@ -141,11 +156,11 @@ const CadUser = () => {
                             closeOnDocumentClick={true}
                             onClose={handlePopupClose}
                             modal={true}
-                            contentStyle={{ 
-                                borderRadius: "10px", 
-                                padding: "20px", 
+                            contentStyle={{
+                                borderRadius: "10px",
+                                padding: "20px",
                                 backgroundColor: popColor,
-                                border: "none", 
+                                border: "none",
                                 fontWeight: "bold",
                                 width: "30%"
                             }}

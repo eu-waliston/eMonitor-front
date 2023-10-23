@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Ticket.scss";
-import Nav from "../Nav/Nav"
+import { MdOutlineArrowBack } from "react-icons/md";
 
 import Spinner from "../Spinner/Spinner"
 import { useNavigate } from "react-router-dom";
@@ -66,6 +66,20 @@ const Ticket = () => {
 
     return (
         <div className="ticket--component">
+
+            <button
+                className='action-btn'
+                onClick={
+                    (e) => {
+                        e.preventDefault();
+                        navigate('/ticket-subject-choice', { replace: true })
+                    }
+                }
+
+                aria-describedby='claim'
+            >
+                <MdOutlineArrowBack className="action-icon" />
+            </button>
 
             {isLoading ?
                 (

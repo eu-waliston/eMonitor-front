@@ -5,14 +5,31 @@
   height: 100vh;
   background: $default--background;
 
+  .action-btn {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    left: 10%;
+    top: 7%;
+    cursor: pointer;
+
+    .action-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
+    
     gap: 30px;
     position: relative;
+    top: 80px;
     
     text-align: center;
 

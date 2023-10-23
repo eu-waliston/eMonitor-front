@@ -5,6 +5,21 @@
   height: 110vh;
   background: $default--background;
 
+  .action-btn {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    left: 10%;
+    top: 7%;
+    cursor: pointer;
+
+    .action-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .ticket__box {
     width: 80%;
     height: 90vh;
