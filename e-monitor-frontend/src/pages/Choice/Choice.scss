@@ -5,6 +5,21 @@
   height: 100vh;
   background: $default--background;
 
+  .action-btn {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    left: 10%;
+    top: 7%;
+    cursor: pointer;
+
+    .action-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;
