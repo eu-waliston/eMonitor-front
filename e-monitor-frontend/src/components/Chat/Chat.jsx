@@ -3,6 +3,7 @@ import "./Chat.scss";
 import Nav from "../Nav/Nav"
 import MessageStudent from "../Message-Student/Message-Student";
 import MessageMonitor from "../Message-Monitor/Message-Monitor";
+import Linkify from 'react-linkify';
 
 //Icons
 import { AiOutlineSend } from "react-icons/ai";
@@ -99,24 +100,32 @@ const Chat = () => {
                                 message.senderId === messageSenderId ? (
                                     <MessageMonitor
                                         key={message.id}
-                                        content={message.content}
+                                        content={
+                                            <Linkify>{message.content}</Linkify>
+                                        }
                                     />
                                 ) : (
                                     <MessageStudent
                                         key={message.id}
-                                        content={message.content}
+                                        content={
+                                            <Linkify>{message.content}</Linkify>
+                                        }
                                     />
                                 )
                             ) : (
                                 message.senderId === messageSenderId ? (
                                     <MessageStudent
                                         key={message.id}
-                                        content={message.content}
+                                        content={
+                                            <Linkify>{message.content}</Linkify>
+                                        }
                                     />
                                 ) : (
                                     <MessageMonitor
                                         key={message.id}
-                                        content={message.content}
+                                        content={
+                                            <Linkify>{message.content}</Linkify>
+                                        }
                                     />
                                 )
                             )
