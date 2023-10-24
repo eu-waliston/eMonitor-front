@@ -7,7 +7,6 @@ import Linkify from 'react-linkify';
 
 //Icons
 import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
-// import { BsFiles } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
@@ -102,18 +101,25 @@ const Chat = () => {
     }
 
     const renderMessagesStudent = (message) => {
+        var data
+        if(message.content === ""){
+            data = message.attachments[0]
+        } else {
+            data = message.content
+        }
+
         if (message.senderId === messageSenderId) {
             return <MessageStudent
                 key={message.id}
                 content={
-                    <Linkify>{message.content}</Linkify>
+                    <Linkify>{data}</Linkify>
                 }
             />
         } else {
             return <MessageMonitor
                 key={message.id}
                 content={
-                    <Linkify>{message.content}</Linkify>
+                    <Linkify>{data}</Linkify>
                 }
             />
         }
