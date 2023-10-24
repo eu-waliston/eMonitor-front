@@ -6,8 +6,8 @@ import MessageMonitor from "../Message-Monitor/Message-Monitor";
 import Linkify from 'react-linkify';
 
 //Icons
-import { AiOutlineSend } from "react-icons/ai";
-import { BsFiles } from "react-icons/bs";
+import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
+// import { BsFiles } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +22,7 @@ const Chat = () => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [messageSenderId, setSenderId] = useState(0);
+    const [attachment, setAttachment] = useState("");
 
     const navigation = useNavigate();
 
@@ -32,6 +33,17 @@ const Chat = () => {
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
     };
+
+    const handleAttachmentChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            setAttachment(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -45,16 +57,19 @@ const Chat = () => {
                 },
                 body: JSON.stringify({
                     content: message,
+                    attachments: [attachment],
                     ticketId: TICKETID
                 }),
-            })
+            });
 
             setMessage("");
+            setAttachment("");
             handleGetMessages();
         } catch (error) {
             console.error('Erro ao enviar mensagem:', error);
         }
-    }
+    };
+
 
     const handleGetMessages = async () => {
         try {
@@ -78,7 +93,7 @@ const Chat = () => {
         }
     }
 
-    const handleClick = () => {
+    const handleClickHome = () => {
         if (ROLE === "MONITOR") {
             navigation("/lobby-monitor")
         } else if (ROLE === "STUDENT") {
@@ -86,62 +101,97 @@ const Chat = () => {
         }
     }
 
+    const renderMessagesStudent = (message) => {
+        if (message.senderId === messageSenderId) {
+            return <MessageStudent
+                key={message.id}
+                content={
+                    <Linkify>{message.content}</Linkify>
+                }
+            />
+        } else {
+            return <MessageMonitor
+                key={message.id}
+                content={
+                    <Linkify>{message.content}</Linkify>
+                }
+            />
+        }
+    }
+
+    function renderMessagesMonitor(message) {
+        if (message.senderId === messageSenderId) {
+            return <MessageMonitor
+                key={message.id}
+                content={
+                    <Linkify>{message.content}</Linkify>
+                }
+            />
+        } else {
+            return <MessageStudent
+                key={message.id}
+                content={
+                    <Linkify>{message.content}</Linkify>
+                }
+            />
+        }
+    }
+
     return (
         <div className="chat-component">
             <Nav />
             <button className='back--btn'>
-                < FaHome className='back-icon' onClick={() => handleClick()} />
+                < FaHome className='back-icon' onClick={() => handleClickHome()} />
             </button>
             <div className="chat--window">
                 <div className="chat">
                     {
                         messages.map((message) => (
                             ROLE === "MONITOR" ? (
-                                message.senderId === messageSenderId ? (
-                                    <MessageMonitor
-                                        key={message.id}
-                                        content={
-                                            <Linkify>{message.content}</Linkify>
-                                        }
-                                    />
-                                ) : (
-                                    <MessageStudent
-                                        key={message.id}
-                                        content={
-                                            <Linkify>{message.content}</Linkify>
-                                        }
-                                    />
-                                )
+                                renderMessagesMonitor(message)
                             ) : (
-                                message.senderId === messageSenderId ? (
-                                    <MessageStudent
-                                        key={message.id}
-                                        content={
-                                            <Linkify>{message.content}</Linkify>
-                                        }
-                                    />
-                                ) : (
-                                    <MessageMonitor
-                                        key={message.id}
-                                        content={
-                                            <Linkify>{message.content}</Linkify>
-                                        }
-                                    />
-                                )
+                                renderMessagesStudent(message)
                             )
                         ))
                     }
                 </div>
-
+                {
+                    attachment && (
+                        <div className="attachment--container">
+                            <button className="attachment--close" onClick={() => setAttachment("")}>
+                                X
+                            </button>
+                            <div className="attachment">
+                                <img
+                                    src={attachment}
+                                    alt="Attachment Preview"
+                                    className="attachment-preview"
+                                />
+                            </div>
+                        </div>
+                    )
+                }
                 <form className="chat--form" onSubmit={handleSendMessage}>
                     <div className="chat--option">
-                        <BsFiles className="icon-clip" />
+                        <label htmlFor="attachmentInput">
+                            <AiOutlinePaperClip className="icon-clip" />
+                        </label>
+
+                        <input
+                            type="file"
+                            id="attachmentInput"
+                            accept="image/*"
+                            style={{ display: "none" }}
+                            onChange={handleAttachmentChange}
+                        />
                         <input
                             type="search"
                             className="input-text"
                             value={message}
                             onChange={handleMessageChange}
-                            required
+                            {
+                                ...(!attachment && { required: true })
+                            }
                         />
                         <button
                             className="send-button"
