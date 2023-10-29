@@ -93,11 +93,7 @@ const Chat = () => {
     }
 
     const handleClickHome = () => {
-        if (ROLE === "MONITOR") {
-            navigation("/lobby-monitor")
-        } else if (ROLE === "STUDENT") {
-            navigation("/lobby-student")
-        }
+        navigation("/lobby-"+ROLE.toLowerCase());
     }
 
     const renderMessagesStudent = (message) => {
@@ -126,18 +122,25 @@ const Chat = () => {
     }
 
     function renderMessagesMonitor(message) {
+        var data
+        if(message.content === ""){
+            data = message.attachments[0]
+        } else {
+            data = message.content
+        }
+
         if (message.senderId === messageSenderId) {
             return <MessageMonitor
                 key={message.id}
                 content={
-                    <Linkify>{message.content}</Linkify>
+                    <Linkify>{data}</Linkify>
                 }
             />
         } else {
             return <MessageStudent
                 key={message.id}
                 content={
-                    <Linkify>{message.content}</Linkify>
+                    <Linkify>{data}</Linkify>
                 }
             />
         }
