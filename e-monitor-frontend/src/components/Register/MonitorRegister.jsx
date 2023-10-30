@@ -98,7 +98,7 @@ const CadUser = () => {
     return (
         <div className="register-container">
 
-            <button
+            <span
                 className='action-btn'
                 onClick={
                     (e) => {
@@ -110,7 +110,7 @@ const CadUser = () => {
                 aria-describedby='claim'
             >
                 <MdOutlineArrowBack className="action-icon" />
-            </button>
+            </span>
 
             {isLoading ?
                 (
