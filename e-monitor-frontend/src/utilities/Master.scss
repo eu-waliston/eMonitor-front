@@ -6,3 +6,23 @@
   box-sizing: border-box;
   font-family: $default--font;
 }
+
+
+//Scroll Bard Custom 
+
+//Width
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+//Track
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+//Handle
+::-webkit-scrollbar-thumb {
+  background-color:$btn--second-color;
+  border-radius: 10px;
+
+}
