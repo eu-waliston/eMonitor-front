@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.scss"
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+//import Popup from "reactjs-popup";
+//import "reactjs-popup/dist/index.css";
 import { MdOutlineArrowBack } from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
@@ -12,14 +12,14 @@ const CadUser = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [showPopup, setShowPopup] = useState(false);
+    //const [showPopup, setShowPopup] = useState(false);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [popupText, setPopupText] = useState("");
-    const [popColor, setPopupColor] = useState("");
+   // const [popupText, setPopupText] = useState("");
+   // const [popColor, setPopupColor] = useState("");
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -151,7 +151,7 @@ const CadUser = () => {
 
                         </form>
 
-                        <Popup
+                      {/*  <Popup
                             open={showPopup}
                             closeOnDocumentClick={true}
                             onClose={handlePopupClose}
@@ -167,7 +167,7 @@ const CadUser = () => {
                             trigger={<button style={{ display: "none" }}></button>}
                         >
                             <div>{popupText}</div>
-                        </Popup>
+                        </Popup> */}
                     </div>
                 )
             }
