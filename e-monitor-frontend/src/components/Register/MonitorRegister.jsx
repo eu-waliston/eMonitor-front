@@ -129,6 +129,7 @@ const CadUser = () => {
                                 placeholder="Nome"
                                 onChange={handleNameChange}
                                 required
+                                min="1" max="20"
                             />
                             <input
                                 className="input"
@@ -136,6 +137,7 @@ const CadUser = () => {
                                 placeholder="Email"
                                 onChange={handleEmailChange}
                                 required
+                                min="1" max="20"
                             />
                             <input
                                 className="input"
@@ -143,6 +145,7 @@ const CadUser = () => {
                                 placeholder="Senha"
                                 onChange={handlePasswordChange}
                                 required
+                                min="1" max="20"
                             />
 
                             <button className="btnr" type="submit">

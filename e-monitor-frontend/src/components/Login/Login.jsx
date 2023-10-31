@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
 import { MdOutlineArrowBack } from "react-icons/md";
 
+import { useForm } from "react-hook-form"
+
 const Login = () => {
 
     const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/login"
@@ -90,6 +92,16 @@ const Login = () => {
         }
     }
 
+
+    const {
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => console.log(data)
+    
+      console.log(watch("example")) // watch input value by passing the name of it
+
     return (
         <div className="login-container">
 
@@ -126,7 +138,10 @@ const Login = () => {
                                     value={email}
                                     onChange={handleEmailChange}
                                     required
+                                    min="1" max="20"
+                                    
                                 />
+                                {errors.exampleRequired && <span>Este campo é obrigatório</span>}
                                 <input
                                     className="input"
                                     name="password"
@@ -135,7 +150,9 @@ const Login = () => {
                                     value={password}
                                     onChange={handlePasswordChange}
                                     required
+                                    min="1" max="16"
                                 />
+                                {errors.exampleRequired && <span>Este campo é obrigatório</span>}
                                 <h6 className="remember" >
                                     <input
                                         type="checkbox"

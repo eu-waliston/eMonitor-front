@@ -110,6 +110,7 @@ const StudentRegister = () => {
                                 placeholder="Nome"
                                 onChange={handleNameChange}
                                 required
+                                min="1" max="20"
                             />
                             <input
                                 className="input"
@@ -117,6 +118,7 @@ const StudentRegister = () => {
                                 placeholder="Email"
                                 onChange={handleEmailChange}
                                 required
+                                min="1" max="20"
                             />
                             <input
                                 className="input"
@@ -124,6 +126,7 @@ const StudentRegister = () => {
                                 placeholder="Senha"
                                 onChange={handlePasswordChange}
                                 required
+                                min="1" max="20"
                             />
 
                             <button className="btn--register" type="submit">
