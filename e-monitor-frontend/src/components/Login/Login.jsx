@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
 import "./Login.scss"
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Spinner from "../Spinner/Spinner"
-import { MdOutlineArrowBack } from "react-icons/md";
-
 import { useForm } from "react-hook-form"
 
-const Login = () => {
+// Components
+import Spinner from "../Spinner/Spinner"
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
+// Icons
+import { MdOutlineArrowBack } from "react-icons/md";
+
+const Login = () => {
     const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/login"
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-   const [showPopup, setShowPopup] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -96,15 +98,14 @@ const Login = () => {
     const {
         watch,
         formState: { errors },
-      } = useForm()
-    
-      const onSubmit = (data) => console.log(data)
-    
-      console.log(watch("example")) // watch input value by passing the name of it
+    } = useForm()
+
+    //const onSubmit = (data) => console.log(data)
+
+    console.log(watch("example")) // watch input value by passing the name of it
 
     return (
         <div className="login-container">
-
             <button
                 className='action-btn'
                 onClick={
@@ -113,7 +114,6 @@ const Login = () => {
                         navigate('/', { replace: true })
                     }
                 }
-
                 aria-describedby='claim'
             >
                 <MdOutlineArrowBack className="action-icon" />
@@ -138,7 +138,6 @@ const Login = () => {
                                     onChange={handleEmailChange}
                                     required
                                     min="1" max="20"
-                                    
                                 />
                                 {errors.exampleRequired && <span>Este campo é obrigatório</span>}
                                 <input
@@ -172,7 +171,7 @@ const Login = () => {
                             </div>
                         </form>
 
-                  { /*      <Popup
+                        <Popup
                             open={showPopup}
                             closeOnDocumentClick={true}
                             onClose={handlePopupClose}
@@ -188,11 +187,10 @@ const Login = () => {
                             trigger={<button style={{ display: "none" }}></button>}
                         >
                             <div>{popupText}</div>
-                        </Popup> */}
+                        </Popup>
                     </div>
                 )
             }
-
         </div>
     )
 }
