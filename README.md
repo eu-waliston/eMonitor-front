@@ -8,7 +8,7 @@ Projeto e-monitor desenvolvido na disciplina de Projeto de Software II
     - ReactJS
     - React Router Dom
     - React Icons 
-    - Css
+
 
 ### Hospedagem 
     - Vercel
