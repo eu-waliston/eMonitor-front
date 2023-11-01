@@ -44,7 +44,8 @@ const Ticket = () => {
                 },
                 body: JSON.stringify({
                     subject: title,
-                    content: description
+                    content: description,
+                    topicId: 1
                 }),
             })
 
