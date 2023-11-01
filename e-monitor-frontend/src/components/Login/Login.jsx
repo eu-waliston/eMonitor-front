@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+//import Popup from "reactjs-popup";
+//import "reactjs-popup/dist/index.css";
 import "./Login.scss"
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
 import { MdOutlineArrowBack } from "react-icons/md";
+
+import { useForm } from "react-hook-form"
 
 const Login = () => {
 
@@ -12,13 +14,13 @@ const Login = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [showPopup, setShowPopup] = useState(false);
+   //const [showPopup, setShowPopup] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [popupText, setPopupText] = useState("");
-    const [popColor, setPopupColor] = useState("");
+   // const [popupText, setPopupText] = useState("");
+   // const [popColor, setPopupColor] = useState("");
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -28,9 +30,9 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handlePopupClose = () => {
-        setShowPopup(false);
-    };
+   // const handlePopupClose = () => {
+   //     setShowPopup(false);
+   // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -90,6 +92,16 @@ const Login = () => {
         }
     }
 
+
+    const {
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => console.log(data)
+    
+      console.log(watch("example")) // watch input value by passing the name of it
+
     return (
         <div className="login-container">
 
@@ -126,7 +138,10 @@ const Login = () => {
                                     value={email}
                                     onChange={handleEmailChange}
                                     required
+                                    min="1" max="20"
+                                    
                                 />
+                                {errors.exampleRequired && <span>Este campo é obrigatório</span>}
                                 <input
                                     className="input"
                                     name="password"
@@ -135,7 +150,9 @@ const Login = () => {
                                     value={password}
                                     onChange={handlePasswordChange}
                                     required
+                                    min="1" max="16"
                                 />
+                                {errors.exampleRequired && <span>Este campo é obrigatório</span>}
                                 <h6 className="remember" >
                                     <input
                                         type="checkbox"
@@ -156,7 +173,7 @@ const Login = () => {
                             </div>
                         </form>
 
-                        <Popup
+                  { /*      <Popup
                             open={showPopup}
                             closeOnDocumentClick={true}
                             onClose={handlePopupClose}
@@ -172,7 +189,7 @@ const Login = () => {
                             trigger={<button style={{ display: "none" }}></button>}
                         >
                             <div>{popupText}</div>
-                        </Popup>
+                        </Popup> */}
                     </div>
                 )
             }

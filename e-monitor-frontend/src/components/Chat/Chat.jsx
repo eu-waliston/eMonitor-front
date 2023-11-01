@@ -3,7 +3,7 @@ import "./Chat.scss";
 import Nav from "../Nav/Nav"
 import MessageStudent from "../Message-Student/Message-Student";
 import MessageMonitor from "../Message-Monitor/Message-Monitor";
-import Linkify from 'react-linkify';
+//import Linkify from 'react-linkify';
 
 //Icons
 import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
@@ -68,7 +68,6 @@ const Chat = () => {
             console.error('Erro ao enviar mensagem:', error);
         }
     };
-
 
     const handleGetMessages = async () => {
         try {
