@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import Popup from "reactjs-popup";
-//import "reactjs-popup/dist/index.css";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 import "./Login.scss"
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
@@ -14,13 +14,13 @@ const Login = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-   //const [showPopup, setShowPopup] = useState(false);
+   const [showPopup, setShowPopup] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-   // const [popupText, setPopupText] = useState("");
-   // const [popColor, setPopupColor] = useState("");
+    const [popupText, setPopupText] = useState("");
+    const [popColor, setPopupColor] = useState("");
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -30,9 +30,9 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-   // const handlePopupClose = () => {
-   //     setShowPopup(false);
-   // };
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -132,7 +132,6 @@ const Login = () => {
                                 <input
                                     className="input"
                                     name="email"
-                                    /* TODO: mudar para type="email" */
                                     type="email"
                                     placeholder="Email"
                                     value={email}
