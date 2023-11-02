@@ -111,18 +111,10 @@ const LobbyMonitor = () => {
                                             }
                                         }
                                     >
-
-                                        {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
                                         <div className="ticket-info">
                                             <h3 className="ticket-title">{ticket.subject}</h3>
-                                            <div className="ticket-date">
-                                                {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
-                                                day: '2-digit',
-                                                month: '2-digit'
-                                            })*/}
-                                            </div>
+                                            <p className="ticket-status">{ticket.topicId}</p>
                                         </div>
-                                        {/* ToDo: Trocar o ícone e pensar sobre onde os 2 botões vão ficar */}
                                         {
                                             ticket.status === "OPEN" ? (
                                                 <button

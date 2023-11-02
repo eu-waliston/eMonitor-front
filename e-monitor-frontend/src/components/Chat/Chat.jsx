@@ -1,29 +1,32 @@
-import React, { useState, useEffect } from 'react';
 import "./Chat.scss";
+
+import React, { useState, useEffect } from 'react';
+import Linkify from 'react-linkify';
+
+// Components
 import Nav from "../Nav/Nav"
 import MessageStudent from "../Message-Student/Message-Student";
 import MessageMonitor from "../Message-Monitor/Message-Monitor";
-import Linkify from 'react-linkify';
 
-//Icons
+// Icons
 import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
 
-    const URL_Insert = "https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-message"
-    const URL_Get = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
-    const TICKETID = parseInt(localStorage.getItem("ticketId"), 10);
-    const TOKEN = localStorage.getItem('token');
-    const ROLE = localStorage.getItem('role');
+    const navigation = useNavigate();
+
+    const insertMessage_URL = "https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-message"
+    const getmessages_URL = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
+    const token = localStorage.getItem('token');
+    const ticketId = localStorage.getItem('ticketId');
+    const role = localStorage.getItem('role');
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [messageSenderId, setSenderId] = useState(0);
     const [attachment, setAttachment] = useState("");
-
-    const navigation = useNavigate();
 
     useEffect(() => {
         handleGetMessages();
@@ -48,16 +51,16 @@ const Chat = () => {
         e.preventDefault();
 
         try {
-            await fetch(URL_Insert, {
+            await fetch(insertMessage_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
                     content: message,
                     attachments: [attachment],
-                    ticketId: TICKETID
+                    ticketId: ticketId
                 }),
             });
 
@@ -71,11 +74,11 @@ const Chat = () => {
 
     const handleGetMessages = async () => {
         try {
-            const response = await fetch(`${URL_Get}?ticketId=${TICKETID}`, {
+            const response = await fetch(`${getmessages_URL}?ticketId=${ticketId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + TOKEN
+                    'Authorization': 'Bearer ' + token
                 }
             })
 
@@ -92,7 +95,7 @@ const Chat = () => {
     }
 
     const handleClickHome = () => {
-        navigation("/lobby-"+ROLE.toLowerCase());
+        navigation("/lobby-"+role.toLowerCase());
     }
 
     const renderMessagesStudent = (message) => {
@@ -147,15 +150,17 @@ const Chat = () => {
 
     return (
         <div className="chat-component">
+
             <Nav />
-            <button className='back--btn'>
-                < FaHome className='back-icon' onClick={() => handleClickHome()} />
+            <button className='back--btn' onClick={() => handleClickHome()} >
+                < FaHome className='back-icon' />
             </button>
+
             <div className="chat--window">
                 <div className="chat">
                     {
                         messages.map((message) => (
-                            ROLE === "MONITOR" ? (
+                            role === "MONITOR" ? (
                                 renderMessagesMonitor(message)
                             ) : (
                                 renderMessagesStudent(message)
@@ -164,6 +169,7 @@ const Chat = () => {
                     }
                 </div>
                 {
+                    // ToDo: Arrumar o ícone e a posição  do botão.
                     attachment && (
                         <div className="attachment--container">
                             <button className="attachment--close" onClick={() => setAttachment("")}>
@@ -192,6 +198,7 @@ const Chat = () => {
                             style={{ display: "none" }}
                             onChange={handleAttachmentChange}
                         />
+
                         <input
                             type="search"
                             className="input-text"
@@ -201,12 +208,14 @@ const Chat = () => {
                                 ...(!attachment && { required: true })
                             }
                         />
+
                         <button
                             className="send-button"
                             type="submit"
                         >
                             <AiOutlineSend className="icon-send" />
                         </button>
+
                     </div>
                 </form>
             </div>
