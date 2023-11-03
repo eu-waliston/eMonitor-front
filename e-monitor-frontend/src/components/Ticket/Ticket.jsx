@@ -1,19 +1,23 @@
-import React, { useState } from "react";
 import "./Ticket.scss";
-import { MdOutlineArrowBack } from "react-icons/md";
-
-import Spinner from "../Spinner/Spinner"
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Components
+import Spinner from "../Spinner/Spinner"
+
+// Icons
+import { MdOutlineArrowBack } from "react-icons/md";
+
 const Ticket = () => {
-
-    const TOKEN = localStorage.getItem('token');
-    const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-ticket';
-
     const navigate = useNavigate();
+
+    const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-ticket';
+    const TOKEN = localStorage.getItem('token');
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [optionName, setOptionName] = useState("");
+    
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -45,7 +49,7 @@ const Ticket = () => {
                 body: JSON.stringify({
                     subject: title,
                     content: description,
-                    topicId: 1
+                    topicId: 2
                 }),
             })
 
