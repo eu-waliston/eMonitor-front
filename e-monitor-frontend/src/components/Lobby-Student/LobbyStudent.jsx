@@ -1,41 +1,62 @@
-import React, { useState, useEffect } from 'react';
 import './LobbyStudent.scss';
 
-import { BiSolidEdit } from "react-icons/bi";
-import { AiOutlineReload } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { BsExclamationCircleFill } from "react-icons/bs"
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from "react-router-dom";
+
+// Components
 import Nav from '../Nav/Nav';
+import FilterMenu from '../FilterMenu/FilterMenu';
+
+// Icons
+import { AiOutlineReload } from "react-icons/ai";
+import { BsExclamationCircleFill } from "react-icons/bs";
+import { BiSolidEdit } from "react-icons/bi";
 
 const LobbyStudent = () => {
     const navigate = useNavigate();
-    const TOKEN = localStorage.getItem('token');
-    const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
-    const TICKETID = localStorage.getItem('ticketId');
+
+    const getTickets_URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
+    const renameTicket_URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/rename-ticket'
+    const token = localStorage.getItem('token');
+    const ticketId = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
-    const [title, setTitle] = useState("");
+
+    const [newTitle, setNewTitle] = useState("");
     const [isRenaming, setIsRenaming] = useState(false);
     const [renamingTicketId, setRenamingTicketId] = useState(null);
+
+    const [filters, setFilters] = useState([]);
 
     useEffect(() => {
         handleGetTicket();
     }, []);
 
+    const handleTitleChange = (e) => {
+        setNewTitle(e.target.value);
+    }
+
+    const filterAndOrganizeTickets = (tickets, filters) => {
+        if (filters.length === 0) {
+            return [...tickets].reverse();
+        } else {
+            return [...tickets].reverse().filter((ticket) => filters.includes(ticket.topicId));
+        }
+    }
+
     const handleGetTicket = async () => {
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(getTickets_URL, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 }
             })
 
             if (response.ok) {
                 const data = await response.json();
-                setTicketInfo(data)
+                setTicketInfo(data);
             } else {
                 console.error('Erro na solicitação:', response.status);
             }
@@ -44,21 +65,17 @@ const LobbyStudent = () => {
         }
     }
 
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
-
-    const renameTicket = async () => {
+    const handleRenameTicket = async () => {
         try {
-            await fetch(`https://emonitor-tsa0.onrender.com/api/v1/tickets/rename-ticket`, {
+            await fetch(renameTicket_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
-                    id: TICKETID,
-                    newSubject: title
+                    id: ticketId,
+                    newSubject: newTitle
                 }),
             })
         } catch (error) {
@@ -67,14 +84,18 @@ const LobbyStudent = () => {
     }
 
     return (
-
         <div className="Lobby-student">
-
             <div className="container">
+
                 < Nav />
-                <button className='reload--btn'>
-                    < AiOutlineReload className='reload-icon' onClick={() => handleGetTicket()} />
+                <FilterMenu updateFilters={setFilters} />
+                <button className='reload--btn' onClick={() => {
+                        handleGetTicket()
+                        console.log(filters)
+                    }}>
+                    < AiOutlineReload className='reload-icon' />
                 </button>
+
                 <div className="Lobby">
 
                     <div className="ticket-list">
@@ -84,7 +105,7 @@ const LobbyStudent = () => {
                                     <h1 >Ainda não há tickets!</h1>
                                 </div>
                             ) : (
-                                ticketInfo.map((ticket, index) => (
+                                filterAndOrganizeTickets(ticketInfo, filters).map((ticket, index) => (
                                     <div
                                         className="ticket"
                                         key={index}
@@ -95,16 +116,14 @@ const LobbyStudent = () => {
                                             }
                                         }
                                     >
-
-                                        {/*<img src={ticket.userImage} alt="User" id='user-img' />*/}
                                         <div className="ticket-info">
                                             {
                                                 isRenaming && renamingTicketId === ticket.id ? (
-                                                    <input 
+                                                    <input
                                                         className="input-title"
-                                                        type="text" 
-                                                        placeholder= {ticket.subject}
-                                                        value={title} 
+                                                        type="text"
+                                                        placeholder={ticket.subject}
+                                                        value={newTitle}
                                                         onChange={handleTitleChange}
                                                         onBlur={() => {
                                                             setIsRenaming(false);
@@ -112,33 +131,28 @@ const LobbyStudent = () => {
                                                         }}
                                                         onKeyDown={(e) => {
                                                             if (e.key === 'Enter') {
-                                                                renameTicket();
+                                                                handleRenameTicket();
                                                                 setIsRenaming(false);
                                                             }
                                                         }}
-                                                        onClick={(e) => { e.stopPropagation()}}
+                                                        onClick={(e) => { e.stopPropagation() }}
                                                         autoFocus
                                                     />
                                                 ) : (
-                                                    <h3 className="ticket-title">{ticket.subject}</h3>
+                                                    <div className="ticket-info">
+                                                        <h3 className="ticket-title">{ticket.subject}</h3>
+                                                        <p className="ticket-topic">{ticket.topicId}</p>
+                                                    </div>
                                                 )
                                             }
-                                            
-                                            <div className="ticket-date">
-                                            {/*new Date(ticket.date).toLocaleDateString('pt-BR', {
-                                                day: '2-digit',
-                                                month: '2-digit'
-                                            })*/}
-                                            </div>
                                         </div>
 
                                         <button
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
-                                                    //localStorage.setItem("ticketId", ticket.id);
                                                     setRenamingTicketId(ticket.id);
-                                                    setTitle("");
+                                                    setNewTitle("");
                                                     e.stopPropagation();
                                                     setIsRenaming(true);
                                                 }
@@ -161,13 +175,12 @@ const LobbyStudent = () => {
                     <Link to={"/ticket-subject-choice"}>
                         <button className="fab-button">+</button>
                     </Link>
-                    {/*)}*/}
 
                 </div>
             </div>
 
         </div>
-    );
+    )
 }
 
 export default LobbyStudent;

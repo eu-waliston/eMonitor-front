@@ -1,4 +1,5 @@
 @import "../../utilities/Variables.scss";
+@import "../FilterMenu/FilterMenu.scss";
 
 .Lobby-student {
   padding: 20px;
@@ -28,6 +29,7 @@
     top: 65px;
     font-size: 1.3rem;
     cursor: pointer;
+
     .reload-icon {
       color: #fff;
       cursor: pointer;
@@ -42,6 +44,7 @@
     top: 65px;
     font-size: 1.4rem;
     cursor: pointer;
+
     .reload-icon {
       color: #fff;
       cursor: pointer;
@@ -52,6 +55,11 @@
     .Lobby {
       padding: 20px;
       margin-top: 25px;
+
+      .popup {
+        display: flex;
+        flex-direction: column;
+      }
 
       .ticket-list {
         display: flex;
@@ -71,9 +79,11 @@
             border-radius: 50%;
             margin-right: 15px;
           }
+
           .ticket-info {
             flex: 1;
           }
+
           .ticket-title {
             font-weight: bold;
             margin-bottom: 5px;
@@ -91,7 +101,7 @@
             border-color: white;
           }
 
-          
+
           .ticket-date {
             font-size: 12px;
           }
