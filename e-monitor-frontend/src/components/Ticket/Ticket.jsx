@@ -11,7 +11,7 @@ import { MdOutlineArrowBack } from "react-icons/md";
 const Ticket = () => {
     const navigate = useNavigate();
 
-    const URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-ticket';
+    const URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/insert-ticket';
     const TOKEN = localStorage.getItem('token');
 
     const [isLoading, setIsLoading] = useState(false);

@@ -12,7 +12,7 @@ import "reactjs-popup/dist/index.css";
 import { MdOutlineArrowBack } from "react-icons/md";
 
 const Login = () => {
-    const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/login"
+    const URL = "http://emonitor.inf.ufsm.br/api/v1/auth/login"
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);

@@ -5,7 +5,7 @@ import Spinner from "../Spinner/Spinner"
 import { MdOutlineArrowBack } from "react-icons/md";
 
 const StudentRegister = () => {
-    const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/register-student";
+    const URL = "http://emonitor.inf.ufsm.br/api/v1/auth/register-student";
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
