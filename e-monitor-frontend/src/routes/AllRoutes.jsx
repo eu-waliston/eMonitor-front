@@ -24,6 +24,9 @@ import Ticket from "../components/Ticket/Ticket";
 //Rota referente ao chat da aplicação
 import Chat from "../components/Chat/Chat";
 
+//Rota referente à visão do Administrador
+import AdminPage from "../components/Admin-Page/AdminPage";
+
 const AllRoutes = () => {
     return (
         <Routes>
@@ -44,6 +47,8 @@ const AllRoutes = () => {
             <Route path={"/new-ticket"} element={< Ticket />}/>
 
             <Route path={"/chat"} element={< Chat />}/>
+
+            <Route path={"/admin"} element={< AdminPage />}/>
             
         </Routes>
     )

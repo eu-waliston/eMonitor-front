@@ -9,10 +9,10 @@ import Nav from '../Nav/Nav';
 
 const LobbyMonitor = () => {
     const navigate = useNavigate();
-    const TOKEN = localStorage.getItem('token');
     const URL_Get = 'http://emonitor.inf.ufsm.br/api/v1/tickets/get-tickets'
     const URL_Claim = 'http://emonitor.inf.ufsm.br/api/v1/tickets/claim-ticket';
     const URL_Close = 'http://emonitor.inf.ufsm.br/api/v1/tickets/close-ticket';
+    const TOKEN = localStorage.getItem('token');
     const TICKETID = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
