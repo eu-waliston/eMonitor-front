@@ -17,7 +17,7 @@ const Ticket = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [optionName, setOptionName] = useState("");
-    
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -68,6 +68,12 @@ const Ticket = () => {
             console.error('Erro ao fazer login:', error);
         }
     };
+
+    const EF = () => {
+        if (optionName === "ED_FISICA") {
+            return "Ed.Fisica"
+        }
+    }
 
     return (
         <div className="ticket--component">
