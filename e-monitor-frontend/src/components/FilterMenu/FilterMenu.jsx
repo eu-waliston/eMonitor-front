@@ -8,11 +8,9 @@ import { set } from "react-hook-form";
 const FilterMenu = ({ updateFilters }) => {
 
     const areas = {
-        1: 1,
-        2: 2,
         "Matemática": "Matematica",
         "Artes": "Artes",
-        "Português": "geografia",
+        "Português": "Portugues",
         "Inglês": "Ingles",
         "Biologia": "Biologia",
         "História": "Historia",

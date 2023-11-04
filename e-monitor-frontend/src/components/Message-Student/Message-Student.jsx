@@ -19,4 +19,4 @@ const MessageStudent = (props) => {
     )
 }
 
-export default MessageStudent;
+export default React.memo(MessageStudent);

@@ -11,4 +11,4 @@ const MessageMonitor = (props) => {
     )
 }
 
-export default MessageMonitor;
+export default React.memo(MessageMonitor);

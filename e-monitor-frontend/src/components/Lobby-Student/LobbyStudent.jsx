@@ -15,8 +15,8 @@ import { BiSolidEdit } from "react-icons/bi";
 const LobbyStudent = () => {
     const navigate = useNavigate();
 
-    const getTickets_URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/get-tickets'
-    const renameTicket_URL = 'https://emonitor-tsa0.onrender.com/api/v1/tickets/rename-ticket'
+    const getTickets_URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/get-tickets'
+    const renameTicket_URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/rename-ticket'
     const token = localStorage.getItem('token');
     const ticketId = localStorage.getItem('ticketId');
 
@@ -67,8 +67,8 @@ const LobbyStudent = () => {
 
     const handleRenameTicket = async () => {
         try {
-            await fetch(renameTicket_URL, {
-                method: 'POST',
+            const response = await fetch(renameTicket_URL, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + token
@@ -78,6 +78,10 @@ const LobbyStudent = () => {
                     newSubject: newTitle
                 }),
             })
+
+            setTimeout(() => {
+                handleGetTicket();
+            }, 1500)
         } catch (error) {
             console.error(error)
         }
