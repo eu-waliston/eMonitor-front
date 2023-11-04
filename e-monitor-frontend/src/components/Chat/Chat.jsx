@@ -17,8 +17,8 @@ const Chat = () => {
 
     const navigation = useNavigate();
 
-    const insertMessage_URL = "https://emonitor-tsa0.onrender.com/api/v1/tickets/insert-message"
-    const getmessages_URL = "https://emonitor-tsa0.onrender.com/api/v1/tickets/get-messages"
+    const insertMessage_URL = "http://emonitor.inf.ufsm.br/api/v1/tickets/insert-message"
+    const getmessages_URL = "http://emonitor.inf.ufsm.br/api/v1/tickets/get-messages"
     const token = localStorage.getItem('token');
     const ticketId = localStorage.getItem('ticketId');
     const role = localStorage.getItem('role');
