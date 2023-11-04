@@ -14,7 +14,6 @@ import { FaHome } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
-
     const navigation = useNavigate();
 
     const insertMessage_URL = "http://emonitor.inf.ufsm.br/api/v1/tickets/insert-message"
@@ -39,13 +38,13 @@ const Chat = () => {
     const handleAttachmentChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            setAttachment(event.target.result);
-          };
-          reader.readAsDataURL(file);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setAttachment(event.target.result);
+            };
+            reader.readAsDataURL(file);
         }
-      };
+    };
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -95,17 +94,23 @@ const Chat = () => {
     }
 
     const handleClickHome = () => {
-        navigation("/lobby-"+role.toLowerCase());
+        navigation("/lobby-" + role.toLowerCase());
     }
 
     const renderMessagesStudent = (message) => {
-        var data
-        if(message.content === ""){
-            data = message.attachments[0]
-        } else {
-            data = message.content
+        if (message.content !== "" && message.attachments.length !== 0) {
+            return <div>
+                { makeMessagesStudent(message, message.attachments[0]) }
+                { makeMessagesStudent(message, message.content) }
+            </div>
+        } else if (message.content !== "" && message.attachments.length === 0) {
+            return makeMessagesStudent(message, message.content)
+        } else if (message.content === "" && message.attachments.length !== 0) {
+            return makeMessagesStudent(message, message.attachments[0])
         }
+    }
 
+    const makeMessagesStudent = (message, data) => {
         if (message.senderId === messageSenderId) {
             return <MessageStudent
                 key={message.id}
@@ -123,14 +128,20 @@ const Chat = () => {
         }
     }
 
-    function renderMessagesMonitor(message) {
-        var data
-        if(message.content === ""){
-            data = message.attachments[0]
-        } else {
-            data = message.content
+    const renderMessagesMonitor = (message) => {
+        if (message.content !== "" && message.attachments.length !== 0) {
+            return <div>
+                { makeMessagesMonitor(message, message.attachments[0]) }
+                { makeMessagesMonitor(message, message.content) }
+            </div>
+        } else if (message.content !== "" && message.attachments.length === 0) {
+            return makeMessagesMonitor(message, message.content)
+        } else if (message.content === "" && message.attachments.length !== 0) {
+            return makeMessagesMonitor(message, message.attachments[0])
         }
+    }
 
+    function makeMessagesMonitor(message, data) {
         if (message.senderId === messageSenderId) {
             return <MessageMonitor
                 key={message.id}
@@ -205,7 +216,7 @@ const Chat = () => {
                             value={message}
                             onChange={handleMessageChange}
                             {
-                                ...(!attachment && { required: true })
+                            ...(!attachment && { required: true })
                             }
                         />
 
@@ -215,7 +226,6 @@ const Chat = () => {
                         >
                             <AiOutlineSend className="icon-send" />
                         </button>
-
                     </div>
                 </form>
             </div>

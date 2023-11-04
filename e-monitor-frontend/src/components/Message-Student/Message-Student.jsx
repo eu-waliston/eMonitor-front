@@ -3,15 +3,19 @@ import "./Message-Student.scss";
 
 const MessageStudent = (props) => {
     const content = props.content;
-    const isImage = typeof content === "string" && content.startsWith("data:image");
+    const data = content.props.children
+    const isImage = /^data:image\/(jpeg|png|jpg|gif);base64,/.test(data);
 
     return (
         <div className="message-student-component">
             <div className="message-student-box">
                 {isImage ? (
-                    <img src={content} alt="Image Preview" />
+                    <img
+                        className="attachment"
+                        src={data}
+                        alt="Image Preview"
+                    />
                 ) : (
-                    //<img src={content} alt="Image Preview" />
                     <p className="message-monitor-text">{content}</p>
                 )}
             </div>
