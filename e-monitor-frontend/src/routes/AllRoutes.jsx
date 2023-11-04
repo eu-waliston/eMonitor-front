@@ -24,7 +24,12 @@ import Ticket from "../components/Ticket/Ticket";
 //Rota referente ao chat da aplicação
 import Chat from "../components/Chat/Chat";
 
-//Rota referente à visão do Administrador
+//Rotas  referentes ào Administrador:
+
+//pagina Refernte ao login de Administrador
+import AdminLogin from "../components/Admin-Page/AdminLogin";
+
+//Pagina da visão do Administrador
 import AdminPage from "../components/Admin-Page/AdminPage";
 
 const AllRoutes = () => {
@@ -48,6 +53,7 @@ const AllRoutes = () => {
 
             <Route path={"/chat"} element={< Chat />}/>
 
+            <Route path={"/admin-login"} element={< AdminLogin />}/>
             <Route path={"/admin"} element={< AdminPage />}/>
             
         </Routes>

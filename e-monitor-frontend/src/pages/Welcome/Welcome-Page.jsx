@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 const WelcomePage = () => {
     return (
         <div className="welcome-page">
+            <Link className="admin--link" to={"/admin-login"}>area restrita</Link>
             <div className="container">
                 <img 
                     src="./Images/logo.png" 
