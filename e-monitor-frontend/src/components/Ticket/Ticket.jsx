@@ -49,7 +49,7 @@ const Ticket = () => {
                 body: JSON.stringify({
                     subject: title,
                     content: description,
-                    topicId: 2
+                    topic: optionName.toUpperCase(),
                 }),
             })
 

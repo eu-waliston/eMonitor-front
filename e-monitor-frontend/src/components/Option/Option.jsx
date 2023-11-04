@@ -11,26 +11,26 @@ const Option = () => {
 
     return (
         <div className="options--section">
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Matematica")}>Matemática</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Artes")}>Artes</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Portuges")}>Português</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("MATEMATICA")}>Matemática</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("ARTES")}>Artes</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("PORTUGUES")}>Português</Link>
 
 
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Ingles")}>Inglês</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Biologia")}>Biologia</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Historia")}>História</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("INGLES")}>Inglês</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("BIOLOGIA")}>Biologia</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("HISTORIA")}>História</Link>
 
 
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Ed.Fisica")}>Ed.Física</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Fisica")}>Física</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Filosofia")}>Filosofia</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("ED_FISICA")}>Ed.Física</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("FISICA")}>Física</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("FILOSOFIA")}>Filosofia</Link>
 
 
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Sociologia")}>Sociologia</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Quimica")}>Química</Link>
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Geografia")}>Geografia</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("SOCIOLOGIA")}>Sociologia</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("QUIMICA")}>Química</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("GEOGRAFIA")}>Geografia</Link>
 
-            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("Outros")}>Outros</Link>
+            <Link to="/new-ticket" className='icon--ticket' onClick={() => sendOptionName("OUTROS")}>Outros</Link>
         </div>
     )
 }
