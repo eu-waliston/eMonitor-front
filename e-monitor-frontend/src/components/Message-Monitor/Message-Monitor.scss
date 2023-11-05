@@ -12,7 +12,9 @@
 
 .message-monitor-box {
     width: fit-content;
+    max-width: 40%;
     height: fit-content;
+    word-wrap: break-word;
     background-color:$btn--default-color;
     padding-top: 2%;
     padding-bottom: 2%;

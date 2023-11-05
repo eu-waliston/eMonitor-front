@@ -11,8 +11,9 @@
 
 .message-student-box {
     width: fit-content;
-    max-width: 50%;
+    max-width: 40%;
     height: fit-content;
+    word-wrap: break-word;
     background-color: $btn--second-color;
     padding-top: 2%;
     padding-bottom: 2%;
