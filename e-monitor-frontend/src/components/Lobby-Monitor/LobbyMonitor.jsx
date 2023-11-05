@@ -16,10 +16,43 @@ const LobbyMonitor = () => {
     const TICKETID = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
+    const [filters, setFilters] = useState([]);
+
+    const areas = {
+        "MATEMATICA": "Matemática",
+        "ARTES": "Artes",
+        "PORTUGUES": "Português",
+        "INGLES": "Inglês",
+        "BIOLOGIA": "Biologia",
+        "HISTORIA": "História",
+        "ED_FISICA": "Ed.Física",
+        "FISICA": "Física",
+        "FILOSOFIA": "Filosofia",
+        "SOCIOLOGIA": "Sociologia",
+        "QUIMICA": "Química",
+        "GEOGRAFIA": "Geografia",
+        "OUTROS": "Outros"
+    };
 
     useEffect(() => {
         handleGetTicket();
     }, []);
+
+    const organizeTickets = (data) => {
+        return [...data].sort((a, b) => {
+            if (a.status === 'OPEN') return -1;
+            if (a.status === 'IN_PROGRESS' && b.status !== 'OPEN') return -1;
+            return 1;
+        });
+    }
+
+    const filterTickets = (tickets, filters) => {
+        if (filters.length === 0) {
+            return tickets;
+        } else {
+            return [...tickets].filter((ticket) => filters.includes(ticket.topicId));
+        }
+    }
 
     const handleGetTicket = async () => {
         try {
@@ -33,12 +66,7 @@ const LobbyMonitor = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                const sortedTickets = [...data].sort((a, b) => {
-                    if (a.status === 'OPEN') return -1;
-                    if (a.status === 'IN_PROGRESS' && b.status !== 'OPEN') return -1;
-                    return 1;
-                });
-                setTicketInfo(sortedTickets)
+                setTicketInfo(organizeTickets(data))
             } else {
                 console.error('Erro na solicitação:', response.status);
             }
@@ -60,7 +88,7 @@ const LobbyMonitor = () => {
             setTimeout(() => {
                 handleGetTicket();
             }, 1500)
-                                                                                                                                                                                                 
+
         } catch (error) {
             console.error(error)
         }
@@ -88,6 +116,7 @@ const LobbyMonitor = () => {
         <div className="lobby-monitor">
             <div className="container">
                 < Nav />
+                <FilterMenu updateFilters={setFilters} />
                 <button className='reload--btn'>
                     < AiOutlineReload className='reload-icon' onClick={() => handleGetTicket()} />
                 </button>
@@ -100,7 +129,7 @@ const LobbyMonitor = () => {
                                     <h1>Ainda não há tickets!</h1>
                                 </div>
                             ) : (
-                                ticketInfo.map((ticket, index) => (
+                                filterTickets(ticketInfo, filters).map((ticket, index) => (
                                     <div
                                         className="ticket"
                                         key={index}

@@ -70,8 +70,6 @@ const LobbyStudent = () => {
                 }
             })
 
-            console.log(filters)
-
             if (response.ok) {
                 const data = await response.json();
                 setTicketInfo(data);
