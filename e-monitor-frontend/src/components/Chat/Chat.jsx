@@ -98,14 +98,16 @@ const Chat = () => {
     }
 
     const renderMessagesStudent = (message) => {
-        if (message.content !== "" && message.attachments.length !== 0) {
+        if(message.attachments[0] === undefined) message.attachments[0] = "";
+
+        if (message.content !== "" && message.attachments[0] !== "") {
             return <div>
-                { makeMessagesStudent(message, message.attachments[0]) }
-                { makeMessagesStudent(message, message.content) }
+                {makeMessagesStudent(message, message.attachments[0])}
+                {makeMessagesStudent(message, message.content)}
             </div>
-        } else if (message.content !== "" && message.attachments.length === 0) {
+        } else if (message.content !== "" && message.attachments[0] === "") {
             return makeMessagesStudent(message, message.content)
-        } else if (message.content === "" && message.attachments.length !== 0) {
+        } else if (message.content === "" && message.attachments[0] !== "") {
             return makeMessagesStudent(message, message.attachments[0])
         }
     }
@@ -129,10 +131,10 @@ const Chat = () => {
     }
 
     const renderMessagesMonitor = (message) => {
-        if (message.content !== "" && message.attachments.length !== 0) {
+        if (message.content !== "" && message.attachments[0] !== null) {
             return <div>
-                { makeMessagesMonitor(message, message.attachments[0]) }
-                { makeMessagesMonitor(message, message.content) }
+                {makeMessagesMonitor(message, message.attachments[0])}
+                {makeMessagesMonitor(message, message.content)}
             </div>
         } else if (message.content !== "" && message.attachments.length === 0) {
             return makeMessagesMonitor(message, message.content)
