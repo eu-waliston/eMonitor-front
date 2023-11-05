@@ -28,6 +28,22 @@ const LobbyStudent = () => {
 
     const [filters, setFilters] = useState([]);
 
+    const areas = {
+        "MATEMATICA": "Matemática",
+        "ARTES": "Artes",
+        "PORTUGUES": "Português",
+        "INGLES": "Inglês",
+        "BIOLOGIA": "Biologia",
+        "HISTORIA": "História",
+        "ED_FISICA": "Ed.Física",
+        "FISICA": "Física",
+        "FILOSOFIA": "Filosofia",
+        "SOCIOLOGIA": "Sociologia",
+        "QUIMICA": "Química",
+        "GEOGRAFIA": "Geografia",
+        "OUTROS": "Outros"
+    };
+
     useEffect(() => {
         handleGetTicket();
     }, []);
@@ -53,6 +69,8 @@ const LobbyStudent = () => {
                     'Authorization': "Bearer " + token
                 }
             })
+
+            console.log(filters)
 
             if (response.ok) {
                 const data = await response.json();
@@ -95,7 +113,6 @@ const LobbyStudent = () => {
                 <FilterMenu updateFilters={setFilters} />
                 <button className='reload--btn' onClick={() => {
                         handleGetTicket()
-                        console.log(filters)
                     }}>
                     < AiOutlineReload className='reload-icon' />
                 </button>
@@ -145,7 +162,7 @@ const LobbyStudent = () => {
                                                 ) : (
                                                     <div className="ticket-info">
                                                         <h3 className="ticket-title">{ticket.subject}</h3>
-                                                        <p className="ticket-topic">{ticket.topicId}</p>
+                                                        <p className="ticket-topic">{areas[ticket.topicId]}</p>
                                                     </div>
                                                 )
                                             }

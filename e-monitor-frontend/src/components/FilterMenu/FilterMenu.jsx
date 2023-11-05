@@ -8,19 +8,19 @@ import { set } from "react-hook-form";
 const FilterMenu = ({ updateFilters }) => {
 
     const areas = {
-        "Matemática": "Matematica",
-        "Artes": "Artes",
-        "Português": "Portugues",
-        "Inglês": "Ingles",
-        "Biologia": "Biologia",
-        "História": "Historia",
-        "Ed.Física": "Ed.Fisica",
-        "Física": "Fisica",
-        "Filosofia": "Filosofia",
-        "Sociologia": "Sociologia",
-        "Química": "Quimica",
-        "Geografia": "Geografia",
-        "Outros": "Outros"
+        "Matemática": "MATEMATICA",
+        "Artes": "ARTES",
+        "Português": "PORTUGUES",
+        "Inglês": "INGLES",
+        "Biologia": "BIOLOGIA",
+        "História": "HISTORIA",
+        "Ed.Física": "ED_FISICA",
+        "Física": "FISICA",
+        "Filosofia": "FILOSOFIA",
+        "Sociologia": "SOCIOLOGIA",
+        "Química": "QUIMICA",
+        "Geografia": "GEOGRAFIA",
+        "Outros": "OUTROS"
     };
 
     const [filters, setFilters] = useState([]);
@@ -29,10 +29,9 @@ const FilterMenu = ({ updateFilters }) => {
     const handleFilterChange = (event) => {
         const { value, checked } = event.target;
         if (checked) {
-            const intValue = parseInt(value);
-            setFilters([...filters, intValue]);
+            setFilters([...filters, areas[value]]);
         } else {
-            setFilters(filters.filter((filter) => filter !== value));
+            setFilters(filters.filter((filter) => filter !== areas[value]));
         }
     };
 

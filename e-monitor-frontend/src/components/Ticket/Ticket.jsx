@@ -21,6 +21,22 @@ const Ticket = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
+    const areas = {
+        "MATEMATICA": "Matemática",
+        "ARTES": "Artes",
+        "PORTUGUES": "Português",
+        "INGLES": "Inglês",
+        "BIOLOGIA": "Biologia",
+        "HISTORIA": "História",
+        "ED_FISICA": "Ed.Física",
+        "FISICA": "Física",
+        "FILOSOFIA": "Filosofia",
+        "SOCIOLOGIA": "Sociologia",
+        "QUIMICA": "Química",
+        "GEOGRAFIA": "Geografia",
+        "OUTROS": "Outros"
+    };
+
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
             setOptionName(localStorage.getItem("TAG"))
@@ -101,7 +117,7 @@ const Ticket = () => {
 
                         <div className="ticket--info">
                             <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
-                            <p className="ticekt-p">{optionName}</p>
+                            <p className="ticekt-p">{areas[optionName]}</p>
                         </div>
                         <div >
                             <form className="ticket--form" onSubmit={handleSubmit}>
