@@ -1,4 +1,5 @@
 import "./Chat.scss";
+import "../ReportButton/ReportButton.scss";
 
 import React, { useState, useEffect } from 'react';
 import Linkify from 'react-linkify';
@@ -7,6 +8,7 @@ import Linkify from 'react-linkify';
 import Nav from "../Nav/Nav"
 import MessageStudent from "../Message-Student/Message-Student";
 import MessageMonitor from "../Message-Monitor/Message-Monitor";
+import ReportButton from "../ReportButton/ReportButton";
 
 // Icons
 import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
@@ -26,6 +28,8 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [messageSenderId, setSenderId] = useState(0);
     const [attachment, setAttachment] = useState("");
+
+    const [isReporting, setIsReporting] = useState(false);
 
     useEffect(() => {
         handleGetMessages();
@@ -81,12 +85,12 @@ const Chat = () => {
                 }
             })
 
-            if (response.ok) {
+            try {
                 const data = await response.json();
                 setMessages(data);
                 setSenderId(data[0].senderId)
-            } else {
-                console.error('response !=== ok', response.status);
+            } catch (error) {
+                console.error('Erro ao receber mensagem:', error);
             }
         } catch (error) {
             console.error('Erro ao receber mensagem:', error);
@@ -165,6 +169,7 @@ const Chat = () => {
         <div className="chat-component">
 
             <Nav />
+            < ReportButton />
             <button className='back--btn' onClick={() => handleClickHome()} >
                 < FaHome className='back-icon' />
             </button>
