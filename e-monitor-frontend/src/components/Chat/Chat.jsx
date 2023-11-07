@@ -1,5 +1,6 @@
 import "./Chat.scss";
 import "../ReportButton/ReportButton.scss";
+import { URL } from '../../scripts/scripts';
 
 import React, { useState, useEffect } from 'react';
 import Linkify from 'react-linkify';
@@ -18,8 +19,8 @@ import { useNavigate } from 'react-router-dom';
 const Chat = () => {
     const navigation = useNavigate();
 
-    const insertMessage_URL = "http://emonitor.inf.ufsm.br/api/v1/tickets/insert-message"
-    const getmessages_URL = "http://emonitor.inf.ufsm.br/api/v1/tickets/get-messages"
+    const URL_Insert = URL + '/api/v1/tickets/insert-message'
+    const URL_GetMessages = URL + '/api/v1/tickets/get-messages'
     const token = localStorage.getItem('token');
     const ticketId = localStorage.getItem('ticketId');
     const role = localStorage.getItem('role');
@@ -54,7 +55,7 @@ const Chat = () => {
         e.preventDefault();
 
         try {
-            await fetch(insertMessage_URL, {
+            await fetch(URL_Insert, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ const Chat = () => {
 
     const handleGetMessages = async () => {
         try {
-            const response = await fetch(`${getmessages_URL}?ticketId=${ticketId}`, {
+            const response = await fetch(`${URL_GetMessages}?ticketId=${ticketId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

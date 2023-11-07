@@ -1,4 +1,6 @@
 import "./Ticket.scss";
+import { URL } from '../../scripts/scripts';
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +13,7 @@ import { MdOutlineArrowBack } from "react-icons/md";
 const Ticket = () => {
     const navigate = useNavigate();
 
-    const URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/insert-ticket';
+    const URL_InsertTicket = URL + '/api/v1/tickets/insert-ticket';
     const TOKEN = localStorage.getItem('token');
 
     const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +58,7 @@ const Ticket = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_InsertTicket, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

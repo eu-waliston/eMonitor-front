@@ -1,4 +1,5 @@
 import './LobbyStudent.scss';
+import { URL } from '../../scripts/scripts';
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
@@ -15,8 +16,8 @@ import { BiSolidEdit } from "react-icons/bi";
 const LobbyStudent = () => {
     const navigate = useNavigate();
 
-    const getTickets_URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/get-tickets'
-    const renameTicket_URL = 'http://emonitor.inf.ufsm.br/api/v1/tickets/rename-ticket'
+    const URL_GetTickets = URL + '/api/v1/tickets/get-tickets'
+    const URL_RenameTicket = URL + '/api/v1/tickets/rename-ticket'
     const token = localStorage.getItem('token');
     const ticketId = localStorage.getItem('ticketId');
 
@@ -62,7 +63,7 @@ const LobbyStudent = () => {
 
     const handleGetTicket = async () => {
         try {
-            const response = await fetch(getTickets_URL, {
+            const response = await fetch(URL_GetTickets, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ const LobbyStudent = () => {
 
     const handleRenameTicket = async () => {
         try {
-            const response = await fetch(renameTicket_URL, {
+            const response = await fetch(URL_RenameTicket, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

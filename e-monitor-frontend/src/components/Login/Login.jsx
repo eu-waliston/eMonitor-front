@@ -1,4 +1,6 @@
 import "./Login.scss"
+import { URL } from '../../scripts/scripts';
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
@@ -12,7 +14,7 @@ import "reactjs-popup/dist/index.css";
 import { MdOutlineArrowBack } from "react-icons/md";
 
 const Login = () => {
-    const URL = "http://emonitor.inf.ufsm.br/api/v1/auth/login"
+    const URL_Login = URL + '/api/v1/auth/login'
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +43,7 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_Login, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,13 +84,8 @@ const Login = () => {
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
 
-            if (role === "STUDENT") {
-                navigate('/lobby-student', { replace: true });
-            } else if (role === "MONITOR") {
-                navigate('/lobby-monitor', { replace: true });
-            } else {
-                console.log("Role Error");
-            }
+            navigate('/lobby-' + role.toLowerCase(), { replace: true });
+
         } catch (error) {
             console.error('Erro ao processar resposta:', error);
         }

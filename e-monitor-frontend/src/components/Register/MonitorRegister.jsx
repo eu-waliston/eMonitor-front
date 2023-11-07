@@ -1,14 +1,20 @@
-import React, { useState } from "react";
 import "./Register.scss"
+import { URL } from '../../scripts/scripts';
+
+import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { MdOutlineArrowBack } from "react-icons/md";
-
 import { useNavigate } from "react-router-dom";
+
+
+// Components
 import Spinner from "../Spinner/Spinner"
 
+// Icons
+import { MdOutlineArrowBack } from "react-icons/md";
+
 const CadUser = () => {
-    const URL = "https://emonitor-tsa0.onrender.com/api/v1/auth/register-monitor";
+    const URL_RegisterMonitor = URL + '/api/v1/auth/register-monitor'
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -62,7 +68,7 @@ const CadUser = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_RegisterMonitor, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

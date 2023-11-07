@@ -1,4 +1,6 @@
 import './AdminPage.scss';
+import { URL } from '../../scripts/scripts';
+
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -10,7 +12,7 @@ import { MdOutlinePersonRemove, MdOutlinePlaylistRemove } from "react-icons/md";
 function AdminPage() {
     const navigate = useNavigate();
 
-    const URL_Get = 'http://emonitor.inf.ufsm.br/api/v1/tickets/get-tickets'
+    const URL_Get = URL + '/api/v1/tickets/get-tickets'
     const TOKEN = localStorage.getItem('token');
     const TICKETID = localStorage.getItem('ticketId');
 

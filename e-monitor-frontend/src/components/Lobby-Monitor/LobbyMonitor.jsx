@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './LobbyMonitor.scss';
+import { URL } from '../../scripts/scripts';
 
 import { AiOutlineReload, AiOutlineCheckCircle } from "react-icons/ai";
 import { TfiWrite } from "react-icons/tfi";
@@ -9,11 +10,11 @@ import Nav from '../Nav/Nav';
 
 const LobbyMonitor = () => {
     const navigate = useNavigate();
-    const URL_Get = 'http://emonitor.inf.ufsm.br/api/v1/tickets/get-tickets'
-    const URL_Claim = 'http://emonitor.inf.ufsm.br/api/v1/tickets/claim-ticket';
-    const URL_Close = 'http://emonitor.inf.ufsm.br/api/v1/tickets/close-ticket';
-    const TOKEN = localStorage.getItem('token');
-    const TICKETID = localStorage.getItem('ticketId');
+    const URL_Get = URL + '/api/v1/tickets/get-tickets'
+    const URL_Claim = URL + '/api/v1/tickets/claim-ticket';
+    const URL_Close = URL + '/api/v1/tickets/close-ticket';
+    const token = localStorage.getItem('token');
+    const ticketId = localStorage.getItem('ticketId');
 
     const [ticketInfo, setTicketInfo] = useState([])
     const [filters, setFilters] = useState([]);
@@ -60,7 +61,7 @@ const LobbyMonitor = () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 }
             })
 
@@ -77,11 +78,11 @@ const LobbyMonitor = () => {
 
     const claimTicket = async () => {
         try {
-            fetch(`${URL_Claim}?ticketId=${TICKETID}`, {
+            fetch(`${URL_Claim}?ticketId=${ticketId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 },
             })
 
@@ -96,11 +97,11 @@ const LobbyMonitor = () => {
 
     const closeTicket = async () => {
         try {
-            fetch(`${URL_Close}?ticketId=${TICKETID}`, {
+            fetch(`${URL_Close}?ticketId=${ticketId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + TOKEN
+                    'Authorization': "Bearer " + token
                 },
             })
 

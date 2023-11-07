@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
+import { URL } from '../../scripts/scripts';
 
 // Components
 import Spinner from "../Spinner/Spinner"
@@ -13,7 +14,7 @@ import { MdOutlineArrowBack } from "react-icons/md";
 
 const AdminLogin = () => {
 
-    const URL = "http://emonitor.inf.ufsm.br/api/v1/auth/login"
+    const URL_Login = URL + '/api/v1/auth/login'
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +43,7 @@ const AdminLogin = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_Login, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
 import "./Register.scss"
+import { URL } from '../../scripts/scripts';
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// Components
 import Spinner from "../Spinner/Spinner"
+
+// Icons
 import { MdOutlineArrowBack } from "react-icons/md";
 
 const StudentRegister = () => {
-    const URL = "http://emonitor.inf.ufsm.br/api/v1/auth/register-student";
+    const URL_RegisterStudent = URL + '/api/v1/auth/register-student'
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +38,7 @@ const StudentRegister = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(URL, {
+            const response = await fetch(URL_RegisterStudent, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
