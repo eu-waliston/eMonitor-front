@@ -1,9 +1,14 @@
 /* Spinner.scss */
+@import "../../utilities/Variables.scss";
+
+
 .spinner-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Isso centralizará o spinner verticalmente na tela inteira */
+    height: 100vh;
+
+    background: $default--background;
 }
 
 .spinner {
@@ -12,7 +17,7 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    animation: spin 1s linear infinite; /* Certifique-se de que esta linha esteja correta */
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
