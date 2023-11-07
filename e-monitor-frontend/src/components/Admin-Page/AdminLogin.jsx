@@ -56,18 +56,8 @@ const AdminLogin = () => {
 
             setIsLoading(false);
 
-            if (response.ok && response.role === "ADMIN") {
-                setPopupColor("#90EE90");
-                setPopupText("Login realizado com sucesso!");
-                setShowPopup(true);
-                setTimeout(() => {
-                    setIsLoading(true);
-                    processResponse(response);
-                }, 1000)
-            } else if (response.ok && response.role !== "ADMIN") {
-                setPopupColor("#FA8072");
-                setPopupText("Usuário não é autorizado!");
-                setShowPopup(true);
+            if (response.ok) {
+                processResponse(response);
             } else {
                 setPopupColor("#FA8072");
                 setPopupText("Problema no login!Tente novamente!");
@@ -88,7 +78,14 @@ const AdminLogin = () => {
             localStorage.setItem('role', role);
 
             if (role === "ADMIN") {
-                navigate('/lobby-admin', { replace: true });
+                setPopupColor("#90EE90");
+                setPopupText("Login realizado com sucesso!");
+                setShowPopup(true);
+
+                setTimeout(() => {
+                    setIsLoading(true);
+                    navigate('/lobby-admin', { replace: true });
+                }, 1000);
             } else {
                 setPopupColor("#FA8072");
                 setPopupText("Usuário não é autorizado!");
