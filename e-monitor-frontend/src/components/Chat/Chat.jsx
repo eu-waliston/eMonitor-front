@@ -36,6 +36,7 @@ const Chat = () => {
         handleGetMessages();
     }, []);
 
+    /*
     //chat scroll functions
     const messageEl = useRef(null);
 
@@ -56,7 +57,7 @@ const Chat = () => {
         }
         generateDummyMessage();
     }, []);
-    
+    */
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
