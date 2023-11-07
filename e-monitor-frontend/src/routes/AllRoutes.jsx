@@ -30,7 +30,7 @@ import Chat from "../components/Chat/Chat";
 import AdminLogin from "../components/Admin-Page/AdminLogin";
 
 //Pagina da visão do Administrador
-import AdminPage from "../components/Admin-Page/AdminPage";
+import LobbyAdmin from "../components/Admin-Page/LobbyAdmin";
 
 const AllRoutes = () => {
     return (
@@ -54,7 +54,7 @@ const AllRoutes = () => {
             <Route path={"/chat"} element={< Chat />}/>
 
             <Route path={"/admin-login"} element={< AdminLogin />}/>
-            <Route path={"/admin"} element={< AdminPage />}/>
+            <Route path={"/lobby-admin"} element={< LobbyAdmin />}/>
             
         </Routes>
     )

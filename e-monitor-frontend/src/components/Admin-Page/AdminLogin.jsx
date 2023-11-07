@@ -89,7 +89,7 @@ const AdminLogin = () => {
             } else if (role === "MONITOR") {
                 navigate('/lobby-monitor', { replace: true });
             } else {
-                console.log("Role Error");
+                console.log("Role Error " + role);
             }
         } catch (error) {
             console.error('Erro ao processar resposta:', error);

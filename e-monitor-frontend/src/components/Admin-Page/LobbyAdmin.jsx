@@ -1,4 +1,4 @@
-import './AdminPage.scss';
+import './LobbyAdmin.scss';
 import { URL } from '../../scripts/scripts';
 
 
