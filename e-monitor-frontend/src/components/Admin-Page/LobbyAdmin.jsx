@@ -88,7 +88,7 @@ function AdminPage() {
                     'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
-                    userId : userId 
+                    userId: parseInt(userId)
                 })
             })
         } catch (error) {
@@ -107,7 +107,7 @@ function AdminPage() {
                     'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
-                    userId : userId 
+                    userId: parseInt(userId)
                 })
             })
         } catch (error) {
@@ -115,7 +115,7 @@ function AdminPage() {
         }
     }
 
-    const handleAcceptReport = async (e, reportId ) => {
+    const handleAcceptReport = async (e, reportId) => {
         e.preventDefault();
 
         try {
@@ -126,7 +126,7 @@ function AdminPage() {
                     'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
-                    reportId : reportId 
+                    reportId: parseInt(reportId)
                 })
             })
         } catch (error) {
@@ -134,7 +134,7 @@ function AdminPage() {
         }
     }
 
-    const handleRejectReport = async (e, reportId ) => {
+    const handleRejectReport = async (e, reportId) => {
         e.preventDefault();
 
         try {
@@ -145,7 +145,7 @@ function AdminPage() {
                     'Authorization': "Bearer " + token
                 },
                 body: JSON.stringify({
-                    reportId : reportId 
+                    reportId: parseInt(reportId)
                 })
             })
         } catch (error) {
@@ -156,8 +156,6 @@ function AdminPage() {
     return (
         <div className="admin-page">
             < Nav />
-            <h1 className='page--title'>Admin Page</h1>
-
             <div className='swap-page'>
                 <button className='button' onClick={() => setOnSolicitations(true)}>Solicitações</button>
                 <button className='button' onClick={() => setOnSolicitations(false)}>Denúncias</button>
@@ -186,6 +184,7 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
+                                                    console.log(solicitation.id);
                                                     handleApproveMonitor(e, solicitation.id);
                                                 }
                                             }
@@ -211,7 +210,7 @@ function AdminPage() {
                     )
                 ) : (
                     reports.length === 0 ? (
-                        <div className="no-tickets">
+                        <div className="no-solicitation">
                             <h1>Oba! Sem denúncias!</h1>
                         </div>
                     ) : (
@@ -227,28 +226,28 @@ function AdminPage() {
                                             <p className="solicitation-status">{report.id}</p>
                                         </div>
 
-                                        <button
-                                            className='action-btn'
-                                            onClick={
-                                                (e) => {
-                                                    handleAcceptReport(e, report.id)
+                                                                                    <button
+                                                className='action-btn'
+                                                onClick={
+                                                    (e) => {
+                                                        handleAcceptReport(e, report.id)
+                                                    }
                                                 }
-                                            }
-                                        >
-                                            <MdOutlinePersonRemove className='action-icon' />
-                                        </button>
+                                            >
+                                                <MdOutlinePersonRemove className='action-icon' />
+                                            </button>
 
-                                        <button
-                                            className='action-btn'
-                                            onClick={
-                                                (e) => {
-                                                    handleRejectReport(e, report.id)
+                                            <button
+                                                className='action-btn'
+                                                onClick={
+                                                    (e) => {
+                                                        handleRejectReport(e, report.id)
+                                                    }
                                                 }
-                                            }
-                                        >
-                                            <MdOutlinePlaylistRemove className='action-icon' />
-                                        </button>
-
+                                            >
+                                                <MdOutlinePlaylistRemove className='action-icon' />
+                                            </button>
+                                        
                                     </div>
                                 ))
                             }
