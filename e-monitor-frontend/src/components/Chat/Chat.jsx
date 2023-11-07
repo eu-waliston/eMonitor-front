@@ -2,7 +2,7 @@ import "./Chat.scss";
 import "../ReportButton/ReportButton.scss";
 import { URL } from '../../scripts/scripts';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Linkify from 'react-linkify';
 
 // Components
@@ -35,6 +35,28 @@ const Chat = () => {
     useEffect(() => {
         handleGetMessages();
     }, []);
+
+    //chat scroll functions
+    const messageEl = useRef(null);
+
+    useEffect(() => {
+        if (messageEl) {
+            messageEl.current.addEventListener('DOMNodeInserted', event => {
+                const { currentTarget: target } = event;
+                target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+            });
+        }
+    }, [])
+
+    useEffect(() => {
+        const generateDummyMessage = () => {
+            setInterval(() => {
+                setMessages(prevMsg => [...prevMsg, messages]);
+            }, 2000);
+        }
+        generateDummyMessage();
+    }, []);
+    
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
@@ -103,7 +125,7 @@ const Chat = () => {
     }
 
     const renderMessagesStudent = (message) => {
-        if(message.attachments[0] === undefined) message.attachments[0] = "";
+        if (message.attachments[0] === undefined) message.attachments[0] = "";
 
         if (message.content !== "" && message.attachments[0] !== "") {
             return <div>

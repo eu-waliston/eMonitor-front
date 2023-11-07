@@ -20,20 +20,20 @@
     cursor: pointer;
   }
 
-  .attachment--container{
-    height: 220px; 
+  .attachment--container {
+    height: 220px;
     width: 250px;
     background-color: antiquewhite;
 
     margin-top: -220px;
     margin-left: 20px;
-    
+
     border-radius: 20px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     .attachment-preview {
       display: block;
       max-width: 200px;
@@ -43,7 +43,7 @@
 
   .chat--window {
     background-color: #fff;
-    width: 90%;
+    width: 80%;
     height: 83vh;
     margin: 0 auto;
     position: relative;
@@ -55,11 +55,9 @@
       height: 75vh;
       margin: 0 auto;
       border-radius: 20px;
-      
     }
 
     .chat--form {
-
       margin-top: 10px;
 
       .chat--option {
@@ -92,10 +90,9 @@
           top: -5px;
 
           &:hover {
-              cursor: pointer;
-              opacity: .8;
+            cursor: pointer;
+            opacity: 0.8;
           }
-
         }
 
         .icon-send {
@@ -108,3 +105,4 @@
     }
   }
 }
+
