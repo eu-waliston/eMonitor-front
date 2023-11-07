@@ -45,73 +45,54 @@
         }
     }
 
-    .ticket {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 15px;
+    .solicitations-list {
+
         display: flex;
-        //align-items: center;
+        flex-direction: column;
+        padding-top: 30px;
+        
+        width: 80%;
+        margin: 0 auto;
 
-        img {
-            width: 30%;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
+        .solicitation {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: flex;
 
-        .ticket-info {
-            flex: 1;
-        }
+            .solicitation-info {
+                flex: 1;
+            }
 
-        .ticket-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .ticket-date {
-            font-size: 12px;
-        }
-
-        .ticket-read-icon {
-            margin-left: auto;
-
-            #user-img {
-                width: 80px;
+            .solicitation-title {
+                font-weight: bold;
+                margin-bottom: 5px;
             }
         }
 
-        .exclamation-icons {
-            position: relative;
-            font-size: 1.3rem;
-            top: -70%;
-            left: 101%;
-            color: #195f89;
-            background-color: white;
-            border-radius: 360px;
-        }
-    }
-
-    .action-btn {
-        background-color: transparent;
-        border: none;
-        //left: 80%;
-        //top: 7%;
-        cursor: pointer;
-
-        .action-icon {
-            font-size: 1.5rem;
-            color: #195f89;
+        .action-btn {
+            background-color: transparent;
+            border: none;
             cursor: pointer;
-        }
-    }
 
-    .no-tickets {
-        h1 {
-            font-weight: 700;
-            font-size: 1.5rem;
-            text-align: center;
-            color: $text-default-color;
+            .action-icon {
+                font-size: 1.5rem;
+                color: #195f89;
+                cursor: pointer;
+            }
+        }
+
+        .no-solicitation {
+            padding-top: 20px;
+
+            h1 {
+                font-weight: 700;
+                font-size: 1.5rem;
+                text-align: center;
+                color: $text-default-color;
+            }
         }
     }
 }
