@@ -81,16 +81,15 @@ function AdminPage() {
         e.preventDefault();
 
         try {
-            await fetch(URL_Approvemonitor, {
+            await fetch(`${URL_Approvemonitor}?userId=${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + token
-                },
-                body: JSON.stringify({
-                    userId: parseInt(userId)
-                })
+                }
             })
+
+            handleGetSolicitations();
         } catch (error) {
             console.log(error);
         }
@@ -100,16 +99,15 @@ function AdminPage() {
         e.preventDefault();
 
         try {
-            await fetch(URL_RejectMonitor, {
+            await fetch(`${URL_RejectMonitor}?userId=${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + token
-                },
-                body: JSON.stringify({
-                    userId: parseInt(userId)
-                })
+                }
             })
+
+            handleGetSolicitations();
         } catch (error) {
             console.log(error);
         }
@@ -119,16 +117,15 @@ function AdminPage() {
         e.preventDefault();
 
         try {
-            await fetch(URL_AcceptReport, {
+            await fetch(`${URL_AcceptReport}?reportId=${reportId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + token
-                },
-                body: JSON.stringify({
-                    reportId: parseInt(reportId)
-                })
+                }
             })
+
+            handleGetReports();
         } catch (error) {
             console.log(error);
         }
@@ -138,16 +135,15 @@ function AdminPage() {
         e.preventDefault();
 
         try {
-            await fetch(URL_RejectReport, {
+            await fetch(`${URL_RejectReport}?reportId=${reportId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + token
-                },
-                body: JSON.stringify({
-                    reportId: parseInt(reportId)
-                })
+                }
             })
+
+            handleGetReports();
         } catch (error) {
             console.log(error);
         }
