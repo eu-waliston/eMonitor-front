@@ -56,7 +56,7 @@ const AdminLogin = () => {
 
             setIsLoading(false);
 
-            if (response.ok) {
+            if (response.ok && response.role === "ADMIN") {
                 setPopupColor("#90EE90");
                 setPopupText("Login realizado com sucesso!");
                 setShowPopup(true);
@@ -64,6 +64,10 @@ const AdminLogin = () => {
                     setIsLoading(true);
                     processResponse(response);
                 }, 1000)
+            } else if (response.ok && response.role !== "ADMIN") {
+                setPopupColor("#FA8072");
+                setPopupText("Usuário não é autorizado!");
+                setShowPopup(true);
             } else {
                 setPopupColor("#FA8072");
                 setPopupText("Problema no login!Tente novamente!");
@@ -78,33 +82,27 @@ const AdminLogin = () => {
     const processResponse = async (response) => {
         try {
             const data = await response.json();
-            const token = data.token;
             const role = data.role;
 
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', data.token);
             localStorage.setItem('role', role);
 
-            if (role === "STUDENT") {
-                navigate('/lobby-student', { replace: true });
-            } else if (role === "MONITOR") {
-                navigate('/lobby-monitor', { replace: true });
+            if (role === "ADMIN") {
+                navigate('/lobby-admin', { replace: true });
             } else {
-                console.log("Role Error " + role);
+                setPopupColor("#FA8072");
+                setPopupText("Usuário não é autorizado!");
+                setShowPopup(true);
             }
         } catch (error) {
             console.error('Erro ao processar resposta:', error);
         }
     }
 
-
     const {
         watch,
         formState: { errors },
     } = useForm()
-
-    //const onSubmit = (data) => console.log(data)
-
-    console.log(watch("example")) // watch input value by passing the name of it
 
     return (
         <div className="login-container">
