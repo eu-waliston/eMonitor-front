@@ -41,27 +41,9 @@ const CadUser = () => {
 
     const handlePopupClose = () => {
         setShowPopup(false);
+        setIsLoading(true);
+        navigate('/', { replace: true });
     };
-
-    const processResponse = async (response) => {
-        try {
-            const data = await response.json();
-            const token = data.token;
-            const role = data.role;
-
-            localStorage.setItem('token', token);
-            localStorage.setItem('role', role);
-
-            if (role === "MONITOR") {
-                navigate('/lobby-monitor', { replace: true });
-                setIsLoading(false);
-            } else {
-                console.log("Role Error");
-            }
-        } catch (error) {
-            console.error('Erro ao processar resposta:', error);
-        }
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,15 +66,11 @@ const CadUser = () => {
 
             if (response.ok) {
                 setPopupColor("#90EE90");
-                setPopupText("Cadastro realizado com sucesso!");
+                setPopupText("Cadastro realizado com sucesso!<br/>Aguardando aprovação de um administrador!");
                 setShowPopup(true);
-                setTimeout(() => {
-                    setIsLoading(true);
-                    processResponse(response);
-                }, 3000)
             } else {
                 setPopupColor("#FA8072");
-                setPopupText("Problema ao cadastrar monitor!\nTente novamente!");
+                setPopupText("Problema no cadastro!<br/>Tente novamente!");
                 setShowPopup(true);
             }
         } catch (error) {
@@ -100,6 +78,10 @@ const CadUser = () => {
             console.error('Erro ao registrar: ', error);
         }
     }
+
+    const createMarkup = (text) => {
+        return { __html: text };
+    };
 
     return (
         <div className="register-container">
@@ -160,6 +142,7 @@ const CadUser = () => {
 
                         </form>
 
+
                         <Popup
                             open={showPopup}
                             closeOnDocumentClick={true}
@@ -175,7 +158,7 @@ const CadUser = () => {
                             }}
                             trigger={<button style={{ display: "none" }}></button>}
                         >
-                            <div>{popupText}</div>
+                            <div dangerouslySetInnerHTML={createMarkup(popupText)} />
                         </Popup>
                     </div>
                 )
