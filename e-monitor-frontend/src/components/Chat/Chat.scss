@@ -51,6 +51,7 @@
     border-radius: 20px;
 
     .chat {
+      overflow-y: scroll;
       width: 90%;
       height: 75vh;
       margin: 0 auto;

@@ -36,29 +36,6 @@ const Chat = () => {
         handleGetMessages();
     }, []);
 
-    /*
-    //chat scroll functions
-    const messageEl = useRef(null);
-
-    useEffect(() => {
-        if (messageEl) {
-            messageEl.current.addEventListener('DOMNodeInserted', event => {
-                const { currentTarget: target } = event;
-                target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
-            });
-        }
-    }, [])
-
-    useEffect(() => {
-        const generateDummyMessage = () => {
-            setInterval(() => {
-                setMessages(prevMsg => [...prevMsg, messages]);
-            }, 2000);
-        }
-        generateDummyMessage();
-    }, []);
-    */
-
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
     };
