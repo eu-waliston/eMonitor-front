@@ -43,8 +43,7 @@
 
   .chat--window {
     background-color: #fff;
-    width: 100%;
-    max-width: 400px;
+    width: 80%;
     height: 83vh;
     margin: 0 auto;
     position: relative;
@@ -107,13 +106,3 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .chat-component {
-    .chat--window {
-      .chat {
-        width: 800px !important;
-      }
-    }
-  }
-}
- 
