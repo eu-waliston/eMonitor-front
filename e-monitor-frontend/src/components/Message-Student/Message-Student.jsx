@@ -16,7 +16,7 @@ const MessageStudent = (props) => {
                         alt="Image Preview"
                     />
                 ) : (
-                    <p className="message-monitor-text">{content}</p>
+                    <p>{content}</p>
                 )}
             </div>
         </div>

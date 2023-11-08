@@ -23,6 +23,8 @@
     top: 30px;
     border-radius: 15px;
     color: $text-default-color;
+    margin-bottom: 2px;
+
     float: right;
 
     .attachment {
@@ -30,9 +32,4 @@
       max-width: 200px;
       max-height: 200px;
     }
-}
-
-.message-student-text {
-    width: fit-content;
-    height: fit-content;
 }
