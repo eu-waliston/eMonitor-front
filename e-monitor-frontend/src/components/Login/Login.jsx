@@ -179,7 +179,10 @@ const Login = () => {
                                 backgroundColor: popColor,
                                 border: "none",
                                 fontWeight: "bold",
-                                width: "30%"
+                                width: "30%",
+                                minWidth: "330px",
+                                maxWidth: "400px",
+                                boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.2)",
                             }}
                             trigger={<button style={{ display: "none" }}></button>}
                         >
