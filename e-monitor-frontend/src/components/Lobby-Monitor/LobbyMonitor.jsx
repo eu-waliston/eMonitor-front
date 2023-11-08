@@ -186,18 +186,32 @@ const LobbyMonitor = () => {
                                                 </div>
                                             ) : (
                                                 ticket.status === "IN_PROGRESS" ? (
-                                                    <button
-                                                        className='action-btn'
-                                                        onClick={
-                                                            (e) => {
-                                                                e.stopPropagation();
-                                                                localStorage.setItem("ticketId", ticket.id);
-                                                                closeTicket()
+                                                    <div>
+                                                        <button
+                                                            className='action-btn'
+                                                            onClick={
+                                                                (e) => {
+                                                                    e.stopPropagation();
+
+                                                                    setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
+                                                                    setShowPopup(true);
+
+                                                                    if (option) {
+                                                                        localStorage.setItem("ticketId", ticket.id);
+                                                                        closeTicket()
+                                                                    }
+                                                                }
                                                             }
-                                                        }
-                                                    >
-                                                        <AiOutlineCheckCircle className="action-icon" />
-                                                    </button>
+                                                        >
+                                                            <AiOutlineCheckCircle className="action-icon" />
+                                                        </button>
+                                                        < ConfirmActions
+                                                            showPopup={showPopup}
+                                                            setshowPopup={setShowPopup}
+                                                            popupText={popupText}
+                                                            option={setOption}
+                                                        />
+                                                    </div>
                                                 ) : (
                                                     'CLOSED'
                                                 )
