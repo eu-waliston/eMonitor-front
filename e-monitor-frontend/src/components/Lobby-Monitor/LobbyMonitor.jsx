@@ -166,10 +166,6 @@ const LobbyMonitor = () => {
 
                                                                 setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
                                                                 setShowPopup(true);
-                                                                if (option) {
-                                                                    localStorage.setItem("ticketId", ticket.id);
-                                                                    claimTicket()
-                                                                }
                                                             }
                                                         }
 
@@ -181,7 +177,12 @@ const LobbyMonitor = () => {
                                                         showPopup={showPopup}
                                                         setshowPopup={setShowPopup}
                                                         popupText={popupText}
-                                                        option={setOption}
+                                                        confirmAction={(confirmed) => {
+                                                            if (confirmed) {
+                                                                localStorage.setItem("ticketId", ticket.id);
+                                                                claimTicket()
+                                                            }
+                                                        }}
                                                     />
                                                 </div>
                                             ) : (
@@ -195,11 +196,6 @@ const LobbyMonitor = () => {
 
                                                                     setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
                                                                     setShowPopup(true);
-
-                                                                    if (option) {
-                                                                        localStorage.setItem("ticketId", ticket.id);
-                                                                        closeTicket()
-                                                                    }
                                                                 }
                                                             }
                                                         >
@@ -209,7 +205,12 @@ const LobbyMonitor = () => {
                                                             showPopup={showPopup}
                                                             setshowPopup={setShowPopup}
                                                             popupText={popupText}
-                                                            option={setOption}
+                                                            confirmAction={(confirmed) => {
+                                                                if (confirmed) {
+                                                                    localStorage.setItem("ticketId", ticket.id);
+                                                                    closeTicket();
+                                                                }
+                                                            }}
                                                         />
                                                     </div>
                                                 ) : (

@@ -3,7 +3,7 @@ import './ConfirmActions.scss';
 import React from 'react';
 import Popup from "reactjs-popup";
 
-const ConfirmActions = ({showPopup, setshowPopup, popupText, option }) => {
+const ConfirmActions = ({showPopup, setshowPopup, popupText, confirmAction  }) => {
 
     return (
         <Popup
@@ -34,8 +34,8 @@ const ConfirmActions = ({showPopup, setshowPopup, popupText, option }) => {
                         <p>{popupText}</p>
                     </div>
                     <div className="button-container">
-                        <button className="button" onClick={() => {option(true);setshowPopup(false);}}>Confirmar</button>
-                        <button className="button" onClick={() => {option(false);setshowPopup(false);}}>Cancelar</button>
+                        <button className="button" onClick={() => {confirmAction(true);setshowPopup(false);}}>Confirmar</button>
+                        <button className="button" onClick={() => {confirmAction(false);setshowPopup(false);}}>Cancelar</button>
                     </div>
                 </div>
             )}
