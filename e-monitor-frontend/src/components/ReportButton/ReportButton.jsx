@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 
+// Components
+import { URL } from '../../scripts/scripts';
+
 // Icons
 import { MdReportProblem } from "react-icons/md";
 
-const ReportButton = (ticketId, reportedPersonId) => {
+const ReportButton = (props) => {
 
-    const URL = ''
+    const URL_ReportTicket = URL + '/api/v1/tickets/report-ticket'
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -19,28 +22,23 @@ const ReportButton = (ticketId, reportedPersonId) => {
         setDescription(e.target.value);
     }
 
-    const handleReport = async (e) => {
+    const handleReport = async (e, close) => {
         e.preventDefault();
 
         try {
-            await fetch(URL, {
+            await fetch(URL_ReportTicket, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    title: title,
-                    description: description
+                    ticketId: props.ticketId,
+                    context: description
                 })
             })
-            
-            // Se um número de protocolo for ser exibido:
-            /*try {
-                const data = await response.json();
-            } catch (error) {
-                console.log(error);
-            }*/
+
+            close();
         } catch (error) {
             console.log(error);
         }
@@ -57,7 +55,7 @@ const ReportButton = (ticketId, reportedPersonId) => {
             contentStyle={{
                 borderRadius: "15px",
                 padding: "20px",
-                background: "#195f89",
+                background: "#fff",
                 border: "none",
                 fontWeight: "bold",
                 minWidth: "330px",
@@ -77,7 +75,7 @@ const ReportButton = (ticketId, reportedPersonId) => {
                                 id="ds"
                                 value={title}
                                 onChange={handleTitleChange}
-                                required
+                                //required
                             />
 
                             <label>Descrição:</label>
@@ -93,7 +91,7 @@ const ReportButton = (ticketId, reportedPersonId) => {
                         </form>
                     </div>
                     <div className="button-container">
-                        <button className="button" onClick={() => handleReport}>Denunciar</button>
+                        <button className="button" onClick={(e) => handleReport(e, close)}>Denunciar</button>
                         <button className="button" onClick={close}>Cancelar</button>
                     </div>
                 </div>

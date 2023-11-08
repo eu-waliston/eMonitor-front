@@ -170,7 +170,7 @@ const Chat = () => {
         <div className="chat-component">
 
             <Nav />
-            < ReportButton />
+            < ReportButton ticketId={ticketId}/>
             <button className='back--btn' onClick={() => handleClickHome()} >
                 < FaHome className='back-icon' />
             </button>
