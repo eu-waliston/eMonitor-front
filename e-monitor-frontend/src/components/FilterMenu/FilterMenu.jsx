@@ -3,7 +3,6 @@ import Popup from "reactjs-popup";
 
 // Icons
 import { FaFilter } from "react-icons/fa";
-import { set } from "react-hook-form";
 
 const FilterMenu = ({ updateFilters }) => {
 
@@ -41,7 +40,7 @@ const FilterMenu = ({ updateFilters }) => {
         close();
     };
 
-    const handleClearFilters = () => {
+    const handleClearFilters = (close) => {
         setFilters([]);
     
         // Percorra as caixas de seleção e defina o atributo checked como false
@@ -49,6 +48,8 @@ const FilterMenu = ({ updateFilters }) => {
         checkboxes.forEach((checkbox) => {
             checkbox.checked = false;
         });
+
+        handleApplyFilters(close);
     };
     
 

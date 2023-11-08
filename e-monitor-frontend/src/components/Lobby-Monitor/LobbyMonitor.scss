@@ -1,4 +1,5 @@
 @import "../../utilities/Variables.scss";
+@import "../FilterMenu/FilterMenu.scss";
 
 .lobby-monitor {
   padding: 20px;
@@ -6,6 +7,21 @@
   height: 200vh;
 
   background: $default--background;
+
+  .filter--btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    right: 90px;
+    top: 65px;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    .reload-icon {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
 
   .reload--btn {
     position: absolute;
@@ -80,8 +96,8 @@
           .exclamation-icons {
             position: relative;
             font-size: 1.3rem;
-            top: -70%;
-            left: 101%;
+            top: -50%;
+            left: 100%;
             color: #195f89;
             background-color: white;
             border-radius: 360px;

@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
 import './LobbyMonitor.scss';
 import { URL } from '../../scripts/scripts';
 
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
+// Components
+import Nav from '../Nav/Nav';
+import FilterMenu from '../FilterMenu/FilterMenu';
+import ConfirmActions from '../ConfirmActions/ConfirmActions';
+
+// Icons
 import { AiOutlineReload, AiOutlineCheckCircle } from "react-icons/ai";
 import { TfiWrite } from "react-icons/tfi";
-import { useNavigate } from "react-router-dom";
 import { BsExclamationCircleFill } from "react-icons/bs"
-import Nav from '../Nav/Nav';
 
 const LobbyMonitor = () => {
     const navigate = useNavigate();
@@ -18,6 +24,10 @@ const LobbyMonitor = () => {
 
     const [ticketInfo, setTicketInfo] = useState([])
     const [filters, setFilters] = useState([]);
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupText, setPopupText] = useState('');
+    const [option, setOption] = useState(false);
 
     const areas = {
         "MATEMATICA": "Matemática",
@@ -147,20 +157,33 @@ const LobbyMonitor = () => {
                                         </div>
                                         {
                                             ticket.status === "OPEN" ? (
-                                                <button
-                                                    className='action-btn'
-                                                    onClick={
-                                                        (e) => {
-                                                            e.stopPropagation();
-                                                            localStorage.setItem("ticketId", ticket.id);
-                                                            claimTicket()
-                                                        }
-                                                    }
+                                                <div>
+                                                    <button
+                                                        className='action-btn'
+                                                        onClick={
+                                                            (e) => {
+                                                                e.stopPropagation();
 
-                                                    aria-describedby='claim'
-                                                >
-                                                    <TfiWrite className="action-icon" />
-                                                </button>
+                                                                setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
+                                                                setShowPopup(true);
+                                                                if (option) {
+                                                                    localStorage.setItem("ticketId", ticket.id);
+                                                                    claimTicket()
+                                                                }
+                                                            }
+                                                        }
+
+                                                        aria-describedby='claim'
+                                                    >
+                                                        <TfiWrite className="action-icon" />
+                                                    </button>
+                                                    < ConfirmActions
+                                                        showPopup={showPopup}
+                                                        setshowPopup={setShowPopup}
+                                                        popupText={popupText}
+                                                        option={setOption}
+                                                    />
+                                                </div>
                                             ) : (
                                                 ticket.status === "IN_PROGRESS" ? (
                                                     <button
@@ -181,7 +204,6 @@ const LobbyMonitor = () => {
                                             )
                                         }
 
-                                        {/*ToDo: trocar por um número */}
                                         <div className="ticket-read-icon">
                                             {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
                                         </div>
