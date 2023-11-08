@@ -228,11 +228,10 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
-                                                    // Expandir o tamanho do componente solicitation para mostrar o context completo
                                                     if (isExpanded === report.id) {
-                                                        setIsExpanded(null); // Fecha a expansão se já estiver expandido.
+                                                        setIsExpanded(null);
                                                     } else {
-                                                        setIsExpanded(report.id); // Abre a expansão do "solicitation" com o ID do relatório.
+                                                        setIsExpanded(report.id);
                                                     }
                                                 }
                                             }

@@ -153,7 +153,7 @@ const LobbyMonitor = () => {
                                     >
                                         <div className="ticket-info">
                                             <h3 className="ticket-title">{ticket.subject}</h3>
-                                            <p className="ticket-status">{ticket.topicId}</p>
+                                            <p className="ticket-status">{areas[ticket.topicId]}</p>
                                         </div>
                                         {
                                             ticket.status === "OPEN" ? (
