@@ -50,8 +50,9 @@
         display: flex;
         flex-direction: column;
         padding-top: 30px;
-        
+
         width: 80%;
+        max-width: 80%;
         margin: 0 auto;
 
         .solicitation {
@@ -62,13 +63,16 @@
             margin-bottom: 15px;
             display: flex;
 
-            .solicitation-info {
-                flex: 1;
-            }
-
             .solicitation-title {
                 font-weight: bold;
                 margin-bottom: 5px;
+            }
+
+            .solicitation-info {
+                flex: 1;
+                padding: 15px;
+                max-width: 90%;
+                word-wrap: break-word;
             }
         }
 
@@ -77,6 +81,7 @@
             border: none;
             cursor: pointer;
             padding-right: 10px;
+            //float: right;
 
             .action-icon {
                 font-size: 1.5rem;

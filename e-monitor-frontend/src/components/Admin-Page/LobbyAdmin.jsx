@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from '../Nav/Nav';
 
 // Icons
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineClose, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { MdOutlinePersonRemove, MdOutlinePlaylistRemove } from "react-icons/md";
 
 function AdminPage() {
@@ -29,6 +29,8 @@ function AdminPage() {
     const token = localStorage.getItem('token');
 
     const [onSolicitations, setOnSolicitations] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(null);
+
 
     useEffect(() => {
         handleGetSolicitations();
@@ -219,31 +221,47 @@ function AdminPage() {
                                     >
                                         <div className="solicitation-info">
                                             <h3 className="solicitation-title">Report</h3>
-                                            <p className="solicitation-status">{report.id}</p>
+                                            <p className="solicitation-status">{isExpanded === report.id ? report.context : report.context.substring(0, 20) + '...'}</p>
                                         </div>
 
-                                                                                    <button
-                                                className='action-btn'
-                                                onClick={
-                                                    (e) => {
-                                                        handleAcceptReport(e, report.id)
+                                        <button
+                                            className='action-btn'
+                                            onClick={
+                                                (e) => {
+                                                    // Expandir o tamanho do componente solicitation para mostrar o context completo
+                                                    if (isExpanded === report.id) {
+                                                        setIsExpanded(null); // Fecha a expansão se já estiver expandido.
+                                                    } else {
+                                                        setIsExpanded(report.id); // Abre a expansão do "solicitation" com o ID do relatório.
                                                     }
                                                 }
-                                            >
-                                                <MdOutlinePersonRemove className='action-icon' />
-                                            </button>
+                                            }
+                                        >
+                                            <AiFillEye className='action-icon' />
+                                        </button>
 
-                                            <button
-                                                className='action-btn'
-                                                onClick={
-                                                    (e) => {
-                                                        handleRejectReport(e, report.id)
-                                                    }
+                                        <button
+                                            className='action-btn'
+                                            onClick={
+                                                (e) => {
+                                                    handleAcceptReport(e, report.id)
                                                 }
-                                            >
-                                                <MdOutlinePlaylistRemove className='action-icon' />
-                                            </button>
-                                        
+                                            }
+                                        >
+                                            <MdOutlinePersonRemove className='action-icon' />
+                                        </button>
+
+                                        <button
+                                            className='action-btn'
+                                            onClick={
+                                                (e) => {
+                                                    handleRejectReport(e, report.id)
+                                                }
+                                            }
+                                        >
+                                            <MdOutlinePlaylistRemove className='action-icon' />
+                                        </button>
+
                                     </div>
                                 ))
                             }
