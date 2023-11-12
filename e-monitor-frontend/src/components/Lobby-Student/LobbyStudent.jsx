@@ -29,6 +29,7 @@ const LobbyStudent = () => {
 
     const [filters, setFilters] = useState([]);
 
+
     const areas = {
         "MATEMATICA": "Matemática",
         "ARTES": "Artes",
@@ -74,6 +75,11 @@ const LobbyStudent = () => {
             if (response.ok) {
                 const data = await response.json();
                 setTicketInfo(data);
+                
+                //notification alert function
+                Notification.requestPermission().then((result) => {
+                    alert("Você tem uma nova mensagem!!!")
+                });
             } else {
                 console.error('Erro na solicitação:', response.status);
             }
@@ -111,8 +117,8 @@ const LobbyStudent = () => {
                 < Nav />
                 <FilterMenu updateFilters={setFilters} />
                 <button className='reload--btn' onClick={() => {
-                        handleGetTicket()
-                    }}>
+                    handleGetTicket()
+                }}>
                     < AiOutlineReload className='reload-icon' />
                 </button>
 
