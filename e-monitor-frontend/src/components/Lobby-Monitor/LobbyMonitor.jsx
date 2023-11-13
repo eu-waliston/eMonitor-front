@@ -20,14 +20,13 @@ const LobbyMonitor = () => {
     const URL_Claim = URL + '/api/v1/tickets/claim-ticket';
     const URL_Close = URL + '/api/v1/tickets/close-ticket';
     const token = localStorage.getItem('token');
-    const ticketId = localStorage.getItem('ticketId');
+    const [ticketId, setTicketId] = useState(null);
 
     const [ticketInfo, setTicketInfo] = useState([])
     const [filters, setFilters] = useState([]);
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupText, setPopupText] = useState('');
-    const [option, setOption] = useState(false);
 
     const areas = {
         "MATEMATICA": "Matemática",
@@ -141,12 +140,14 @@ const LobbyMonitor = () => {
                                 </div>
                             ) : (
                                 filterTickets(ticketInfo, filters).map((ticket, index) => (
+                                    console.log(ticket.subject, ticket.id),
                                     <div
                                         className="ticket"
                                         key={index}
                                         onClick={
                                             () => {
                                                 localStorage.setItem("ticketId", ticket.id);
+                                                localStorage.setItem("ticketStatus", ticket.status);
                                                 navigate('/chat', { replace: false })
                                             }
                                         }
@@ -163,8 +164,8 @@ const LobbyMonitor = () => {
                                                         onClick={
                                                             (e) => {
                                                                 e.stopPropagation();
-
                                                                 setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
+                                                                setTicketId(ticket.id);
                                                                 setShowPopup(true);
                                                             }
                                                         }
@@ -179,8 +180,9 @@ const LobbyMonitor = () => {
                                                         popupText={popupText}
                                                         confirmAction={(confirmed) => {
                                                             if (confirmed) {
-                                                                localStorage.setItem("ticketId", ticket.id);
                                                                 claimTicket()
+                                                            } else {
+                                                                console.log('Não confirmou')
                                                             }
                                                         }}
                                                     />
@@ -195,6 +197,7 @@ const LobbyMonitor = () => {
                                                                     e.stopPropagation();
 
                                                                     setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
+                                                                    setTicketId(ticket.id);
                                                                     setShowPopup(true);
                                                                 }
                                                             }
@@ -207,7 +210,6 @@ const LobbyMonitor = () => {
                                                             popupText={popupText}
                                                             confirmAction={(confirmed) => {
                                                                 if (confirmed) {
-                                                                    localStorage.setItem("ticketId", ticket.id);
                                                                     closeTicket();
                                                                 }
                                                             }}
