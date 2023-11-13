@@ -112,7 +112,7 @@ const Ticket = () => {
                     <div className="ticket--section">
 
                         <div className="ticket--info">
-                            <img src={`./public/Icons/${optionName}.png`} alt="Icone da disciplina" />
+                            <img src={`/Icons/${optionName}.png`} alt="Icone da disciplina" />
                             <p className="ticekt-p">{areas[optionName]}</p>
                         </div>
                         <div >
