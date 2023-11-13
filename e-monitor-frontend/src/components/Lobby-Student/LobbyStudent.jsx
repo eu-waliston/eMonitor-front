@@ -78,7 +78,7 @@ const LobbyStudent = () => {
                 
                 //notification alert function
                 Notification.requestPermission().then((result) => {
-                    alert("Você tem uma nova mensagem!!!")
+                    //alert("Você tem uma nova mensagem!!!")
                 });
             } else {
                 console.error('Erro na solicitação:', response.status);
@@ -135,8 +135,7 @@ const LobbyStudent = () => {
                                     <div
                                         className="ticket"
                                         key={index}
-                                        onClick={
-                                            () => {
+                                        onClick={() => {
                                                 localStorage.setItem("ticketId", ticket.id);
                                                 navigate('/chat', { replace: true })
                                             }

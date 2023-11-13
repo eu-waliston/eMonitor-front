@@ -140,7 +140,6 @@ const LobbyMonitor = () => {
                                 </div>
                             ) : (
                                 filterTickets(ticketInfo, filters).map((ticket, index) => (
-                                    console.log(ticket.subject, ticket.id),
                                     <div
                                         className="ticket"
                                         key={index}

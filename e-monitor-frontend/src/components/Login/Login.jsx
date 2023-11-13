@@ -148,14 +148,14 @@ const Login = () => {
                                     min="1" max="16"
                                 />
                                 {errors.exampleRequired && <span>Este campo é obrigatório</span>}
-                                <h6 className="remember" >
+                                {/*<h6 className="remember" >
                                     <input
                                         type="checkbox"
                                         name=""
                                         id=""
                                     />
                                     Lembre minha senha
-                                </h6>
+                </h6>*/}
                                 <div>
                                     <button
                                         type="submit"

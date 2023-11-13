@@ -34,7 +34,8 @@ const ReportButton = (props) => {
                 },
                 body: JSON.stringify({
                     ticketId: props.ticketId,
-                    context: description
+                    context: description,
+                    title: title
                 })
             })
 
@@ -75,7 +76,7 @@ const ReportButton = (props) => {
                                 id="ds"
                                 value={title}
                                 onChange={handleTitleChange}
-                                //required
+                                required
                             />
 
                             <label>Descrição:</label>
