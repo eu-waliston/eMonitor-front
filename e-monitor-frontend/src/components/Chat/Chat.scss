@@ -14,6 +14,40 @@
     cursor: pointer;
   }
 
+  .left-label{
+    position: absolute;
+    background-color: "#fff";
+    border: none;
+    border-radius: 10px;
+    left: 16%;
+    top: 6%;
+    width: fit-content;
+
+    .left-string {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      padding: 5px;
+    }
+  }
+
+  .right-label{
+    position: absolute;
+    background-color: "#fff";
+    border: none;
+    border-radius: 10px;
+    right: 16%;
+    top: 6%;
+    width: fit-content;
+
+    .right-string {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      padding: 5px;
+    }
+  }
+
   .back-icon {
     font-size: 1.5rem;
     color: #fff;

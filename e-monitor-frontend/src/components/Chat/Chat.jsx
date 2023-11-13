@@ -23,6 +23,7 @@ const Chat = () => {
     const URL_GetMessages = URL + '/api/v1/tickets/get-messages'
     const token = localStorage.getItem('token');
     const ticketId = localStorage.getItem('ticketId');
+    const ticketStatus = localStorage.getItem('ticketStatus');
     const role = localStorage.getItem('role');
 
     const [message, setMessage] = useState("");
@@ -54,6 +55,23 @@ const Chat = () => {
     const handleSendMessage = async (e) => {
         e.preventDefault();
 
+        if (role === "MONITOR" && ticketStatus === "OPEN") {
+            setMessage("");
+            setAttachment("");
+            handleGetMessages();
+
+            alert("Você não pode enviar mensagens enquanto não for responsável pelo ticket!");
+
+            return;
+        } else if (role === "STUDENT" && ticketStatus === "CLOSED") {
+            setMessage("");
+            setAttachment("");
+            handleGetMessages();
+
+            alert("O monitor encerrou o atendimento. Você pode mandar um novo ticket se tiver outra dúvida!");
+
+            return;
+        }
         try {
             await fetch(URL_Insert, {
                 method: 'POST',
