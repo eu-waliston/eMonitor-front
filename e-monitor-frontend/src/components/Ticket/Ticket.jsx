@@ -87,12 +87,6 @@ const Ticket = () => {
         }
     };
 
-    const EF = () => {
-        if (optionName === "ED_FISICA") {
-            return "Ed.Fisica"
-        }
-    }
-
     return (
         <div className="ticket--component">
 
@@ -118,7 +112,8 @@ const Ticket = () => {
                     <div className="ticket--section">
 
                         <div className="ticket--info">
-                            <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
+                       e-monitor-frontend\public\Icons\ARTES.png
+                            <img src={`./e-monitor-frontend/public/Icons/${optionName}.png`} alt="Icone da disciplina" />
                             <p className="ticekt-p">{areas[optionName]}</p>
                         </div>
                         <div >
