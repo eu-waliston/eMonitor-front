@@ -218,9 +218,14 @@ function AdminPage() {
                                     <div
                                         className="solicitation"
                                         key={index}
+                                        onClick={() => {
+                                            localStorage.setItem("ticketId", report.ticketId);
+                                            localStorage.setItem("authorId", report.authorId);
+                                            navigate('/chatAdm', { replace: true })
+                                        }}
                                     >
                                         <div className="solicitation-info">
-                                            <h3 className="solicitation-title">Report</h3>
+                                            <h3 className="solicitation-title">{report.title}</h3>
                                             <p className="solicitation-status">{isExpanded === report.id ? report.context : report.context.substring(0, 20) + '...'}</p>
                                         </div>
 
@@ -228,6 +233,7 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
+                                                    e.stopPropagation();
                                                     if (isExpanded === report.id) {
                                                         setIsExpanded(null);
                                                     } else {
@@ -243,6 +249,7 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
+                                                    e.stopPropagation();
                                                     handleAcceptReport(e, report.id)
                                                 }
                                             }
@@ -254,6 +261,7 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
+                                                    e.stopPropagation();
                                                     handleRejectReport(e, report.id)
                                                 }
                                             }
