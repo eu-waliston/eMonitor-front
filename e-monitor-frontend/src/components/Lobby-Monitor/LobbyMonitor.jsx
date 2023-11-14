@@ -25,7 +25,8 @@ const LobbyMonitor = () => {
     const [ticketInfo, setTicketInfo] = useState([])
     const [filters, setFilters] = useState([]);
 
-    const [showPopup, setShowPopup] = useState(false);
+    const [showClaim, setShowClaim] = useState(false);
+    const [showClose, setShowClose] = useState(false);
     const [popupText, setPopupText] = useState('');
 
     const areas = {
@@ -165,7 +166,10 @@ const LobbyMonitor = () => {
                                                                 e.stopPropagation();
                                                                 setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
                                                                 setTicketId(ticket.id);
-                                                                setShowPopup(true);
+                                                                setShowClaim(true);
+
+                                                                localStorage.setItem("ticketId", ticket.id);
+                                                                localStorage.setItem("ticketStatus", ticket.status);
                                                             }
                                                         }
 
@@ -174,12 +178,13 @@ const LobbyMonitor = () => {
                                                         <TfiWrite className="action-icon" />
                                                     </button>
                                                     < ConfirmActions
-                                                        showPopup={showPopup}
-                                                        setshowPopup={setShowPopup}
+                                                        showPopup={showClaim}
+                                                        setshowPopup={setShowClaim}
                                                         popupText={popupText}
                                                         confirmAction={(confirmed) => {
                                                             if (confirmed) {
                                                                 claimTicket()
+                                                                navigate('/chat', { replace: false })
                                                             } else {
                                                                 console.log('Não confirmou')
                                                             }
@@ -197,15 +202,15 @@ const LobbyMonitor = () => {
 
                                                                     setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
                                                                     setTicketId(ticket.id);
-                                                                    setShowPopup(true);
+                                                                    setShowClose(true);
                                                                 }
                                                             }
                                                         >
                                                             <AiOutlineCheckCircle className="action-icon" />
                                                         </button>
                                                         < ConfirmActions
-                                                            showPopup={showPopup}
-                                                            setshowPopup={setShowPopup}
+                                                            showPopup={showClose}
+                                                            setshowPopup={setShowClose}
                                                             popupText={popupText}
                                                             confirmAction={(confirmed) => {
                                                                 if (confirmed) {

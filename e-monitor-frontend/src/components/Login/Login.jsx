@@ -155,7 +155,7 @@ const Login = () => {
                                         id=""
                                     />
                                     Lembre minha senha
-                </h6>*/}
+                                </h6>*/}
                                 <div>
                                     <button
                                         type="submit"
