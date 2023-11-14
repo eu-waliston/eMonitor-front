@@ -186,6 +186,7 @@ function AdminPage() {
                                                     handleApproveMonitor(e, solicitation.id);
                                                 }
                                             }
+                                            title='Aprovar'
                                         >
                                             <AiOutlineCheck className='action-icon' />
                                         </button>
@@ -197,6 +198,7 @@ function AdminPage() {
                                                     handleRejectMonitor(e, solicitation.id);
                                                 }
                                             }
+                                            title='Rejeitar'
                                         >
                                             <AiOutlineClose className='action-icon' />
                                         </button>
@@ -241,6 +243,7 @@ function AdminPage() {
                                                     }
                                                 }
                                             }
+                                            title='Expandir'
                                         >
                                             <AiFillEye className='action-icon' />
                                         </button>
@@ -253,6 +256,7 @@ function AdminPage() {
                                                     handleAcceptReport(e, report.id)
                                                 }
                                             }
+                                            title='Aceitar denúncia'
                                         >
                                             <MdOutlinePersonRemove className='action-icon' />
                                         </button>
@@ -265,6 +269,7 @@ function AdminPage() {
                                                     handleRejectReport(e, report.id)
                                                 }
                                             }
+                                            title='Rejeitar denúncia'
                                         >
                                             <MdOutlinePlaylistRemove className='action-icon' />
                                         </button>

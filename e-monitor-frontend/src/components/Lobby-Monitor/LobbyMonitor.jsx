@@ -145,7 +145,10 @@ const LobbyMonitor = () => {
                 key={index}
                 onClick={
                     () => {
-                        navigate('/chat', { state: { ticket } });
+                        localStorage.setItem("ticketId", ticket.id);
+                        localStorage.setItem("ticketStatus", ticket.status);
+                        navigate('/chat', { replace: true })
+                        //navigate('/chat', { state: { ticket } });
                     }
                 }
             >
@@ -171,6 +174,7 @@ const LobbyMonitor = () => {
                         setTicketId(ticket.id);
                         setShowClose(true);
                     }}
+                    title="fechar ticket"
                 >
                     <AiOutlineCheckCircle className="action-icon" />
                 </button>
@@ -210,7 +214,7 @@ const LobbyMonitor = () => {
                         }
                     }
 
-                    aria-describedby='claim'
+                    title="aceitar ticket"
                 >
                     <TfiWrite className="action-icon" />
                 </button>
@@ -262,15 +266,15 @@ const LobbyMonitor = () => {
                     <div className="ticket-list">
 
                         {
-                            whichTab === 'myTickets' && ticketInfo.IN_PROGRESS !== undefined ? (
+                            whichTab === 'myTickets' && ticketInfo.IN_PROGRESS !== undefined && ticketInfo.IN_PROGRESS.length !== 0 ? (
                                 filterTickets(ticketInfo.IN_PROGRESS, filters).map((ticket, index) => (
                                     makeTicketInProgress(ticket, index)
                                 ))
-                            ) : (whichTab === 'newTickets' && ticketInfo.OPEN !== undefined ? (
+                            ) : (whichTab === 'newTickets' && ticketInfo.OPEN !== undefined && ticketInfo.OPEN.length !== 0 ? (
                                 filterTickets(ticketInfo.OPEN, filters).map((ticket, index) => (
                                     makeTicketOpen(ticket, index)
                                 ))
-                            ) : (whichTab === 'closedTickets' && ticketInfo.CLOSED !== undefined ? (
+                            ) : (whichTab === 'closedTickets' && ticketInfo.CLOSED !== undefined && ticketInfo.CLOSED.length !== 0? (
                                 filterTickets(ticketInfo.CLOSED, filters).map((ticket, index) => (
                                     makeTicketClosed(ticket, index)
                                 ))

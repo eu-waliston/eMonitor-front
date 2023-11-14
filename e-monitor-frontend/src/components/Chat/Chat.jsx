@@ -3,7 +3,7 @@ import "../ReportButton/ReportButton.scss";
 import { URL } from '../../scripts/scripts';
 
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Linkify from 'react-linkify';
 
 // Components
@@ -15,7 +15,6 @@ import ReportButton from "../ReportButton/ReportButton";
 // Icons
 import { AiOutlineSend, AiOutlinePaperClip } from "react-icons/ai";
 import { FaHome } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
     const navigation = useNavigate();
@@ -24,13 +23,13 @@ const Chat = () => {
     const URL_GetMessages = URL + '/api/v1/tickets/get-messages'
     const token = localStorage.getItem('token');
 
-    const location = useLocation();
+    //const location = useLocation();
     
-    const ticketId = location.state.ticket.id;
-    const ticketStatus = location.state.ticket.status;
+    //const ticketId = location.state.ticket.id;
+    //const ticketStatus = location.state.ticket.status;
 
-    //const ticketId = localStorage.getItem('ticketId');
-    //const ticketStatus = localStorage.getItem('ticketStatus');
+    const ticketId = localStorage.getItem('ticketId');
+    const ticketStatus = localStorage.getItem('ticketStatus');
 
     const role = localStorage.getItem('role');
 
