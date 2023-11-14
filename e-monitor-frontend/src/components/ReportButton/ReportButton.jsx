@@ -48,7 +48,7 @@ const ReportButton = (props) => {
     return (
         <Popup
             trigger={
-                <button className='report--btn' >
+                <button className='report--btn' title="Denunciar conversa">
                     <MdReportProblem className='back-icon' />
                 </button>
             }

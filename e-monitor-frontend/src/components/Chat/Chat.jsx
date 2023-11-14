@@ -24,7 +24,7 @@ const Chat = () => {
     const token = localStorage.getItem('token');
 
     //const location = useLocation();
-    
+
     //const ticketId = location.state.ticket.id;
     //const ticketStatus = location.state.ticket.status;
 
@@ -37,8 +37,6 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [messageSenderId, setSenderId] = useState(0);
     const [attachment, setAttachment] = useState("");
-
-    const [isReporting, setIsReporting] = useState(false);
 
     useEffect(() => {
         handleGetMessages();
@@ -198,7 +196,11 @@ const Chat = () => {
 
             <Nav />
             < ReportButton ticketId={ticketId}/>
-            <button className='back--btn' onClick={() => handleClickHome()} >
+            <button
+                className='back--btn'
+                onClick={() => handleClickHome()}
+                title="Voltar para a página inicial"
+            >
                 < FaHome className='back-icon' />
             </button>
 
