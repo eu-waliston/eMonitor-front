@@ -39,6 +39,22 @@ const Ticket = () => {
         "OUTROS": "Outros"
     };
 
+    const areasToIcons = {
+        "MATEMATICA": "Icons/Matematica.png",
+        "ARTES": "Icons/Artes.png",
+        "PORTUGUES": "Icons/Portugues.png",
+        "INGLES": "Icons/Ingles.png",
+        "BIOLOGIA": "Icons/Biologia.png",
+        "HISTORIA": "Icons/Historia.png",
+        "ED_FISICA": "Icons/Ed_Fisica.png",
+        "FISICA": "Icons/Fisica.png",
+        "FILOSOFIA": "Icons/Filosofia.png",
+        "SOCIOLOGIA": "Icons/Sociologia.png",
+        "QUIMICA": "Icons/Quimica.png",
+        "GEOGRAFIA": "Icons/Geografia.png",
+        "OUTROS": "Icons/Outros.png"
+    };
+
     React.useEffect(() => {
         if (localStorage.getItem("TAG")) {
             setOptionName(localStorage.getItem("TAG"))
@@ -112,7 +128,7 @@ const Ticket = () => {
                     <div className="ticket--section">
 
                         <div className="ticket--info">
-                            <img src={`./Icons/${optionName}.png`} alt="Icone da disciplina" />
+                            <img src={areasToIcons[optionName]} alt="Icone da disciplina" />
                             <p className="ticekt-p">{areas[optionName]}</p>
                         </div>
                         <div >
