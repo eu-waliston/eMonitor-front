@@ -29,6 +29,8 @@ const LobbyMonitor = () => {
     const [showClose, setShowClose] = useState(false);
     const [popupText, setPopupText] = useState('');
 
+    const [whichTab, setWhichTab] = useState('myTickets');
+
     const areas = {
         "MATEMATICA": "Matemática",
         "ARTES": "Artes",
@@ -50,12 +52,25 @@ const LobbyMonitor = () => {
     }, []);
 
     const organizeTickets = (data) => {
-        return [...data].sort((a, b) => {
-            if (a.status === 'OPEN') return -1;
-            if (a.status === 'IN_PROGRESS' && b.status !== 'OPEN') return -1;
-            return 1;
+        const organizedTickets = {
+            OPEN: [],
+            IN_PROGRESS: [],
+            CLOSED: []
+        };
+
+        data.forEach(ticket => {
+            if (ticket.status === 'OPEN') {
+                organizedTickets.OPEN.push(ticket);
+            } else if (ticket.status === 'IN_PROGRESS') {
+                organizedTickets.IN_PROGRESS.push(ticket);
+            } else if (ticket.status === 'CLOSED') {
+                organizedTickets.CLOSED.push(ticket);
+            }
         });
-    }
+
+        return organizedTickets;
+    };
+
 
     const filterTickets = (tickets, filters) => {
         if (filters.length === 0) {
@@ -123,115 +138,150 @@ const LobbyMonitor = () => {
         }
     }
 
+    const makeTicket = (ticket, index, status) => {
+        return (
+            <div
+                className="ticket"
+                key={index}
+                onClick={
+                    () => {
+                        localStorage.setItem("ticketId", ticket.id);
+                        localStorage.setItem("ticketStatus", ticket.status);
+                        navigate('/chat', { replace: false })
+                    }
+                }
+            >
+                <div className="ticket-info">
+                    <h3 className="ticket-title">{ticket.subject}</h3>
+                    <p className="ticket-status">{areas[ticket.topicId]}</p>
+                </div>
+
+
+                {status}
+            </div>
+        )
+    }
+
+    const makeTicketInProgress = (ticket, index) => {
+        const actionButton = (
+            <div>
+                <button
+                    className='action-btn'
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
+                        setTicketId(ticket.id);
+                        setShowClose(true);
+                    }}
+                >
+                    <AiOutlineCheckCircle className="action-icon" />
+                </button>
+                <ConfirmActions
+                    showPopup={showClose}
+                    setshowPopup={setShowClose}
+                    popupText={popupText}
+                    confirmAction={(confirmed) => {
+                        if (confirmed) {
+                            closeTicket();
+                        }
+                    }}
+                />
+            </div>
+        );
+
+        return (
+            makeTicket(ticket, index, actionButton)
+        )
+    }
+
+    const makeTicketOpen = (ticket, index) => {
+
+        const actionButton = (
+            <div>
+                <button
+                    className='action-btn'
+                    onClick={
+                        (e) => {
+                            e.stopPropagation();
+                            setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
+                            setTicketId(ticket.id);
+                            setShowClaim(true);
+
+                            localStorage.setItem("ticketId", ticket.id);
+                            localStorage.setItem("ticketStatus", ticket.status);
+                        }
+                    }
+
+                    aria-describedby='claim'
+                >
+                    <TfiWrite className="action-icon" />
+                </button>
+                < ConfirmActions
+                    showPopup={showClaim}
+                    setshowPopup={setShowClaim}
+                    popupText={popupText}
+                    confirmAction={(confirmed) => {
+                        if (confirmed) {
+                            claimTicket()
+                            navigate('/chat', { replace: false })
+                        } else {
+                            console.log('Não confirmou')
+                        }
+                    }}
+                />
+            </div>
+        )
+
+        return (
+            makeTicket(ticket, index, actionButton)
+        )
+    }
+
+    const makeTicketClosed = (ticket, index) => {
+        return (
+            makeTicket(ticket, index, 'CLOSED')
+        )
+    }
+
     return (
         <div className="lobby-monitor">
             <div className="container">
                 < Nav />
+
+                <div className='swap-page'>
+                    <button className='button' onClick={() => setWhichTab('myTickets')}>Meus Tickets</button>
+                    <button className='button' onClick={() => setWhichTab('newTickets')}>Novos Tickets</button>
+                    <button className='button' onClick={() => setWhichTab('closedTickets')}>Tickets Fechados</button>
+                </div>
+
                 <FilterMenu updateFilters={setFilters} />
                 <button className='reload--btn'>
                     < AiOutlineReload className='reload-icon' onClick={() => handleGetTicket()} />
                 </button>
+
                 <div className="Lobby">
 
                     <div className="ticket-list">
+
                         {
-                            ticketInfo.length === 0 ? (
+                            whichTab === 'myTickets' && ticketInfo.IN_PROGRESS !== undefined ? (
+                                filterTickets(ticketInfo.IN_PROGRESS, filters).map((ticket, index) => (
+                                    makeTicketInProgress(ticket, index)
+                                ))
+                            ) : (whichTab === 'newTickets' && ticketInfo.OPEN !== undefined ? (
+                                filterTickets(ticketInfo.OPEN, filters).map((ticket, index) => (
+                                    makeTicketOpen(ticket, index)
+                                ))
+                            ) : (whichTab === 'closedTickets' && ticketInfo.CLOSED !== undefined ? (
+                                filterTickets(ticketInfo.CLOSED, filters).map((ticket, index) => (
+                                    makeTicketClosed(ticket, index)
+                                ))
+                            ) : (
                                 <div className="no-tickets">
                                     <h1>Ainda não há tickets!</h1>
                                 </div>
-                            ) : (
-                                filterTickets(ticketInfo, filters).map((ticket, index) => (
-                                    <div
-                                        className="ticket"
-                                        key={index}
-                                        onClick={
-                                            () => {
-                                                localStorage.setItem("ticketId", ticket.id);
-                                                localStorage.setItem("ticketStatus", ticket.status);
-                                                navigate('/chat', { replace: false })
-                                            }
-                                        }
-                                    >
-                                        <div className="ticket-info">
-                                            <h3 className="ticket-title">{ticket.subject}</h3>
-                                            <p className="ticket-status">{areas[ticket.topicId]}</p>
-                                        </div>
-                                        {
-                                            ticket.status === "OPEN" ? (
-                                                <div>
-                                                    <button
-                                                        className='action-btn'
-                                                        onClick={
-                                                            (e) => {
-                                                                e.stopPropagation();
-                                                                setPopupText('Ao confirmar, esse ticket não estará mais disponível para outros monitores e você estará assumindo a responsabilidade de respondê-lo.');
-                                                                setTicketId(ticket.id);
-                                                                setShowClaim(true);
-
-                                                                localStorage.setItem("ticketId", ticket.id);
-                                                                localStorage.setItem("ticketStatus", ticket.status);
-                                                            }
-                                                        }
-
-                                                        aria-describedby='claim'
-                                                    >
-                                                        <TfiWrite className="action-icon" />
-                                                    </button>
-                                                    < ConfirmActions
-                                                        showPopup={showClaim}
-                                                        setshowPopup={setShowClaim}
-                                                        popupText={popupText}
-                                                        confirmAction={(confirmed) => {
-                                                            if (confirmed) {
-                                                                claimTicket()
-                                                                navigate('/chat', { replace: false })
-                                                            } else {
-                                                                console.log('Não confirmou')
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
-                                            ) : (
-                                                ticket.status === "IN_PROGRESS" ? (
-                                                    <div>
-                                                        <button
-                                                            className='action-btn'
-                                                            onClick={
-                                                                (e) => {
-                                                                    e.stopPropagation();
-
-                                                                    setPopupText('Ao confirmar, esse ticket será fechado e você não poderá mais enviar mensagens.');
-                                                                    setTicketId(ticket.id);
-                                                                    setShowClose(true);
-                                                                }
-                                                            }
-                                                        >
-                                                            <AiOutlineCheckCircle className="action-icon" />
-                                                        </button>
-                                                        < ConfirmActions
-                                                            showPopup={showClose}
-                                                            setshowPopup={setShowClose}
-                                                            popupText={popupText}
-                                                            confirmAction={(confirmed) => {
-                                                                if (confirmed) {
-                                                                    closeTicket();
-                                                                }
-                                                            }}
-                                                        />
-                                                    </div>
-                                                ) : (
-                                                    'CLOSED'
-                                                )
-                                            )
-                                        }
-
-                                        <div className="ticket-read-icon">
-                                            {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
-                                        </div>
-
-                                    </div>
-                                ))
-                            )}
+                            )))
+                        }
                     </div>
 
                 </div>
@@ -240,4 +290,5 @@ const LobbyMonitor = () => {
         </div>
     )
 }
+
 export default LobbyMonitor;
