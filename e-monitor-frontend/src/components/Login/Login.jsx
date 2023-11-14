@@ -4,6 +4,7 @@ import { URL } from '../../scripts/scripts';
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
+import { HttpStatusCode } from "axios";
 
 // Components
 import Spinner from "../Spinner/Spinner"
@@ -66,7 +67,20 @@ const Login = () => {
                 }, 1000)
             } else {
                 setPopupColor("#FA8072");
-                setPopupText("Problema no login!Tente novamente!");
+                if(response.status == HttpStatusCode.Locked){
+                    setPopupText("Usuário bloqueado.");
+                }
+                else if (response.status == HttpStatusCode.UpgradeRequired){
+                    setPopupText("Usuário em aprovação!");
+                } else if (response.status == HttpStatusCode.NotAcceptable){
+                    setPopupText("Usuário rejeitado no cadastro.");
+                } else if (response.status == HttpStatusCode.Forbidden){
+                    setPopupText("Usuário ou senha inválidos.")
+                } else if(response.status == HttpStatusCode.UnprocessableEntity){
+                    setPopupText("Formato de dados inválido.")
+                } else{
+                    setPopupText("Erro desconhecido.")
+                }
                 setShowPopup(true);
             }
         } catch (error) {

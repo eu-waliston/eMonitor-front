@@ -60,7 +60,20 @@ const AdminLogin = () => {
                 processResponse(response);
             } else {
                 setPopupColor("#FA8072");
-                setPopupText("Problema no login!Tente novamente!");
+                if(response.status == HttpStatusCode.Locked){
+                    setPopupText("Usuário bloqueado.");
+                }
+                else if (response.status == HttpStatusCode.UpgradeRequired){
+                    setPopupText("Usuário em aprovação!");
+                } else if (response.status == HttpStatusCode.NotAcceptable){
+                    setPopupText("Usuário rejeitado no cadastro.");
+                } else if (response.status == HttpStatusCode.Forbidden){
+                    setPopupText("Usuário ou senha inválidos.")
+                } else if(response.status == HttpStatusCode.UnprocessableEntity){
+                    setPopupText("Formato de dados inválido.")
+                } else{
+                    setPopupText("Erro desconhecido.")
+                }
                 setShowPopup(true);
             }
         } catch (error) {
