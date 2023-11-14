@@ -17,9 +17,7 @@ const Ticket = () => {
     const TOKEN = localStorage.getItem('token');
 
     const [isLoading, setIsLoading] = useState(false);
-
     const [optionName, setOptionName] = useState("");
-
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 // Components
 import Nav from '../Nav/Nav';
+import ConfirmActions from '../ConfirmActions/ConfirmActions';
 
 // Icons
 import { AiOutlineCheck, AiOutlineClose, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -31,6 +32,14 @@ function AdminPage() {
     const [onSolicitations, setOnSolicitations] = useState(true);
     const [isExpanded, setIsExpanded] = useState(null);
 
+    const [popupText, setPopupText] = useState('');
+    const [showAproveMonitor, setShowAproveMonitor] = useState(false);
+    const [showRejectMonitor, setShowRejectMonitor] = useState(false);
+    const [solicitationId, setSolicitationId] = useState(null);
+
+    const [showAcceptReport, setShowAcceptReport] = useState(false);
+    const [showRejectReport, setShowRejectReport] = useState(false);
+    const [reportId, setReportId] = useState(null);
 
     useEffect(() => {
         handleGetSolicitations();
@@ -79,8 +88,8 @@ function AdminPage() {
         }
     }
 
-    const handleApproveMonitor = async (e, userId) => {
-        e.preventDefault();
+    const handleApproveMonitor = async (userId) => {
+        //e.preventDefault();
 
         try {
             await fetch(`${URL_Approvemonitor}?userId=${userId}`, {
@@ -97,9 +106,7 @@ function AdminPage() {
         }
     }
 
-    const handleRejectMonitor = async (e, userId) => {
-        e.preventDefault();
-
+    const handleRejectMonitor = async (userId) => {
         try {
             await fetch(`${URL_RejectMonitor}?userId=${userId}`, {
                 method: 'POST',
@@ -115,9 +122,7 @@ function AdminPage() {
         }
     }
 
-    const handleAcceptReport = async (e, reportId) => {
-        e.preventDefault();
-
+    const handleAcceptReport = async (reportId) => {
         try {
             await fetch(`${URL_AcceptReport}?reportId=${reportId}`, {
                 method: 'POST',
@@ -133,9 +138,7 @@ function AdminPage() {
         }
     }
 
-    const handleRejectReport = async (e, reportId) => {
-        e.preventDefault();
-
+    const handleRejectReport = async (reportId) => {
         try {
             await fetch(`${URL_RejectReport}?reportId=${reportId}`, {
                 method: 'POST',
@@ -182,8 +185,9 @@ function AdminPage() {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
-                                                    console.log(solicitation.id);
-                                                    handleApproveMonitor(e, solicitation.id);
+                                                    setPopupText('Tem certeza que deseja aprovar esse usuário como monitor?')
+                                                    setSolicitationId(solicitation.id)
+                                                    setShowAproveMonitor(true)
                                                 }
                                             }
                                             title='Aprovar'
@@ -191,17 +195,41 @@ function AdminPage() {
                                             <AiOutlineCheck className='action-icon' />
                                         </button>
 
+                                        <ConfirmActions
+                                            showPopup={showAproveMonitor}
+                                            setshowPopup={setShowAproveMonitor}
+                                            popupText={popupText}
+                                            confirmAction={(confirmed) => {
+                                                if (confirmed) {
+                                                    handleApproveMonitor(solicitationId);
+                                                }
+                                            }}
+                                        />
+
                                         <button
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
-                                                    handleRejectMonitor(e, solicitation.id);
+                                                    setPopupText('Tem certeza que deseja recusar esse usuário como monitor?')
+                                                    setSolicitationId(solicitation.id)
+                                                    setShowRejectMonitor(true)
                                                 }
                                             }
                                             title='Rejeitar'
                                         >
                                             <AiOutlineClose className='action-icon' />
                                         </button>
+
+                                        <ConfirmActions
+                                            showPopup={showRejectMonitor}
+                                            setshowPopup={setShowRejectMonitor}
+                                            popupText={popupText}
+                                            confirmAction={(confirmed) => {
+                                                if (confirmed) {
+                                                    handleRejectMonitor(solicitationId);
+                                                }
+                                            }}
+                                        />
 
                                     </div>
                                 ))
@@ -253,7 +281,10 @@ function AdminPage() {
                                             onClick={
                                                 (e) => {
                                                     e.stopPropagation();
-                                                    handleAcceptReport(e, report.id)
+
+                                                    setPopupText('Tem certeza que deseja banir esse usuário?')
+                                                    setReportId(report.id)
+                                                    setShowAcceptReport(true)
                                                 }
                                             }
                                             title='Aceitar denúncia'
@@ -261,18 +292,43 @@ function AdminPage() {
                                             <MdOutlinePersonRemove className='action-icon' />
                                         </button>
 
+                                        <ConfirmActions
+                                            showPopup={showAcceptReport}
+                                            setshowPopup={setShowAcceptReport}
+                                            popupText={popupText}
+                                            confirmAction={(confirmed) => {
+                                                if (confirmed) {
+                                                    handleAcceptReport(reportId)
+                                                }
+                                            }}
+                                        />
+
                                         <button
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
                                                     e.stopPropagation();
-                                                    handleRejectReport(e, report.id)
+
+                                                    setPopupText('Tem certeza que deseja descartar essa denúncia?')
+                                                    setReportId(report.id)
+                                                    setShowRejectReport(true)
                                                 }
                                             }
                                             title='Rejeitar denúncia'
                                         >
                                             <MdOutlinePlaylistRemove className='action-icon' />
                                         </button>
+
+                                        <ConfirmActions
+                                            showPopup={showRejectReport}
+                                            setshowPopup={setShowRejectReport}
+                                            popupText={popupText}
+                                            confirmAction={(confirmed) => {
+                                                if (confirmed) {
+                                                    handleRejectReport(reportId)
+                                                }
+                                            }}
+                                        />
 
                                     </div>
                                 ))
