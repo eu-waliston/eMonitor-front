@@ -69,7 +69,7 @@ const ReportButton = (props) => {
                 <div>
                     <div className="">
                         <form className="ticket--form" onSubmit={null}>
-
+                            <h2>Criar denúncia</h2>
                             <label>Titulo</label>
                             <input
                                 type={"text"}

@@ -133,6 +133,7 @@ const StudentRegister = () => {
                                 onChange={handlePasswordChange}
                                 required
                                 min="1" max="20"
+                                minLength="8"
                             />
 
                             <button className="btn--register" type="submit">
