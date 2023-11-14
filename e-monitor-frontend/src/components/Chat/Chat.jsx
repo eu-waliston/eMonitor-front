@@ -2,7 +2,8 @@ import "./Chat.scss";
 import "../ReportButton/ReportButton.scss";
 import { URL } from '../../scripts/scripts';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Linkify from 'react-linkify';
 
 // Components
@@ -22,8 +23,15 @@ const Chat = () => {
     const URL_Insert = URL + '/api/v1/tickets/insert-message'
     const URL_GetMessages = URL + '/api/v1/tickets/get-messages'
     const token = localStorage.getItem('token');
-    const ticketId = localStorage.getItem('ticketId');
-    const ticketStatus = localStorage.getItem('ticketStatus');
+
+    const location = useLocation();
+    
+    const ticketId = location.state.ticket.id;
+    const ticketStatus = location.state.ticket.status;
+
+    //const ticketId = localStorage.getItem('ticketId');
+    //const ticketStatus = localStorage.getItem('ticketStatus');
+
     const role = localStorage.getItem('role');
 
     const [message, setMessage] = useState("");

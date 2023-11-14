@@ -145,9 +145,7 @@ const LobbyMonitor = () => {
                 key={index}
                 onClick={
                     () => {
-                        localStorage.setItem("ticketId", ticket.id);
-                        localStorage.setItem("ticketStatus", ticket.status);
-                        navigate('/chat', { replace: false })
+                        navigate('/chat', { state: { ticket } });
                     }
                 }
             >
