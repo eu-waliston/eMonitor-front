@@ -178,7 +178,7 @@ const Login = () => {
                                         ENTRAR
                                     </button>
                                 </div>
-                                <Link className="recover">esqueci minha senha</Link>
+                                <p className="subtitle--principal">Ainda não tem uma conta? cadastre-se <Link to={"/choice"} className="link--cadastro">aqui</Link></p>
                             </div>
                         </form>
 

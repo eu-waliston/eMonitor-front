@@ -31,12 +31,37 @@
     position: relative;
     top: 80px;
 
+    .subtitle--principal {
+      font-size: .9rem;
+      margin-top: 30px;
+      color: $text-default-color;
+      .link--cadastro {
+        text-transform: uppercase;
+        font-weight: bolder;
+        color: $text-default-color;
+        text-align: center;
+        background-color: $btn--default-color;
+        width: 30%;
+        padding: 8px;
+        position: relative;
+        left: 3%;
+        text-decoration: none;
+        border-radius: 10px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $text-default-color;
+          color: $btn--default-color;
+          transition: 0.5s;
+        }
+      }
+    }
+
     .logo-container {
       .img_logo {
         width: 200px;
       }
     }
-    
 
     form {
       .input {
@@ -63,7 +88,7 @@
         border: 0;
         position: relative;
         left: 35%;
-        margin-top: 60px;
+        margin-top: 40px;
         margin-bottom: 30px;
 
         &:hover {
