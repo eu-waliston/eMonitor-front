@@ -30,6 +30,7 @@ const LobbyMonitor = () => {
     const [popupText, setPopupText] = useState('');
 
     const [whichTab, setWhichTab] = useState('myTickets');
+    const [activeTab, setActiveTab] = useState('myTickets');
 
     const areas = {
         "MATEMATICA": "Matemática",
@@ -251,9 +252,25 @@ const LobbyMonitor = () => {
                 < Nav />
 
                 <div className='swap-page'>
-                    <button className='button' onClick={() => setWhichTab('myTickets')}>Meus Tickets</button>
-                    <button className='button' onClick={() => setWhichTab('newTickets')}>Novos Tickets</button>
-                    <button className='button' onClick={() => setWhichTab('closedTickets')}>Tickets Fechados</button>
+                    <button
+                        className={`button ${activeTab === 'myTickets' ? 'active' : ''}`}
+                        onClick={() => {setWhichTab('myTickets'); setActiveTab('myTickets');}}
+                    >
+                        Meus Tickets
+                    </button>
+                    <button
+                        className={`button ${activeTab === 'newTickets' ? 'active' : ''}`}
+                        onClick={() => {setWhichTab('newTickets'); setActiveTab('newTickets');}}
+                    >
+                        Novos Tickets
+                    </button>
+                    <button
+                        className={`button ${activeTab === 'closedTickets' ? 'active' : ''}`}
+                        onClick={() => {setWhichTab('closedTickets'); setActiveTab('closedTickets');}}
+                    >
+                        Tickets Fechados
+                    </button>
+
                 </div>
 
                 <FilterMenu updateFilters={setFilters} />
@@ -274,7 +291,7 @@ const LobbyMonitor = () => {
                                 filterTickets(ticketInfo.OPEN, filters).map((ticket, index) => (
                                     makeTicketOpen(ticket, index)
                                 ))
-                            ) : (whichTab === 'closedTickets' && ticketInfo.CLOSED !== undefined && ticketInfo.CLOSED.length !== 0? (
+                            ) : (whichTab === 'closedTickets' && ticketInfo.CLOSED !== undefined && ticketInfo.CLOSED.length !== 0 ? (
                                 filterTickets(ticketInfo.CLOSED, filters).map((ticket, index) => (
                                     makeTicketClosed(ticket, index)
                                 ))

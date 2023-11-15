@@ -75,6 +75,16 @@
         cursor: pointer;
         transition: 0.5s;
 
+        &.active {
+          background-color: #fff;
+          color: #195f89;
+  
+          &:hover {
+              background-color: #fff;
+              color: #195f89;
+          }
+      }
+
         &:hover {
           background-color: #fff;
           color: #195f89;
