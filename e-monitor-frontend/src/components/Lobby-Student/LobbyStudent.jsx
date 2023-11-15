@@ -12,6 +12,7 @@ import FilterMenu from '../FilterMenu/FilterMenu';
 import { AiOutlineReload } from "react-icons/ai";
 import { BsExclamationCircleFill } from "react-icons/bs";
 import { BiSolidEdit } from "react-icons/bi";
+import { PiKeyReturnBold } from "react-icons/pi";
 
 const LobbyStudent = () => {
     const navigate = useNavigate();
@@ -75,11 +76,13 @@ const LobbyStudent = () => {
             if (response.ok) {
                 const data = await response.json();
                 setTicketInfo(data);
-                
+
+                setRenamingTicketId(null);
+
                 //notification alert function
-                Notification.requestPermission().then((result) => {
-                    //alert("Você tem uma nova mensagem!!!")
-                });
+                //Notification.requestPermission().then((result) => {
+                //alert("Você tem uma nova mensagem!!!")
+                //});
             } else {
                 console.error('Erro na solicitação:', response.status);
             }
@@ -136,9 +139,9 @@ const LobbyStudent = () => {
                                         className="ticket"
                                         key={index}
                                         onClick={() => {
-                                                localStorage.setItem("ticketId", ticket.id);
-                                                navigate('/chat', { replace: true })
-                                            }
+                                            localStorage.setItem("ticketId", ticket.id);
+                                            navigate('/chat', { replace: true })
+                                        }
                                         }
                                     >
                                         <div className="ticket-info">
@@ -152,7 +155,6 @@ const LobbyStudent = () => {
                                                         onChange={handleTitleChange}
                                                         onBlur={() => {
                                                             setIsRenaming(false);
-                                                            setRenamingTicketId(null);
                                                         }}
                                                         onKeyDown={(e) => {
                                                             if (e.key === 'Enter') {
@@ -162,12 +164,20 @@ const LobbyStudent = () => {
                                                         }}
                                                         onClick={(e) => { e.stopPropagation() }}
                                                         autoFocus
+                                                        button
                                                     />
                                                 ) : (
-                                                    <div className="ticket-info">
-                                                        <h3 className="ticket-title">{ticket.subject}</h3>
-                                                        <p className="ticket-topic">{areas[ticket.topicId]}</p>
-                                                    </div>
+                                                    !isRenaming && renamingTicketId === ticket.id && newTitle !== '' ? (
+                                                        <div className="ticket-info">
+                                                            <h3 className="ticket-title">{newTitle}</h3>
+                                                            <p className="ticket-topic">{areas[ticket.topicId]}</p>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="ticket-info">
+                                                            <h3 className="ticket-title">{ticket.subject}</h3>
+                                                            <p className="ticket-topic">{areas[ticket.topicId]}</p>
+                                                        </div>
+                                                    )
                                                 )
                                             }
                                         </div>
@@ -176,21 +186,34 @@ const LobbyStudent = () => {
                                             className='action-btn'
                                             onClick={
                                                 (e) => {
-                                                    setRenamingTicketId(ticket.id);
-                                                    setNewTitle("");
-                                                    e.stopPropagation();
-                                                    setIsRenaming(true);
+                                                    if (isRenaming && renamingTicketId === ticket.id) {
+                                                        e.stopPropagation();
+                                                        handleRenameTicket();
+                                                        setIsRenaming(false);
+                                                    } else {
+                                                        setRenamingTicketId(ticket.id);
+                                                        setNewTitle("");
+                                                        e.stopPropagation();
+                                                        setIsRenaming(true);
+                                                    }
                                                 }
                                             }
 
                                             aria-describedby='claim'
                                         >
-                                            <BiSolidEdit className="action-icon" />
+                                            {
+                                                isRenaming && renamingTicketId === ticket.id ? (
+                                                    <PiKeyReturnBold className="action-icon" />
+                                                ) : (
+                                                    <BiSolidEdit className="action-icon" />
+                                                )
+                                            }
+
                                         </button>
 
-                                        <div className="ticket-read-icon">
+                                        {/*<div className="ticket-read-icon">
                                             {ticket.status === "OPEN" ? <BsExclamationCircleFill className='exclamation-icons' /> : ""}
-                                        </div>
+                                        </div>*/}
 
                                     </div>
                                 ))
@@ -204,7 +227,7 @@ const LobbyStudent = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 
